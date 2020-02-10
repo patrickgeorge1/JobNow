@@ -1,0 +1,97 @@
+CREATE TABLE `users` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`user_name` varchar(128) NOT NULL UNIQUE,
+	`real_name` varchar(128) NOT NULL,
+	`real_name` varchar(256) NOT NULL,
+	`stats` TEXT,
+	`trust` INT NOT NULL DEFAULT '7',
+	`register_date` TIMESTAMP NOT NULL,
+	`role` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `jobs` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`user` INT NOT NULL,
+	`category` INT NOT NULL,
+	`price` FLOAT NOT NULL,
+	`title` varchar(128) NOT NULL,
+	`description` TEXT,
+	`status` INT NOT NULL,
+	`register_date` TIMESTAMP,
+	`latitude` FLOAT NOT NULL,
+	`longitude` FLOAT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `categories` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name` varchar(128) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `requirements` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name` varchar(128) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `categories_requirements` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`category` INT NOT NULL,
+	`requirement` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `ratings` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`job` INT NOT NULL,
+	`sender` INT NOT NULL,
+	`reciver` INT NOT NULL,
+	`date` TIMESTAMP NOT NULL,
+	`score` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `tickets` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`type` INT NOT NULL AUTO_INCREMENT,
+	`user` INT NOT NULL,
+	`admin` INT,
+	`target` INT NOT NULL DEFAULT '0',
+	`title` varchar(128) NOT NULL,
+	`description` TEXT NOT NULL,
+	`response` TEXT,
+	`status` INT NOT NULL,
+	`register_date` TIMESTAMP NOT NULL,
+	`close_date` TIMESTAMP NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `roles` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`type` varchar(128) NOT NULL DEFAULT 'user',
+	PRIMARY KEY (`id`)
+);
+
+ALTER TABLE `users` ADD CONSTRAINT `users_fk0` FOREIGN KEY (`role`) REFERENCES `roles`(`id`);
+
+ALTER TABLE `jobs` ADD CONSTRAINT `jobs_fk0` FOREIGN KEY (`user`) REFERENCES `users`(`id`);
+
+ALTER TABLE `jobs` ADD CONSTRAINT `jobs_fk1` FOREIGN KEY (`category`) REFERENCES `categories`(`id`);
+
+ALTER TABLE `categories_requirements` ADD CONSTRAINT `categories_requirements_fk0` FOREIGN KEY (`category`) REFERENCES `categories`(`id`);
+
+ALTER TABLE `categories_requirements` ADD CONSTRAINT `categories_requirements_fk1` FOREIGN KEY (`requirement`) REFERENCES `requirements`(`id`);
+
+ALTER TABLE `ratings` ADD CONSTRAINT `ratings_fk0` FOREIGN KEY (`job`) REFERENCES `jobs`(`id`);
+
+ALTER TABLE `ratings` ADD CONSTRAINT `ratings_fk1` FOREIGN KEY (`sender`) REFERENCES `users`(`id`);
+
+ALTER TABLE `ratings` ADD CONSTRAINT `ratings_fk2` FOREIGN KEY (`reciver`) REFERENCES `users`(`id`);
+
+ALTER TABLE `ratings` ADD CONSTRAINT `ratings_fk3` FOREIGN KEY (`date`) REFERENCES `jobs`(`user`);
+
+ALTER TABLE `tickets` ADD CONSTRAINT `tickets_fk0` FOREIGN KEY (`user`) REFERENCES `users`(`id`);
+
+ALTER TABLE `tickets` ADD CONSTRAINT `tickets_fk1` FOREIGN KEY (`admin`) REFERENCES `users`(`id`);

@@ -2,7 +2,6 @@ CREATE TABLE `users` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`user_name` varchar(128) NOT NULL UNIQUE,
 	`real_name` varchar(128) NOT NULL,
-	`real_name` varchar(256) NOT NULL,
 	`stats` TEXT,
 	`trust` INT NOT NULL DEFAULT '7',
 	`register_date` TIMESTAMP NOT NULL,
@@ -55,7 +54,7 @@ CREATE TABLE `ratings` (
 
 CREATE TABLE `tickets` (
 	`id` INT NOT NULL AUTO_INCREMENT,
-	`type` INT NOT NULL AUTO_INCREMENT,
+	`type` INT NOT NULL,
 	`user` INT NOT NULL,
 	`admin` INT,
 	`target` INT NOT NULL DEFAULT '0',
@@ -89,8 +88,6 @@ ALTER TABLE `ratings` ADD CONSTRAINT `ratings_fk0` FOREIGN KEY (`job`) REFERENCE
 ALTER TABLE `ratings` ADD CONSTRAINT `ratings_fk1` FOREIGN KEY (`sender`) REFERENCES `users`(`id`);
 
 ALTER TABLE `ratings` ADD CONSTRAINT `ratings_fk2` FOREIGN KEY (`reciver`) REFERENCES `users`(`id`);
-
-ALTER TABLE `ratings` ADD CONSTRAINT `ratings_fk3` FOREIGN KEY (`date`) REFERENCES `jobs`(`user`);
 
 ALTER TABLE `tickets` ADD CONSTRAINT `tickets_fk0` FOREIGN KEY (`user`) REFERENCES `users`(`id`);
 

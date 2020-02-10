@@ -53,12 +53,5 @@ Ratings:
 /user/{id}/review/{target_job}
 
 
-<<<<<<< HEAD
-
 branch tudor
-  
-=======
-  ------------------------------
-  
    Branch Patrick
->>>>>>> 8971aeca24299518ade8938a8deac67b0acaa57a

@@ -15,6 +15,9 @@ public class User {
     @Column(name = "username", length = 128, nullable = false, unique = true)
     private String username;
 
+    @Column(name = "password", length = 256, nullable = false)
+    private String password;
+
     @Column(name = "realName", length = 128, nullable = false, unique = false)
     private String realName;
 
@@ -48,6 +51,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRealName() {

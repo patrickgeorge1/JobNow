@@ -1,5 +1,6 @@
 package com.app.API.requirement;
 
+import com.app.API.job.Job;
 import com.app.API.requirementType.RequirementType;
 
 import javax.persistence.*;
@@ -18,8 +19,9 @@ public class Requirement {
     @JoinColumn(name = "requirementType", nullable = false)
     private RequirementType requirementType;
 
-    // TODO job
-
+    @OneToOne
+    @JoinColumn(name = "job_id", nullable = false)
+    private Job job;
 
     public Long getId() {
         return id;

@@ -31,7 +31,6 @@ public class TestController {
         testService.deleteTest(id);
     }
 
-    // Route /tests?name=Tudor
     @RequestMapping(path = "/tests/{name}", method = RequestMethod.POST)
     public void addTest(@PathVariable String name) {
         Test test = new Test(name);

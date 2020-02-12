@@ -36,7 +36,6 @@ public class User {
     private String permissions = "";
 
     public User(String username, String password, String realName, String stats, Integer trust, Date registerDate, String permissions) {
-        // TODO nu am pus id
         this.username = username;
         this.password = password;
         this.realName = realName;

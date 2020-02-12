@@ -80,4 +80,13 @@ public class Rating {
     public void setScore(Integer score) {
         this.score = score;
     }
+
+    public Rating(Long id, Job job, User sender, User receiver, Date date, Integer score) {
+        this.id = id;
+        this.job = job;
+        this.sender = sender;
+        this.receiver = receiver;
+        this.date = date;
+        this.score = score;
+    }
 }

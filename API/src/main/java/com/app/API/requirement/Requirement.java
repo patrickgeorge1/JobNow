@@ -46,4 +46,11 @@ public class Requirement {
     public void setRequirementType(RequirementType requirementType) {
         this.requirementType = requirementType;
     }
+
+    public Requirement(Long id, String value, RequirementType requirementType, Job job) {
+        this.id = id;
+        this.value = value;
+        this.requirementType = requirementType;
+        this.job = job;
+    }
 }

@@ -52,6 +52,15 @@ public class TestController {
         return users;
     }
 
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public @ResponseBody List<String> testPost() {
+        List<String> users = new ArrayList<>();
+        userRepository.findAll().forEach(user -> {
+            users.add(user.toString());
+        });
+        return users;
+    }
+
     @RequestMapping(path = "/api/public", method = RequestMethod.GET)
     public String apiPublic() {
         return "welcome to api public";

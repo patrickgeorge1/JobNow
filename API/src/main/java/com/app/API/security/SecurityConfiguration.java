@@ -3,6 +3,7 @@ package com.app.API.security;
 import com.app.API.security.UserPrincipalDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,13 +40,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
-                    .antMatchers("/login").permitAll()
-                    .antMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
-                    .antMatchers("/api/public/ticket/view").hasAnyAuthority("ACCESS_TICKET", "ROLE_ADMIN")
-                    .antMatchers("/api/public/**").authenticated()
-                    .and()
+                        .antMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+                        .antMatchers("/api/public/ticket/view").hasAnyAuthority("ACCESS_TICKET", "ROLE_ADMIN")
+                        .antMatchers("/api/public/**").authenticated()
+                        .and()
+
                     .httpBasic();
-    }
+        }
 
     @Bean
     PasswordEncoder passwordEncoder() {

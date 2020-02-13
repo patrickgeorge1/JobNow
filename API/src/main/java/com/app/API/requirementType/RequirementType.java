@@ -65,4 +65,12 @@ public class RequirementType {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public RequirementType(Long id, String name, Integer type, Integer mandatory, Category category) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.mandatory = mandatory;
+        this.category = category;
+    }
 }

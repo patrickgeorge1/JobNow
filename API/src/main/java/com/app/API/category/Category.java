@@ -42,4 +42,10 @@ public class Category {
     public void setRequirements(Set<RequirementType> requirements) {
         this.requirements = requirements;
     }
+
+    public Category(Long id, String name, Set<RequirementType> requirements) {
+        this.id = id;
+        this.name = name;
+        this.requirements = requirements;
+    }
 }

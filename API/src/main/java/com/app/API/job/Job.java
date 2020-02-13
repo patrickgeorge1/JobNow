@@ -134,4 +134,18 @@ public class Job {
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
+
+    public Job(Long id, User employer, User emplyee, Category category, Float price, String title, String description, Integer status, Date registerDate, Double latitude, Double longitude) {
+        this.id = id;
+        this.employer = employer;
+        this.emplyee = emplyee;
+        this.category = category;
+        this.price = price;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.registerDate = registerDate;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 }

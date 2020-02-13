@@ -1,9 +1,9 @@
 package com.app.API.user;
-
-import com.app.API.role.Role;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -32,10 +32,20 @@ public class User {
     @Column(name = "registerDate")
     private Date registerDate;
 
-    @OneToOne
-    @JoinColumn(name = "role", nullable = false)
-    private Role role;
+    @Column(name = "permissions")
+    private String permissions = "";
 
+    public User(String username, String password, String realName, String stats, Integer trust, Date registerDate, String permissions) {
+        this.username = username;
+        this.password = password;
+        this.realName = realName;
+        this.stats = stats;
+        this.trust = trust;
+        this.registerDate = registerDate;
+        this.permissions = permissions;
+    }
+
+    protected User() {}
 
     public Long getId() {
         return id;
@@ -93,11 +103,33 @@ public class User {
         this.registerDate = registerDate;
     }
 
-    public Role getRole() {
-        return role;
+    public String getPermissions() {
+        return permissions;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setPermissions(String permissions) {
+        this.permissions = permissions;
+    }
+
+
+    public List<String> getPermissionList() {
+        if (this.permissions.length() > 0 ) {
+            return Arrays.asList(this.permissions.split(","));
+        }
+        return new ArrayList<String>();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", realName='" + realName + '\'' +
+                ", stats='" + stats + '\'' +
+                ", trust=" + trust +
+                ", registerDate=" + registerDate +
+                ", permissions='" + permissions + '\'' +
+                '}';
     }
 }

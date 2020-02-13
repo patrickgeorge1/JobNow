@@ -11,7 +11,7 @@ public class TestService {
     @Autowired
     private TestRepositoryInterface testRepositoryInterface;
 
-    public List<Test> getAllTests()  {
+    public List<Test>   getAllTests()  {
         List<Test> tests = new ArrayList<>();
         testRepositoryInterface.findAll().forEach(tests::add);
         return tests;

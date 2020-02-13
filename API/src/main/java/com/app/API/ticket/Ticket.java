@@ -46,6 +46,18 @@ public class Ticket {
     @Temporal(TemporalType.TIMESTAMP)
     private Date closeDate;
 
+    public Ticket(Integer type, User author, User admin, Integer targetId, String title, String description, String response, Integer status, Date registerDate, Date closeDate) {
+        this.type = type;
+        this.author = author;
+        this.admin = admin;
+        this.targetId = targetId;
+        this.title = title;
+        this.description = description;
+        this.response = response;
+        this.status = status;
+        this.registerDate = registerDate;
+        this.closeDate = closeDate;
+    }
 
     public Long getId() {
         return id;

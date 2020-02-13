@@ -10,7 +10,7 @@ INSERT INTO `users` (`id`, `password`, `permissions`, `real_name`, `register_dat
 
 INSERT INTO `users` (`id`, `password`, `permissions`, `real_name`, `register_date`, `stats`, `trust`, `username`) VALUES (NULL, '$2a$07$rS6JWtN20WJ6zvfk7PFn9.dZMkcSkuGDleZkpM2oVp1lQa1ECqRVi', 'ROLE_ADMIN', 'George Patrick', '2020-02-12 00:00:00', 'no stats', '7', 'patrick');
 INSERT INTO `users` (`id`, `password`, `permissions`, `real_name`, `register_date`, `stats`, `trust`, `username`) VALUES (NULL, '$2a$07$h.5CcElMPY9bnsMqXQlnEOB23.O/wC9w0lcHot6ULw9al5pq1ZlG2', 'ROLE_USER', 'Ion Popescu', '2020-02-12 00:00:00', 'no stats', '7', 'ion');
-INSERT INTO `users` (`id`, `password`, `permissions`, `real_name`, `register_date`, `stats`, `trust`, `username`) VALUES (NULL, '$2a$07$yNJry0TJs6hanRmLz04.Fe/pKOBNPVLTka.PJUeww.mpeWWXIKkbK', 'ROLE_USER,ACCESS_TICKET', 'Utilizator Vede Ticket', '2020-02-12 00:00:00', 'no stats', '7', 'ticket');
+INSERT INTO `users` (`id`, `password`, `permissions`, `real_name`, `register_date`, `stats`, `trust`, `username`) VALUES (NULL, '$2a$07$yNJry0TJs6hanRmLz04.Fe/pKOBNPVLTka.PJUeww.mpeWWXIKkbK', 'ROLE_USER,ACCESS_VIEWTICKETS,ACCESS_VIEWUSERS', 'Utilizator Vede Ticket', '2020-02-12 00:00:00', 'no stats', '7', 'ticket');
 
 
 INSERT INTO `users` (`id`, `password`, `permissions`, `real_name`, `register_date`, `stats`, `trust`, `username`) VALUES (NULL, '$2a$04$SP.m9rXfX3F9ihZ/cztHGes1lywWNB7X2rZQs5e7NeWT.m2rWj97O', 'ROLE_ADMIN', 'Real_Name9', '2020-02-12 00:00:00', 'no stats', '7', 'admin1');

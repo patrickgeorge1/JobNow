@@ -12,17 +12,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-    @RequestMapping(path = "api/admin/users", method = RequestMethod.GET)
-    public @ResponseBody List<User> getAllUsersAdmin() {
-        return userService.getAllAdmin();
-    }
-
-    @RequestMapping(path = "api/public/users", method = RequestMethod.GET)
-    public @ResponseBody List<User> getAllUsers() {
-        return userService.getAll();
-    }
-
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public @ResponseBody String addUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("real_name") String realName) {
         try {
@@ -32,4 +21,15 @@ public class UserController {
             return "Failed";
         }
     }
+
+    @RequestMapping(path = "api/public/admin/users", method = RequestMethod.GET)
+    public @ResponseBody List<User> getAllUsersAdmin() {
+        return userService.getAllAdmin();
+    }
+
+    @RequestMapping(path = "api/public/users", method = RequestMethod.GET)
+    public @ResponseBody List<User> getAllUsers() {
+        return userService.getAll();
+    }
+
 }

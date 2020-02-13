@@ -55,6 +55,17 @@ public class TestController {
     @RequestMapping(path = "/show", method = RequestMethod.POST)
     public @ResponseBody List<String> testPost() {
         List<String> users = new ArrayList<>();
+        users.add("POST METHOD");
+        userRepository.findAll().forEach(user -> {
+            users.add(user.toString());
+        });
+        return users;
+    }
+
+    @RequestMapping(path = "/show", method = RequestMethod.GET)
+    public @ResponseBody List<String> testPostGET() {
+        List<String> users = new ArrayList<>();
+        users.add("GET METHOD");
         userRepository.findAll().forEach(user -> {
             users.add(user.toString());
         });

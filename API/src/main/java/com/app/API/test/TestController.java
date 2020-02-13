@@ -52,7 +52,7 @@ public class TestController {
         return users;
     }
 
-    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    @RequestMapping(path = "/show", method = RequestMethod.POST)
     public @ResponseBody List<String> testPost() {
         List<String> users = new ArrayList<>();
         userRepository.findAll().forEach(user -> {
@@ -71,7 +71,7 @@ public class TestController {
         return "welcome to api admin";
     }
 
-    @RequestMapping(path = "/api/public/ticket/view", method = RequestMethod.GET)
+    @RequestMapping(path = "/api/public/ticket/view", method = RequestMethod.POST)
     public String apiTicket() {
         return "ai vazut ticket";
     }

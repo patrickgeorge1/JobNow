@@ -49,6 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                                 // Users
                                 .antMatchers(HttpMethod.GET, "/api/public/admin/users").hasAnyAuthority("ACCESS_VIEWUSERS", "ROLE_ADMIN")
+                                .antMatchers(HttpMethod.POST, "/api/public/admin/give").hasAnyAuthority("ACCESS_GIVEPERMISSION", "ROLE_ADMIN")
 
                                 // Tickets
                                 .antMatchers(HttpMethod.GET, "/api/public/admin/ticket").hasAnyAuthority("ROLE_ADMIN", "ACCESS_VIEWTICEKTS")

@@ -119,6 +119,14 @@ public class User {
         return new ArrayList<String>();
     }
 
+    public void addPermission(String permission) {
+        if (this.permissions.length() == 0){
+            this.permissions = permission;
+        } else {
+            this.permissions += ',' + permission;
+        }
+    }
+
     @Override
     public String toString() {
         return "User{" +

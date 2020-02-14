@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -31,6 +32,10 @@ public class UserService {
 
     public void addUser(String username, String password, String realName) {
         User new_user = new User(username, passwordEncoder.encode(password), realName, "no stats", 7, new Date(), "ROLE_USER");
+        userRepository.save(new_user);
+    }
 
+    public void givePermission(Long toUser, String permission) {
+        userRepository.findById(toUser).ifPresent(user -> { user.addPermission(permission); userRepository.save(user);});
     }
 }

@@ -8,9 +8,10 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="create_job_vertical_spacing">16dp</dimen>
-    <dimen name="recycleview_right_padding">16dp</dimen>
+    <dimen name="item_right_padding">16dp</dimen>
+    <dimen name="form_right_margin">32dp</dimen>
     <dimen name="category_in_list_width">130dp</dimen>
-    <dimen name="currency_spinner_width">130dp</dimen>
+    <dimen name="currency_spinner_width">120dp</dimen>
     <dimen name="currency_spinner_height">50dp</dimen>
 
     <dimen name="job_in_list_vertical_spacing">12dp</dimen>
@@ -21,15 +22,20 @@
     <dimen name="label_font_size">16sp</dimen>
     <dimen name="title_font_size">20sp</dimen>
     <dimen name="submit_button_font_size">16sp</dimen>
+    <dimen name="button_horizontal_padding">32dp</dimen>
+    <dimen name="button_vertical_padding">20dp</dimen>
 
-    <dimen name="big_padding">12dp</dimen>
+    <dimen name="medium_img_size">56dp</dimen>
+
+    <dimen name="small_padding">4dp</dimen>
+    <dimen name="medium_padding">12dp</dimen>
 
     <dimen name="small_radius">4dp</dimen>
-    <dimen name="big_radius">12dp</dimen>
+    <dimen name="medium_radius">12dp</dimen>
 
     <dimen name="small_margin">4dp</dimen>
-    <dimen name="big_margin">12dp</dimen>
+    <dimen name="medium_margin">12dp</dimen>
+    <dimen name="big_margin">24dp</dimen>
 
-
-
+    <dimen name="basic_elevation">12dp</dimen>
 </resources>

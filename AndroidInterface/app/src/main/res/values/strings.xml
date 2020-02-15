@@ -25,24 +25,31 @@
     <string name="action_filter">Filter</string>
     <string name="action_back">Back</string>
 
+    <!--    MAP ACTIVITY-->
+    <string name="pick_job_location">Pick Location</string>
+    <string name="error_cannot_find_location">We cannot find your current location!</string>
+    <string name="error_no_marker_on_map">You need to put a pinpoint on the map!</string>
 
-
-<!--    CREATE JOB ACTIVITY-->
+    <!--    CREATE JOB ACTIVITY-->
     <string name="create_job_label_title">Task Name</string>
     <string name="create_job_label_price">Price</string>
     <string name="create_job_label_description">Description</string>
     <string name="create_job_label_category">Category</string>
+    <string name="create_job_label_location">Location</string>
     <string name="create_job_description_placeholder">Is there something more you should tell us?</string>
     <string name="create_job_button_text">List Your Job</string>
     <string name="create_job_successful">Congratulation! Your job has been listed</string>
+    <string name="create_job_failed">There was a problem while adding this job! Please try again later</string>
 
     <string name="create_job_dialog_category_sugestions">Sugestions</string>
     <string name="create_job_dialog_category_added">You have added</string>
 
-    <string name="job_title_only_alphanumeric">This Field should contains only alphanumeric characters</string>
-    <string name="job_title_too_short">Please write something more descriptive</string>
-    <string name="no_category_selected">You need to select at least one category</string>
-    <string name="no_too_much_category_selected">You can select maximum 5 categories</string>
+    <string name="error_job_title_only_alphanumeric">Only Letters and digits are allowed</string>
+    <string name="error_job_title_too_short">Please write something more descriptive</string>
+    <string name="error_job_title_empty">You need to write something here</string>
+    <string name="error_category_selected">You need to select at least one category</string>
+    <string name="error_too_much_category_selected">You can select maximum 5 categories</string>
+    <string name="error_no_location_selected">You didn`t select job location</string>
 
     <string name="dialog_confirm_data_title">Is this information correct?</string>
     <string name="dialog_edit_categories_title">Edit Categories</string>
@@ -50,7 +57,7 @@
     <string name="dialog_ok">Ok</string>
     <string name="dialog_no">No</string>
     <string name="dialog_cancel">Cancel</string>
-
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>

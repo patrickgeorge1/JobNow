@@ -1,5 +1,6 @@
 package com.company.jobnow.activity.main.jobSearchPage;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,11 +22,13 @@ import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.createJob.CreateJobActivity;
 import com.company.jobnow.activity.main.jobSearchPage.adapter.ListViewAdapterJob;
 import com.company.jobnow.activity.updatePreferences.UpdateJobPreferencesActivity;
+import com.company.jobnow.common.RequestCode;
 import com.company.jobnow.entity.Job;
 
 import java.util.List;
 
 public class JobSearchFragment extends Fragment {
+    private ListViewAdapterJob jobListAdapter;
     private View view;
 
     @Override
@@ -61,7 +64,7 @@ public class JobSearchFragment extends Fragment {
         ListView listView = view.findViewById(R.id.listView_jobs);
 
         final List<Job> jobList = SingletonDatabase.getInstance().getJobList();
-        final ListViewAdapterJob jobListAdapter = new ListViewAdapterJob(getActivity(), R.layout.item_listview_job, jobList);
+        jobListAdapter = new ListViewAdapterJob(getActivity(), R.layout.item_listview_job, jobList);
         listView.setAdapter(jobListAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -76,9 +79,19 @@ public class JobSearchFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CreateJobActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, RequestCode.JOB_ADD);
             }
         });
         return view;
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == Activity.RESULT_OK && requestCode == RequestCode.JOB_ADD) {
+            jobListAdapter.notifyDataSetChanged();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
 }

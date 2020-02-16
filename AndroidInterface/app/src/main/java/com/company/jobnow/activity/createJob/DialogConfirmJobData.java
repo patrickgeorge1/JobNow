@@ -1,7 +1,9 @@
 package com.company.jobnow.activity.createJob;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -70,7 +72,9 @@ public class DialogConfirmJobData extends AppCompatDialogFragment {
                         }
                         try {
                             Toast.makeText(getActivity(), feedbackMessage, Toast.LENGTH_LONG).show();
-                            getActivity().finish();
+                            Activity activity = getActivity();
+                            activity.setResult(Activity.RESULT_OK);
+                            activity.finish();
                         } catch (Exception e) {
                             Log.e(TAG, "onClick: Exception " + e.getMessage());
                         }

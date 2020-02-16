@@ -21,7 +21,8 @@ import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.createJob.adapter.ArrayAdapterCurrency;
 import com.company.jobnow.activity.createJob.adapter.RecycleViewAdapterCategory;
-import com.company.jobnow.common.Constants;
+import com.company.jobnow.common.Constant;
+import com.company.jobnow.common.RequestCode;
 import com.company.jobnow.entity.Category;
 import com.company.jobnow.entity.Currency;
 import com.google.android.gms.maps.model.LatLng;
@@ -31,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateJobActivity extends AppCompatActivity {
-    public final static int REQUEST_CODE_MAP = 101;
     private static final String TAG = "CreateJobActivity";
     RecycleViewAdapterCategory selectedCategoryAdapter;
     Spinner currencySpinner;
@@ -124,7 +124,7 @@ public class CreateJobActivity extends AppCompatActivity {
             inputjobTitle.setError(getString(R.string.error_job_title_only_alphanumeric));
             return false;
         }
-        if (jobTitle.replace(" ", "").length() < Constants.MIN_LENGTH_JOB_TITLE) {
+        if (jobTitle.replace(" ", "").length() < Constant.MIN_LENGTH_JOB_TITLE) {
             inputjobTitle.setError(getString(R.string.error_job_title_too_short));
             return false;
         }
@@ -138,7 +138,7 @@ public class CreateJobActivity extends AppCompatActivity {
             labelCategory.setTextColor(getResources().getColor(R.color.red));
             return false;
         }
-        if (selectedCategoryAdapter.getItemCount() > Constants.MAX_JOB_CATEGORIES) {
+        if (selectedCategoryAdapter.getItemCount() > Constant.MAX_JOB_CATEGORIES) {
             jobCategoryErrorDisplay.setError(getString(R.string.error_too_much_category_selected));
             labelCategory.setTextColor(getResources().getColor(R.color.red));
             return false;
@@ -186,12 +186,12 @@ public class CreateJobActivity extends AppCompatActivity {
 
     public void goToPickLocationActivity(View view) {
         Intent intent = new Intent(this, PickLocationActivity.class);
-        startActivityForResult(intent, REQUEST_CODE_MAP);
+        startActivityForResult(intent, RequestCode.MAP);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_MAP) {
+        if (resultCode == RESULT_OK && requestCode == RequestCode.MAP) {
             jobPosition = new LatLng(data.getExtras().getDouble("latitude"), data.getExtras().getDouble("longitude"));
             Log.e(TAG, "onActivityResult: jobPosition is " + jobPosition.latitude + " " + jobPosition.longitude);
             validateJobPosition();

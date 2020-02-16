@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.company.jobnow.R;
+import com.company.jobnow.common.RequestCode;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -29,7 +30,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 public class PickLocationActivity extends AppCompatActivity implements OnMapReadyCallback {
-    private static final int LOCATION_PERMISSION_REQUEST_CODE = 102;
     private static final float DEFAULT_ZOOM = 15f;
     private static final String TAG = "PickLocationActivity";
 
@@ -60,7 +60,7 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
                 && (ContextCompat.checkSelfPermission(getApplicationContext(), permissions[1]) == PackageManager.PERMISSION_GRANTED)) {
             mLocationPermisionGranted = true;
         } else {
-            ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_REQUEST_CODE);
+            ActivityCompat.requestPermissions(this, permissions, RequestCode.LOCATION_PERMISSION);
         }
     }
 
@@ -115,7 +115,7 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+        if (requestCode == RequestCode.LOCATION_PERMISSION) {
             for (int i = 0; i < grantResults.length; i++) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mLocationPermisionGranted = false;

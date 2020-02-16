@@ -11,8 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.company.jobnow.R;
@@ -30,7 +30,7 @@ public class ChatFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        menu.close();
+        menu.clear();
         inflater.inflate(R.menu.search, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -50,9 +50,6 @@ public class ChatFragment extends Fragment {
                 chatListAdapter.remove(chatList.get(position));
             }
         });
-
-
-
         return view;
     }
 }

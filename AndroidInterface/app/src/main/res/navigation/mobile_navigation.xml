@@ -33,12 +33,11 @@
         android:id="@+id/nav_help"
         android:name="com.company.jobnow.activity.main.helpPage.HelpFragment"
         android:label="@string/menu_help"
-        tools:layout="@layout/fragment_help_main"/>
+        tools:layout="@layout/fragment_help_main" />
 
     <fragment
         android:id="@+id/nav_share"
         android:name="com.company.jobnow.activity.main.sharePage.ShareFragment"
         android:label="@string/menu_share"
         tools:layout="@layout/fragment_share_main" />
-
 </navigation>

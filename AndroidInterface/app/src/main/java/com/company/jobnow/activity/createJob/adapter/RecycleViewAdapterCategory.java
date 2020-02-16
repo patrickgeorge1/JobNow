@@ -40,7 +40,7 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Category c: basebaseCategories) {
+        for (Category c : basebaseCategories) {
             stringBuilder.append(c.toString() + '\n');
         }
         if (stringBuilder.length() != 0) {
@@ -72,7 +72,6 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
             }
         });
     }
-
 
 
     @Override

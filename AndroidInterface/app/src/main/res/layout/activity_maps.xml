@@ -24,4 +24,5 @@
         android:onClick="userPicksLocation"
         android:text="@string/pick_job_location"
         android:textAllCaps="false" />
+
 </RelativeLayout>

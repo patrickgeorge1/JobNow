@@ -17,15 +17,10 @@ public class SingletonDatabase {
     List<Category> categoryListDemo;
     List<Currency> currencyListDemo;
 
-    public static SingletonDatabase getInstance() {
-        return ourInstance;
-    }
-
-
     private SingletonDatabase() {
         jobListDemo = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            jobListDemo.add(new Job("Job " + i, "Description " + i, String.valueOf((new Random()).nextInt(100))));
+            jobListDemo.add(new Job("Job " + i, "Description " + i, String.valueOf((new Random()).nextInt(100)) + " RON"));
         }
         chatsDemo = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -41,7 +36,10 @@ public class SingletonDatabase {
         currencyListDemo.add(new Currency("EUR", "Euro"));
         currencyListDemo.add(new Currency("RON", "asdas"));
         currencyListDemo.add(new Currency("USD", "adasd"));
+    }
 
+    public static SingletonDatabase getInstance() {
+        return ourInstance;
     }
 
     public List<Job> getJobList() {
@@ -56,8 +54,8 @@ public class SingletonDatabase {
         return categoryListDemo;
     }
 
-    public void addJob(String jobTitle, String jobPrice, String jobDescription, LatLng jobPosition, List<Category> jobCategory) {
-        jobListDemo.add(new Job(jobTitle, jobPrice, jobDescription, jobPosition, jobCategory));
+    public void addJob(String jobTitle, String jobPrice, String jobDescription, List<Category> jobCategory, LatLng jobPosition) {
+        jobListDemo.add(new Job(jobTitle, jobPrice, jobDescription, jobCategory, jobPosition));
     }
 
     public List<Currency> getCurrencyList() {

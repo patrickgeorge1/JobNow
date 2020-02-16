@@ -13,9 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
@@ -30,31 +27,34 @@ public class DialogConfirmJobData extends AppCompatDialogFragment {
     private String jobTitle;
     private String jobPrice;
     private String jobDescription;
-    private LatLng jobPosition;
     private List<Category> jobCategory;
+    private LatLng jobPosition;
 
-    public DialogConfirmJobData(String jobTitle, String jobPrice, String jobDescription, LatLng jobPosition, List<Category> jobCategory) {
+    public DialogConfirmJobData(String jobTitle, String jobPrice, String jobDescription, List<Category> jobCategory, LatLng jobPosition) {
         this.jobTitle = jobTitle;
         this.jobPrice = jobPrice;
         this.jobDescription = jobDescription;
-        this.jobPosition = jobPosition;
         this.jobCategory = jobCategory;
+        this.jobPosition = jobPosition;
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.dialog_confirm_job_data, null);
+        StringBuilder stringCategory = new StringBuilder();
+        for (Category c : jobCategory ) {
+            stringCategory.append(c.getName() + '\n');
+        }
 
+        View view = inflater.inflate(R.layout.dialog_confirm_job_data, null);
         ((TextView) view.findViewById(R.id.dialog_confirm_title)).setText(jobTitle);
         ((TextView) view.findViewById(R.id.dialog_confirm_price)).setText(jobPrice);
         ((TextView) view.findViewById(R.id.dialog_confirm_description)).setText(jobDescription);
-        ((TextView) view.findViewById(R.id.dialog_confirm_category)).setText(jobCategory.toString());
-
+        ((TextView) view.findViewById(R.id.dialog_confirm_category)).setText(stringCategory.toString());
+        ((TextView) view.findViewById(R.id.dialog_confirm_position)).setText(jobPosition.toString());
 
         builder.setView(view)
                 .setTitle(getString(R.string.dialog_confirm_data_title))
@@ -63,7 +63,7 @@ public class DialogConfirmJobData extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         String feedbackMessage = getString(R.string.create_job_successful);
                         try {
-                            SingletonDatabase.getInstance().addJob(jobTitle, jobPrice, jobDescription, jobPosition, jobCategory);
+                            SingletonDatabase.getInstance().addJob(jobTitle, jobPrice, jobDescription, jobCategory, jobPosition);
                         } catch (Exception e) {
                             Log.e(TAG, "onClick: addJob: Exception " + e.getMessage());
                             feedbackMessage = getString(R.string.create_job_failed);
@@ -82,7 +82,6 @@ public class DialogConfirmJobData extends AppCompatDialogFragment {
 
                     }
                 });
-
         return builder.create();
     }
 }

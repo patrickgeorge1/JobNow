@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.company.jobnow.entity.Job;
 import com.company.jobnow.R;
+import com.company.jobnow.entity.Job;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -20,15 +20,10 @@ public class ListViewAdapterJob extends ArrayAdapter<Job> {
     Context context;
     List<Job> jobList;
 
-    DecimalFormat decimalFormat;
-
-    public ListViewAdapterJob(Context context, int rowId , List<Job> jobList) {
+    public ListViewAdapterJob(Context context, int rowId, List<Job> jobList) {
         super(context, rowId, jobList);
         this.context = context;
         this.jobList = jobList;
-
-        decimalFormat = new DecimalFormat();
-        decimalFormat.setMaximumFractionDigits(2);
     }
 
     @NonNull
@@ -44,7 +39,7 @@ public class ListViewAdapterJob extends ArrayAdapter<Job> {
         Job job = jobList.get(position);
         name.setText(job.getName());
         description.setText(job.getDescription());
-        price.setText(job.getPrice() + " RON");
+        price.setText(job.getPrice());
 
         return row;
     }

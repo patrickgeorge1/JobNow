@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,29 +30,23 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateJobActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    private static final String TAG = "CreateJobActivity";
+public class CreateJobActivity extends AppCompatActivity {
     public final static int REQUEST_CODE_MAP = 101;
-
+    private static final String TAG = "CreateJobActivity";
+    RecycleViewAdapterCategory selectedCategoryAdapter;
+    Spinner currencySpinner;
     private TextInputLayout inputjobTitle;
     private TextInputLayout inputJobPrice;
     private TextInputLayout inputjobDescription;
     private LatLng jobPosition;
-
     private TextView labelCategory;
     private TextInputLayout jobCategoryErrorDisplay;
-
     private TextView labelPosition;
     private TextInputLayout jobPositionErrorDisplay;
     private ImageView imageFeedbackPosition;
-
     private List<Category> selectedCategories;
     private List<Category> unselectedCategories;
-    RecycleViewAdapterCategory selectedCategoryAdapter;
-
     private List<Currency> currencyList;
-    Spinner currencySpinner;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,7 +161,7 @@ public class CreateJobActivity extends AppCompatActivity implements AdapterView.
         return true;
     }
 
-    public void userCreatesJob(View view) {
+    public void goToDialogConfirmationJobData(View view) {
         if (!validateTitle() | !validateSelectedCategories() | !validateJobPosition()) {
             Toast.makeText(this, getString(R.string.error_forms_not_completed_properly), Toast.LENGTH_LONG).show();
             return;
@@ -182,12 +175,11 @@ public class CreateJobActivity extends AppCompatActivity implements AdapterView.
         }
         String jobDescription = inputjobDescription.getEditText().getText().toString();
 
-        DialogConfirmJobData dialogConfirmJobData = new DialogConfirmJobData(jobTitle, jobPrice, jobDescription, jobPosition, selectedCategories);
+        DialogConfirmJobData dialogConfirmJobData = new DialogConfirmJobData(jobTitle, jobPrice, jobDescription, selectedCategories, jobPosition);
         dialogConfirmJobData.show(getSupportFragmentManager(), "DIALOG_CONFIRM_JOB_DATA");
-
     }
 
-    public void userEditsJobCategory(View view) {
+    public void goToDialogUpdateCategory(View view) {
         DialogUpdateCategories dialogUpdateCategories = new DialogUpdateCategories(selectedCategories, unselectedCategories);
         dialogUpdateCategories.show(getSupportFragmentManager(), "DIALOG_EDIT_JOB_CATEGORIES");
     }
@@ -205,10 +197,5 @@ public class CreateJobActivity extends AppCompatActivity implements AdapterView.
             validateJobPosition();
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 }

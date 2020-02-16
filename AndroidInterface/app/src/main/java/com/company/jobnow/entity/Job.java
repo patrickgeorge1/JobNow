@@ -1,11 +1,8 @@
 package com.company.jobnow.entity;
 
-import androidx.annotation.NonNull;
-
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Job {
@@ -15,14 +12,15 @@ public class Job {
     private LatLng jobPosition;
     private List<Category> jobCategoty;
 
-    public Job(String name, String price, String description, LatLng jobPosition, List<Category> jobCategoty) {
+    public Job(String name, String price, String description, List<Category> jobCategoty, LatLng jobPosition) {
         this.name = name;
         this.price = price;
         this.description = description;
-        this.jobPosition = new LatLng(jobPosition.latitude, jobPosition.longitude);
 
         this.jobCategoty = new ArrayList<>();
         this.jobCategoty.addAll(jobCategoty);
+
+        this.jobPosition = new LatLng(jobPosition.latitude, jobPosition.longitude);
     }
 
     public Job(String name, String description, String price) {

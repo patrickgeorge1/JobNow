@@ -32,9 +32,8 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 102;
     private static final float DEFAULT_ZOOM = 15f;
     private static final String TAG = "PickLocationActivity";
-    
-    private boolean mLocationPermisionGranted = false;
 
+    private boolean mLocationPermisionGranted = false;
 
     private GoogleMap mMap;
     private MarkerOptions markerJob;
@@ -51,16 +50,14 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
     }
 
     public void init() {
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
     public void getLocationPermission() {
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
         if ((ContextCompat.checkSelfPermission(getApplicationContext(), permissions[0]) == PackageManager.PERMISSION_GRANTED)
-                && (ContextCompat.checkSelfPermission(getApplicationContext(), permissions[0]) == PackageManager.PERMISSION_GRANTED)) {
+                && (ContextCompat.checkSelfPermission(getApplicationContext(), permissions[1]) == PackageManager.PERMISSION_GRANTED)) {
             mLocationPermisionGranted = true;
         } else {
             ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_REQUEST_CODE);
@@ -85,7 +82,7 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
                     }
                 });
             }
-        } catch (SecurityException e) {
+        } catch (Exception e) {
             Log.e(TAG, "getDeviceLocation: Exception :" + e.getMessage());
         }
     }
@@ -96,8 +93,7 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
-                Log.e(TAG, "onMapClick: " + latLng.latitude + " " + latLng.longitude );
-
+                Log.e(TAG, "onMapClick: " + latLng.latitude + " " + latLng.longitude);
                 mMap.clear();
                 markerJob = new MarkerOptions().position(new LatLng(latLng.latitude, latLng.longitude));
                 mMap.addMarker(markerJob);
@@ -141,6 +137,4 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
         setResult(RESULT_OK, data);
         finish();
     }
-
-
 }

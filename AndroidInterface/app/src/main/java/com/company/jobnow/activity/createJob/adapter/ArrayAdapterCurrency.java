@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import com.company.jobnow.R;
 import com.company.jobnow.entity.Currency;
 
-
 import java.util.List;
 
 public class ArrayAdapterCurrency extends ArrayAdapter<Currency> {
@@ -41,7 +40,7 @@ public class ArrayAdapterCurrency extends ArrayAdapter<Currency> {
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.item_spinner_currency, parent, false);
-        TextView textView = (TextView) row.findViewById(R.id.spinner_textView_currency);
+        TextView textView = row.findViewById(R.id.spinner_textView_currency);
         textView.setText(currencyList.get(position).getAbbreviation());
         return row;
     }

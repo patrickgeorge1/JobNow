@@ -1,4 +1,4 @@
-package com.company.jobnow.Adapters;
+package com.company.jobnow.activity.main.jobSearchPage.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

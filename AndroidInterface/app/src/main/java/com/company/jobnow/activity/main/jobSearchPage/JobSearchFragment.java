@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.mainActivity.jobSearchPage;
+package com.company.jobnow.activity.main.jobSearchPage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,10 +19,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.company.jobnow.activity.createJob.CreateJobActivity;
 import com.company.jobnow.entity.Job;
-import com.company.jobnow.Adapters.ListViewAdapterJob;
+import com.company.jobnow.activity.main.jobSearchPage.adapter.ListViewAdapterJob;
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
-import com.company.jobnow.activity.updatePreferencesActivity.UpdateJobPreferencesActivity;
+import com.company.jobnow.activity.updatePreferences.UpdateJobPreferencesActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;

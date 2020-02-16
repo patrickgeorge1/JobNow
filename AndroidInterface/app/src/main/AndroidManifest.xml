@@ -31,15 +31,15 @@
             android:label="@string/title_activity_maps"
             android:parentActivityName="com.company.jobnow.activity.createJob.CreateJobActivity" />
         <activity
-            android:name="com.company.jobnow.activity.updatePreferencesActivity.UpdateJobPreferencesActivity"
+            android:name="com.company.jobnow.activity.updatePreferences.UpdateJobPreferencesActivity"
             android:label="@string/update_job_preferences"
-            android:parentActivityName="com.company.jobnow.activity.mainActivity.MainActivity" />
+            android:parentActivityName="com.company.jobnow.activity.main.MainActivity" />
         <activity
             android:name="com.company.jobnow.activity.createJob.CreateJobActivity"
             android:label="@string/create_job_activity"
-            android:parentActivityName="com.company.jobnow.activity.mainActivity.MainActivity" />
+            android:parentActivityName="com.company.jobnow.activity.main.MainActivity" />
         <activity
-            android:name="com.company.jobnow.activity.mainActivity.MainActivity"
+            android:name="com.company.jobnow.activity.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

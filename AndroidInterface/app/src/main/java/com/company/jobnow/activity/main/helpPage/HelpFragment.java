@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.mainActivity.helpPage;
+package com.company.jobnow.activity.main.helpPage;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

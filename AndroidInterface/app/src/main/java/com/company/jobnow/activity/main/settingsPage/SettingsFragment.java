@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.mainActivity.settingsPage;
+package com.company.jobnow.activity.main.settingsPage;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

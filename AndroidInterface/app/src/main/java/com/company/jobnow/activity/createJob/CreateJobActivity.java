@@ -8,10 +8,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +31,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateJobActivity extends AppCompatActivity {
+public class CreateJobActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private static final String TAG = "CreateJobActivity";
     public final static int REQUEST_CODE_MAP = 101;
 
@@ -52,8 +52,7 @@ public class CreateJobActivity extends AppCompatActivity {
     RecycleViewAdapterCategory selectedCategoryAdapter;
 
     private List<Currency> currencyList;
-    ArrayAdapterCurrency currencyAdapter;
-
+    Spinner currencySpinner;
 
 
     @Override
@@ -101,7 +100,7 @@ public class CreateJobActivity extends AppCompatActivity {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     findViewById(R.id.spinnerInput_currency).performClick();
-                    ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
                     return true;
                 }
                 return false;
@@ -110,9 +109,9 @@ public class CreateJobActivity extends AppCompatActivity {
     }
 
     private void createSpinner() {
-        Spinner spinner = findViewById(R.id.spinnerInput_currency);
-        currencyAdapter = new ArrayAdapterCurrency(this, currencyList);
-        spinner.setAdapter(currencyAdapter);
+        currencySpinner = findViewById(R.id.spinnerInput_currency);
+        ArrayAdapterCurrency currencyAdapter = new ArrayAdapterCurrency(this, currencyList);
+        currencySpinner.setAdapter(currencyAdapter);
     }
 
     private void createRecycleViewCategory() {
@@ -171,14 +170,15 @@ public class CreateJobActivity extends AppCompatActivity {
 
     public void userCreatesJob(View view) {
         if (!validateTitle() | !validateSelectedCategories() | !validateJobPosition()) {
-//            return;
+            Toast.makeText(this, getString(R.string.error_forms_not_completed_properly), Toast.LENGTH_LONG).show();
+            return;
         }
         String jobTitle = inputjobTitle.getEditText().getText().toString();
         String jobPrice = inputJobPrice.getEditText().getText().toString();
         if (jobPrice.length() == 0 || Integer.parseInt(jobPrice) == 0) {
             jobPrice = "FREE";
         } else {
-            jobPrice += " " + currencyAdapter.getItem(0).getAbbreviation();
+            jobPrice += " " + ((Currency) currencySpinner.getSelectedItem()).getAbbreviation();
         }
         String jobDescription = inputjobDescription.getEditText().getText().toString();
 
@@ -205,5 +205,10 @@ public class CreateJobActivity extends AppCompatActivity {
             validateJobPosition();
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }

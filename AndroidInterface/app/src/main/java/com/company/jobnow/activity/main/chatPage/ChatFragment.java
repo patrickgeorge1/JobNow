@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.mainActivity.chatPage;
+package com.company.jobnow.activity.main.chatPage;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.updatePreferencesActivity;
+package com.company.jobnow.activity.updatePreferences;
 
 import android.os.Bundle;
 

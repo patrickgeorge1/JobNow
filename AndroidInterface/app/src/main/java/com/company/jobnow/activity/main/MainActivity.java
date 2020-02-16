@@ -1,6 +1,5 @@
-package com.company.jobnow.activity.mainActivity;
+package com.company.jobnow.activity.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -14,13 +13,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.company.jobnow.R;
-import com.company.jobnow.activity.createJob.PickLocationActivity;
-import com.company.jobnow.activity.mainActivity.chatPage.ChatFragment;
-import com.company.jobnow.activity.mainActivity.helpPage.HelpFragment;
-import com.company.jobnow.activity.mainActivity.jobSearchPage.JobSearchFragment;
-import com.company.jobnow.activity.mainActivity.settingsPage.SettingsFragment;
-import com.company.jobnow.activity.mainActivity.sharePage.ShareFragment;
-import com.company.jobnow.activity.mainActivity.statsPage.StatsFragment;
+import com.company.jobnow.activity.main.chatPage.ChatFragment;
+import com.company.jobnow.activity.main.helpPage.HelpFragment;
+import com.company.jobnow.activity.main.jobSearchPage.JobSearchFragment;
+import com.company.jobnow.activity.main.settingsPage.SettingsFragment;
+import com.company.jobnow.activity.main.sharePage.ShareFragment;
+import com.company.jobnow.activity.main.statsPage.StatsFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;

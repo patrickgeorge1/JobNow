@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.mainActivity.statsPage;
+package com.company.jobnow.activity.main.statsPage;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

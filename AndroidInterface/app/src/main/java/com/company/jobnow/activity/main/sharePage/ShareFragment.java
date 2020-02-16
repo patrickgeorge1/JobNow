@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.mainActivity.sharePage;
+package com.company.jobnow.activity.main.sharePage;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

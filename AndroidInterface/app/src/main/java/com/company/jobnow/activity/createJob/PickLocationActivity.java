@@ -42,7 +42,7 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_pick_locations);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getLocationPermission();

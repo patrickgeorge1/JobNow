@@ -37,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/job_in_list_vertical_spacing"
+                android:ellipsize="end"
                 android:text="JOB DESCRIPTION" />
 
         </LinearLayout>

@@ -18,7 +18,7 @@
             android:id="@+id/textInput_jobTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
+            android:layout_marginTop="@dimen/form_vertical_spacing"
             android:background="@drawable/background_item_form"
             android:padding="@dimen/medium_padding"
             app:counterEnabled="true"
@@ -38,7 +38,7 @@
             android:id="@+id/textInput_jobDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
+            android:layout_marginTop="@dimen/form_vertical_spacing"
             android:background="@drawable/background_item_form"
             android:hint="@string/create_job_label_description"
             android:padding="@dimen/medium_padding"
@@ -62,7 +62,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
+            android:layout_marginTop="@dimen/form_vertical_spacing"
             android:background="@drawable/background_item_form"
             android:gravity="center|start"
             android:orientation="horizontal"
@@ -97,7 +97,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
+            android:layout_marginTop="@dimen/form_vertical_spacing"
             android:background="@drawable/background_item_form"
             android:orientation="vertical"
             android:padding="@dimen/medium_padding">
@@ -153,7 +153,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
+            android:layout_marginTop="@dimen/form_vertical_spacing"
             android:background="@drawable/background_item_form"
             android:orientation="vertical"
             android:padding="@dimen/medium_padding">
@@ -170,7 +170,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/create_job_vertical_spacing"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
                 android:orientation="horizontal">
 
                 <Button

@@ -3,6 +3,7 @@ package com.company.jobnow;
 import com.company.jobnow.entity.Category;
 import com.company.jobnow.entity.Currency;
 import com.company.jobnow.entity.Job;
+import com.company.jobnow.entity.User;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import java.util.Random;
 
 public class SingletonDatabase {
     private static final SingletonDatabase ourInstance = new SingletonDatabase();
+
+    User appUser;
 
     List<Job> jobListDemo;
     List<String> chatsDemo;
@@ -54,11 +57,23 @@ public class SingletonDatabase {
         return categoryListDemo;
     }
 
+    public List<Currency> getCurrencyList() {
+        return currencyListDemo;
+    }
+
     public void addJob(String jobTitle, String jobPrice, String jobDescription, List<Category> jobCategory, LatLng jobPosition) {
         jobListDemo.add(new Job(jobTitle, jobPrice, jobDescription, jobCategory, jobPosition));
     }
 
-    public List<Currency> getCurrencyList() {
-        return currencyListDemo;
+    public boolean authenticateUser(String userEmail, String userHashPassword) {
+        // Check if the credidentials exist in DataBase
+        // return false instead
+
+        // if exists get user details and store it in appUser
+
+        appUser = new User("FirstName", "LastName", "first.lastname@email.com", "1234567890");
+        return true;
     }
+
+
 }

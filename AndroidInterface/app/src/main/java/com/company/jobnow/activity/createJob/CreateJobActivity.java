@@ -35,9 +35,9 @@ public class CreateJobActivity extends AppCompatActivity {
     private static final String TAG = "CreateJobActivity";
     RecycleViewAdapterCategory selectedCategoryAdapter;
     Spinner currencySpinner;
-    private TextInputLayout inputjobTitle;
+    private TextInputLayout inputJobTitle;
     private TextInputLayout inputJobPrice;
-    private TextInputLayout inputjobDescription;
+    private TextInputLayout inputJobDescription;
     private LatLng jobPosition;
     private TextView labelCategory;
     private TextInputLayout jobCategoryErrorDisplay;
@@ -58,9 +58,9 @@ public class CreateJobActivity extends AppCompatActivity {
     }
 
     private void init() {
-        inputjobTitle = findViewById(R.id.textInput_jobTitle);
+        inputJobTitle = findViewById(R.id.textInput_jobTitle);
         inputJobPrice = findViewById(R.id.textInput_jobPrice);
-        inputjobDescription = findViewById(R.id.textInput_jobDescription);
+        inputJobDescription = findViewById(R.id.textInput_jobDescription);
 
         jobCategoryErrorDisplay = findViewById(R.id.textError_jobCategory);
         labelCategory = findViewById(R.id.textView_category);
@@ -115,20 +115,20 @@ public class CreateJobActivity extends AppCompatActivity {
     }
 
     public boolean validateTitle() {
-        String jobTitle = inputjobTitle.getEditText().getText().toString();
+        String jobTitle = inputJobTitle.getEditText().getText().toString();
         if (jobTitle.length() == 0) {
-            inputjobTitle.setError(getString(R.string.error_job_title_empty));
+            inputJobTitle.setError(getString(R.string.error_job_title_empty));
             return false;
         }
         if (!jobTitle.matches("[a-zA-z0-9 ]+")) {
-            inputjobTitle.setError(getString(R.string.error_job_title_only_alphanumeric));
+            inputJobTitle.setError(getString(R.string.error_job_title_only_alphanumeric));
             return false;
         }
         if (jobTitle.replace(" ", "").length() < Constant.MIN_LENGTH_JOB_TITLE) {
-            inputjobTitle.setError(getString(R.string.error_job_title_too_short));
+            inputJobTitle.setError(getString(R.string.error_job_title_too_short));
             return false;
         }
-        inputjobTitle.setError(null);
+        inputJobTitle.setError(null);
         return true;
     }
 
@@ -166,14 +166,14 @@ public class CreateJobActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.error_forms_not_completed_properly), Toast.LENGTH_LONG).show();
             return;
         }
-        String jobTitle = inputjobTitle.getEditText().getText().toString();
+        String jobTitle = inputJobTitle.getEditText().getText().toString();
         String jobPrice = inputJobPrice.getEditText().getText().toString();
         if (jobPrice.length() == 0 || Integer.parseInt(jobPrice) == 0) {
             jobPrice = "FREE";
         } else {
             jobPrice += " " + ((Currency) currencySpinner.getSelectedItem()).getAbbreviation();
         }
-        String jobDescription = inputjobDescription.getEditText().getText().toString();
+        String jobDescription = inputJobDescription.getEditText().getText().toString();
 
         DialogConfirmJobData dialogConfirmJobData = new DialogConfirmJobData(jobTitle, jobPrice, jobDescription, selectedCategories, jobPosition);
         dialogConfirmJobData.show(getSupportFragmentManager(), "DIALOG_CONFIRM_JOB_DATA");

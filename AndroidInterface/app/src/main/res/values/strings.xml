@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Job Now</string>
     <string name="create_job_activity">Create New Job</string>
-    <string name="update_job_preferences">Update Job Preferences</string>
+    <string name="update_preferences_activity">Update Job Preferences</string>
+    <string name="first_page_activity">Connect to us</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -12,6 +13,15 @@
     <string name="hardcoded_userName">Nume Prenume1 Prenume2</string>
     <string name="hardcoded_userEmail">nume.prenume@email.com</string>
     <string name="hardcoded_userMoney">1860.80 RON</string>
+
+    <!--    FIRST TIME ACTIVITY-->
+    <string name="log_in_button_text">Log in</string>
+    <string name="register_button_text">Register</string>
+
+    <!--    MAP ACTIVITY-->
+    <string name="pick_job_location">Pick Location</string>
+    <string name="error_cannot_find_location">We are unable to find your current location!</string>
+    <string name="error_no_marker_on_map">You need to put a pinpoint on the map!</string>
 
     <!--    MENU ITEMS-->
     <string name="menu_stats">Statistics</string>
@@ -25,11 +35,6 @@
     <string name="action_search">Search</string>
     <string name="action_filter">Filter</string>
     <string name="action_back">Back</string>
-
-    <!--    MAP ACTIVITY-->
-    <string name="pick_job_location">Pick Location</string>
-    <string name="error_cannot_find_location">We are unable to find your current location!</string>
-    <string name="error_no_marker_on_map">You need to put a pinpoint on the map!</string>
 
     <!--    CREATE JOB ACTIVITY-->
     <string name="create_job_label_title">Task Name</string>

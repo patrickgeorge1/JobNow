@@ -20,14 +20,14 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
     private static final String TAG = "RecycleViewAdapterCateg";
 
     private Context context;
-    private List<Category> basebaseCategories;
+    private List<Category> baseCategories;
     private List<Category> complementaryCategories;
     private int rowDisplay, nameId, buttonId;
     private AdapterSyncCategory adapterSync;
 
     public RecycleViewAdapterCategory(Context context, List<Category> basebaseCategories, List<Category> complementaryCategories, int rowDisplay, int nameId, int buttonId) {
         this.context = context;
-        this.basebaseCategories = basebaseCategories;
+        this.baseCategories = basebaseCategories;
         this.complementaryCategories = complementaryCategories;
         this.rowDisplay = rowDisplay;
         this.nameId = nameId;
@@ -40,7 +40,7 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Category c : basebaseCategories) {
+        for (Category c : baseCategories) {
             stringBuilder.append(c.toString() + '\n');
         }
         if (stringBuilder.length() != 0) {
@@ -58,11 +58,11 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.name.setText(basebaseCategories.get(position).getName());
+        holder.name.setText(baseCategories.get(position).getName());
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                complementaryCategories.add(basebaseCategories.remove(position));
+                complementaryCategories.add(baseCategories.remove(position));
                 try {
                     ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(100);
                 } catch (NullPointerException e) {
@@ -76,7 +76,7 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
 
     @Override
     public int getItemCount() {
-        return basebaseCategories.size();
+        return baseCategories.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

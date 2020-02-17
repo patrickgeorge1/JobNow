@@ -2,7 +2,7 @@
     <!--    MAIN ACTIVITY-->
     <dimen name="job_in_list_vertical_spacing">12dp</dimen>
     <dimen name="job_in_list_height">100dp</dimen>
-    <dimen name="activity_horizontal_margin">12dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_horizontal_spacing">8dp</dimen>
@@ -10,7 +10,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!--    CREATE JOB ACTIVITY-->
-    <dimen name="create_job_vertical_spacing">16dp</dimen>
     <dimen name="item_right_padding">16dp</dimen>
     <dimen name="form_right_margin">32dp</dimen>
     <dimen name="category_in_list_width">130dp</dimen>
@@ -23,6 +22,8 @@
     <dimen name="submit_button_font_size">16sp</dimen>
     <dimen name="button_horizontal_padding">32dp</dimen>
     <dimen name="button_vertical_padding">20dp</dimen>
+
+    <dimen name="form_vertical_spacing">16dp</dimen>
 
     <dimen name="medium_img_size">56dp</dimen>
 

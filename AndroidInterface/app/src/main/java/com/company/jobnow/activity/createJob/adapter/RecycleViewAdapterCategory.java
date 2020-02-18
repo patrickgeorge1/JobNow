@@ -36,6 +36,17 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
         adapterSync.addAdapter(this);
     }
 
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView name;
+        private ImageButton button;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            name = itemView.findViewById(nameId);
+            button = itemView.findViewById(buttonId);
+        }
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -64,16 +75,5 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
     @Override
     public int getItemCount() {
         return baseCategories.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView name;
-        private ImageButton button;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            name = itemView.findViewById(nameId);
-            button = itemView.findViewById(buttonId);
-        }
     }
 }

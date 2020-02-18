@@ -9,18 +9,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.createJob.CreateJobActivity;
-import com.company.jobnow.activity.main.jobSearchPage.adapter.ListViewAdapterJob;
+import com.company.jobnow.activity.main.jobSearchPage.adapter.RecycleViewAdapterJob;
 import com.company.jobnow.activity.updatePreferences.UpdateJobPreferencesActivity;
 import com.company.jobnow.common.RequestCode;
 import com.company.jobnow.entity.Job;
@@ -28,7 +27,7 @@ import com.company.jobnow.entity.Job;
 import java.util.List;
 
 public class JobSearchFragment extends Fragment {
-    private ListViewAdapterJob jobListAdapter;
+    private RecycleViewAdapterJob jobListAdapter;
     private View view;
 
     @Override
@@ -61,19 +60,12 @@ public class JobSearchFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_job_panel_list, container, false);
-        ListView listView = view.findViewById(R.id.listView_jobs);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_jobs);
 
         final List<Job> jobList = SingletonDatabase.getInstance().getJobList();
-        jobListAdapter = new ListViewAdapterJob(getActivity(), R.layout.item_listview_job, jobList);
-        listView.setAdapter(jobListAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "List Item " + position, Toast.LENGTH_SHORT).show();
-                jobListAdapter.remove(jobList.get(position));
-            }
-        });
+        jobListAdapter = new RecycleViewAdapterJob(getActivity(), jobList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(jobListAdapter);
 
         view.findViewById(R.id.fab_addNewJob).setOnClickListener(new View.OnClickListener() {
             @Override

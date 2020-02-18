@@ -37,4 +37,11 @@ public class FirstTimeActivity extends AppCompatActivity {
             }
         }, Constant.LOGO_DELAY_MS);
     }
+
+    @Override
+    public void onBackPressed() {
+        if (viewPager.getCurrentItem() == 2) {
+            viewPager.setCurrentItem(1);
+        }
+    }
 }

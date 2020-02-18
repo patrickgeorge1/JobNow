@@ -38,19 +38,6 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
 
     @NonNull
     @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Category c : baseCategories) {
-            stringBuilder.append(c.toString() + '\n');
-        }
-        if (stringBuilder.length() != 0) {
-            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        }
-        return stringBuilder.toString();
-    }
-
-    @NonNull
-    @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(rowDisplay, parent, false);
         return new ViewHolder(view);

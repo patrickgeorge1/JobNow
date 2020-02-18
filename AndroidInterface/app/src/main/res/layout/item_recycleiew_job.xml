@@ -65,7 +65,7 @@
                 android:textAlignment="textEnd" />
 
             <TextView
-                android:id="@+id/row_jobPDistance"
+                android:id="@+id/row_jobDistance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/row_jobPrice"

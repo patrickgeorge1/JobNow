@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.company.jobnow.R;
+import com.company.jobnow.common.Constant;
 import com.company.jobnow.common.RequestCode;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -30,7 +31,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 public class PickLocationActivity extends AppCompatActivity implements OnMapReadyCallback {
-    private static final float DEFAULT_ZOOM = 15f;
     private static final String TAG = "PickLocationActivity";
 
     private boolean mLocationPermisionGranted = false;
@@ -75,7 +75,7 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
                         if (task.isSuccessful()) {
                             Log.e(TAG, "onComplete: Found Location");
                             Location currentLocation = (Location) task.getResult();
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), Constant.DEFAULT_ZOOM));
                         } else {
                             Log.e(TAG, "onComplete: Location not found");
                         }

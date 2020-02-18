@@ -17,6 +17,10 @@
     <!--    FIRST TIME ACTIVITY-->
     <string name="log_in_button_text">Log in</string>
     <string name="register_button_text">Register</string>
+    <string name="register_to_login_text">Already Have an account?</string>
+    <string name="register_unknow_error">Something went wrong while we tried to create your account!</string>
+    <string name="login_unknow_error">Something went wrong while connecting to the server!</string>
+    <string name="login_email_pasword_no_match">Incorect username and password combination!</string>
 
     <!--    MAP ACTIVITY-->
     <string name="pick_job_location">Pick Location</string>

@@ -8,147 +8,221 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInput_jobTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/create_job_vertical_spacing"
+            android:layout_marginTop="@dimen/form_vertical_spacing"
+            android:background="@drawable/background_item_form"
+            android:padding="@dimen/medium_padding"
             app:counterEnabled="true"
-            app:counterMaxLength="@integer/job_title_length"
+            app:counterMaxLength="@integer/job_title_max_length"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textEdit_jobTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/create_job_label_title"
-                android:maxLength="@integer/job_title_length" />
+                android:maxLength="@integer/job_title_max_length" />
 
         </com.google.android.material.textfield.TextInputLayout>
-        <LinearLayout
-            android:background="@drawable/background_form_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center|start">
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInput_jobPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/big_margin"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLength="@integer/max_price_length"
-                android:hint="@string/create_job_label_price"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-            <Spinner
-                android:id="@+id/spinnerInput_currency"
-                android:layout_width="@dimen/currency_spinner_width"
-                android:textAlignment="textEnd"
-                android:layout_height="wrap_content"/>
-
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
-            android:text="@string/create_job_label_category"
-            android:textColor="?android:textColorHint"
-            android:textSize="@dimen/label_font_size" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:background="@drawable/background_form_item"
-            android:orientation="horizontal"
-            android:padding="@dimen/big_padding">
-
-
-            <ImageButton
-                android:id="@+id/button_addCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/button_sumbit"
-                android:onClick="userEditsJobCategory"
-                android:padding="@dimen/big_padding"
-                android:src="@drawable/ic_add_white_24dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_categoty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginEnd="@dimen/recycleview_right_padding"
-                android:layout_toStartOf="@+id/button_addCategory"
-                android:foregroundGravity="center"
-                android:orientation="horizontal" />
-
-
-        </RelativeLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInput_jobCategory"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:errorEnabled="true" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInput_jobDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_vertical_spacing"
+            android:background="@drawable/background_item_form"
             android:hint="@string/create_job_label_description"
-            android:paddingTop="@dimen/create_job_vertical_spacing"
+            android:padding="@dimen/medium_padding"
             app:counterEnabled="true"
             app:counterMaxLength="@integer/job_description_length"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textEdit_jobDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:hint="@string/create_job_description_placeholder"
-                android:lines="@integer/job_description_lines"
                 android:maxLength="@integer/job_description_length"
+                android:maxLines="@integer/job_description_max_lines"
+                android:minLines="@integer/job_description_default_lines"
                 android:textColorHint="@drawable/text_layout_invisible_label" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_vertical_spacing"
+            android:background="@drawable/background_item_form"
+            android:gravity="center|start"
+            android:orientation="horizontal"
+            android:padding="@dimen/medium_padding">
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput_jobPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/medium_margin"
+                app:errorEnabled="true">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textEdit_jobPrice"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/create_job_label_price"
+                    android:inputType="number"
+                    android:maxLength="@integer/max_price_length" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:id="@+id/spinnerInput_currency"
+                android:layout_width="@dimen/currency_spinner_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:background="@drawable/background_item_form"
+                android:textAlignment="textEnd" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_vertical_spacing"
+            android:background="@drawable/background_item_form"
+            android:orientation="vertical"
+            android:padding="@dimen/medium_padding">
+
+            <TextView
+                android:id="@+id/textView_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:text="@string/create_job_label_category"
+                android:textColor="?android:textColorHint"
+                android:textSize="@dimen/label_font_size" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@drawable/background_item_form"
+                android:orientation="horizontal"
+                android:padding="@dimen/medium_padding">
+
+                <ImageButton
+                    android:id="@+id/button_addCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/button_sumbit"
+                    android:onClick="goToDialogUpdateCategory"
+                    android:padding="@dimen/medium_padding"
+                    android:src="@drawable/ic_add_white_24dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_categoty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="@dimen/item_right_padding"
+                    android:layout_toStartOf="@+id/button_addCategory"
+                    android:foregroundGravity="center"
+                    android:orientation="horizontal" />
+
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textError_jobCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:errorEnabled="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_vertical_spacing"
+            android:background="@drawable/background_item_form"
+            android:orientation="vertical"
+            android:padding="@dimen/medium_padding">
+
+            <TextView
+                android:id="@+id/textView_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:text="@string/create_job_label_location"
+                android:textColor="?android:textColorHint"
+                android:textSize="@dimen/label_font_size" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginEnd="@dimen/form_right_margin"
+                    android:layout_marginBottom="@dimen/small_margin"
+                    android:background="@drawable/button_sumbit"
+                    android:drawableEnd="@drawable/ic_gps_fixed_black_24dp"
+                    android:drawablePadding="@dimen/medium_padding"
+                    android:elevation="@dimen/basic_elevation"
+                    android:onClick="goToPickLocationActivity"
+                    android:paddingLeft="@dimen/button_horizontal_padding"
+                    android:paddingRight="@dimen/button_horizontal_padding"
+                    android:text="@string/pick_job_location"
+                    android:textAllCaps="false" />
+
+                <ImageView
+                    android:id="@+id/imageView_location_feedback"
+                    android:layout_width="@dimen/medium_img_size"
+                    android:layout_height="@dimen/medium_img_size"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/small_margin" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textError_jobLocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:errorEnabled="true" />
+
+        </LinearLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="@dimen/big_margin"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="@dimen/big_margin"
+            android:layout_marginBottom="70dp"
             android:background="@drawable/button_sumbit"
-            android:onClick="userCreatesJob"
+            android:elevation="@dimen/basic_elevation"
+            android:onClick="goToDialogConfirmationJobData"
+            android:padding="@dimen/button_vertical_padding"
             android:text="@string/create_job_button_text"
             android:textAllCaps="false"
-            android:layout_marginBottom="50dp"
-
             android:textSize="@dimen/submit_button_font_size" />
-    </LinearLayout>
 
+    </LinearLayout>
 
 </ScrollView>

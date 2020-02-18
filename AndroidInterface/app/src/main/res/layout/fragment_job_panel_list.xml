@@ -23,4 +23,5 @@
             android:src="@drawable/ic_add_white_24dp" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </FrameLayout>

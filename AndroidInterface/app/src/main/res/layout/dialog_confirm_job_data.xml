@@ -1,101 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/big_padding">
+    android:padding="@dimen/medium_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
-            android:text="@string/create_job_label_title"
-            android:textSize="@dimen/title_font_size" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/dialog_confirm_title"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
+                android:text="@string/create_job_label_title"
+                android:textSize="@dimen/title_font_size" />
+
+            <TextView
+                android:id="@+id/dialog_confirm_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
+                android:text="JOB TITLE" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/big_margin"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
-            android:text="JOB TITLE" />
+            android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
+                android:text="@string/create_job_label_price"
+                android:textSize="@dimen/title_font_size" />
+
+            <TextView
+                android:id="@+id/dialog_confirm_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
+                android:text="PRICE" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
+                android:text="@string/create_job_label_description"
+                android:textSize="@dimen/title_font_size" />
+
+            <TextView
+                android:id="@+id/dialog_confirm_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
+                android:text="ABOUT THE JOB" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
+                android:text="@string/create_job_label_category"
+                android:textSize="@dimen/title_font_size" />
+
+            <TextView
+                android:id="@+id/dialog_confirm_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
+                android:text="LIST OF CATEGORIES" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
+                android:text="@string/create_job_label_location"
+                android:textSize="@dimen/title_font_size" />
+
+            <TextView
+                android:id="@+id/dialog_confirm_position"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/form_vertical_spacing"
+                android:text="POSITION DETAILS" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
-            android:text="@string/create_job_label_price"
-            android:textSize="@dimen/title_font_size" />
-
-        <TextView
-            android:id="@+id/dialog_confirm_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/big_margin"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
-            android:text="PRICE" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
-            android:text="@string/create_job_label_description"
-            android:textSize="@dimen/title_font_size" />
-
-        <TextView
-            android:id="@+id/dialog_confirm_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/big_margin"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
-            android:text="ABOUT THE JOB" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
-            android:text="@string/create_job_label_category"
-            android:textSize="@dimen/title_font_size" />
-
-        <TextView
-            android:id="@+id/dialog_confirm_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/big_margin"
-            android:layout_marginTop="@dimen/create_job_vertical_spacing"
-            android:text="LIST OF CATEGORIES" />
-
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</ScrollView>

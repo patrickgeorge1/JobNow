@@ -2,7 +2,6 @@
     <string name="app_name">Job Now</string>
     <string name="create_job_activity">Create New Job</string>
     <string name="update_preferences_activity">Update Job Preferences</string>
-    <string name="first_page_activity">Connect to us</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

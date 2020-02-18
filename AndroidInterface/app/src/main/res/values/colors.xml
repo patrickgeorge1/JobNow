@@ -3,11 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#00E2BD</color>
-    <color name="colorAccentPressed">#00B496</color>
+    <color name="colorAccentDark">#00B496</color>
 
+    <color name="form_background">#55C8C8C8</color>
+
+    <!--    BASICS-->
+    <color name="white">#FFFFFF</color>
     <color name="grey">#666666</color>
     <color name="red">#FF0000</color>
     <color name="green">#00FF00</color>
-
-
 </resources>

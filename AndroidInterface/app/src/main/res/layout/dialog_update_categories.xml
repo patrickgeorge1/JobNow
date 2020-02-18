@@ -2,29 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    >
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/form_vertical_spacing"
         android:layout_weight="1"
-        android:layout_marginTop="@dimen/create_job_vertical_spacing"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/form_vertical_spacing"
             android:text="@string/create_job_dialog_category_added"
-            android:textAlignment="center"
-            android:layout_marginBottom="@dimen/create_job_vertical_spacing"/>
+            android:textAlignment="center" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecycleView_selectedCategories"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-             android:layout_centerInParent="true"
-
+            android:layout_centerInParent="true"
             android:orientation="vertical" />
 
     </LinearLayout>
@@ -32,25 +30,23 @@
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
-        android:layout_marginTop="@dimen/create_job_vertical_spacing"
-        />
+        android:layout_marginTop="@dimen/form_vertical_spacing"
+        android:background="@color/colorAccent" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/form_vertical_spacing"
         android:layout_weight="1"
-        android:layout_marginTop="@dimen/create_job_vertical_spacing"
 
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/form_vertical_spacing"
             android:text="@string/create_job_dialog_category_sugestions"
-            android:textAlignment="center"
-            android:layout_marginBottom="@dimen/create_job_vertical_spacing"/>
-
+            android:textAlignment="center" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecycleView_unselectedCategories"
@@ -59,6 +55,5 @@
             android:orientation="vertical" />
 
     </LinearLayout>
-
 
 </LinearLayout>

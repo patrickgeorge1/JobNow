@@ -7,38 +7,37 @@
 
     <fragment
         android:id="@+id/nav_jobSearch"
-        android:name="com.example.jobnow.activity.mainActivity.jobSearchPage.JobSearchFragment"
+        android:name="com.company.jobnow.activity.main.jobSearchPage.JobSearchFragment"
         android:label="@string/menu_jobSearch"
         tools:layout="@layout/fragment_job_panel_list" />
 
     <fragment
         android:id="@+id/nav_chat"
-        android:name="com.example.jobnow.activity.mainActivity.chatPage.ChatFragment"
+        android:name="com.company.jobnow.activity.main.chatPage.ChatFragment"
         android:label="@string/menu_chat"
         tools:layout="@layout/fragment_chat_main" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.example.jobnow.activity.mainActivity.settingsPage.SettingsFragment"
+        android:name="com.company.jobnow.activity.main.settingsPage.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings_main" />
 
     <fragment
         android:id="@+id/nav_stats"
-        android:name="com.example.jobnow.activity.mainActivity.statsPage.StatsFragment"
+        android:name="com.company.jobnow.activity.main.statsPage.StatsFragment"
         android:label="@string/menu_stats"
         tools:layout="@layout/fragment_stats_main" />
 
     <fragment
         android:id="@+id/nav_help"
-        android:name="com.example.jobnow.activity.mainActivity.helpPage.HelpFragment"
+        android:name="com.company.jobnow.activity.main.helpPage.HelpFragment"
         android:label="@string/menu_help"
-        tools:layout="@layout/fragment_help_main"/>
+        tools:layout="@layout/fragment_help_main" />
 
     <fragment
         android:id="@+id/nav_share"
-        android:name="com.example.jobnow.activity.mainActivity.sharePage.ShareFragment"
+        android:name="com.company.jobnow.activity.main.sharePage.ShareFragment"
         android:label="@string/menu_share"
         tools:layout="@layout/fragment_share_main" />
-
 </navigation>

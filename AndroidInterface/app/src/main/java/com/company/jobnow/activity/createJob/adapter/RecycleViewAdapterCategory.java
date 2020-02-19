@@ -36,17 +36,15 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
         adapterSync.addAdapter(this);
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Category c : baseCategories) {
-            stringBuilder.append(c.toString() + '\n');
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView name;
+        private ImageButton button;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            name = itemView.findViewById(nameId);
+            button = itemView.findViewById(buttonId);
         }
-        if (stringBuilder.length() != 0) {
-            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        }
-        return stringBuilder.toString();
     }
 
     @NonNull
@@ -77,16 +75,5 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
     @Override
     public int getItemCount() {
         return baseCategories.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView name;
-        private ImageButton button;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            name = itemView.findViewById(nameId);
-            button = itemView.findViewById(buttonId);
-        }
     }
 }

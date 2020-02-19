@@ -5,30 +5,43 @@ import android.os.Handler;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.company.jobnow.R;
+import com.company.jobnow.activity.firstTime.adapter.FragmentPagerAdapterFirstTime;
 import com.company.jobnow.common.Constant;
 
 public class FirstTimeActivity extends AppCompatActivity {
-    FragmentTransaction fragmentTransaction;
-
-    LogInFragment logInFragment;
+    ViewPager viewPager;
+    FragmentPagerAdapterFirstTime viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_time);
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        logInFragment = new LogInFragment();
+
+        viewPager = findViewById(R.id.firstTime_viewPager);
+        viewPagerAdapter = new FragmentPagerAdapterFirstTime(getSupportFragmentManager());
+        viewPagerAdapter.addFragment(new LogoFragment());
+        viewPagerAdapter.addFragment(new LogInFragment(viewPager));
+        viewPagerAdapter.addFragment(new RegisterFragment(viewPager));
+        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setCurrentItem(0);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ((FrameLayout) findViewById(R.id.firstTime_host_fragment)).removeAllViews();
-                fragmentTransaction.replace(R.id.firstTime_host_fragment, logInFragment);
-                fragmentTransaction.commit();
+                viewPager.setCurrentItem(1);
             }
         }, Constant.LOGO_DELAY_MS);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (viewPager.getCurrentItem() == 2) {
+            viewPager.setCurrentItem(1);
+        }
     }
 }

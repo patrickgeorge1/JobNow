@@ -1,6 +1,7 @@
 package com.app.API.user;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,6 +14,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @RequestMapping(path = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String addUser(@RequestBody ObjectNode json) {
@@ -22,6 +25,13 @@ public class UserController {
         } catch (Exception e) {
             return "Failed";
         }
+    }
+
+    @RequestMapping(path = "/checkToken", method = RequestMethod.POST)
+    public @ResponseBody ObjectNode checkToken() {
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        objectNode.put("token", "success");
+        return  objectNode;
     }
 
     @RequestMapping(path = "api/public/admin/users", method = RequestMethod.GET)

@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -20,17 +19,16 @@ import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.main.MainActivity;
 
-public class LogInFragment extends Fragment {
+public class RegisterFragment extends Fragment {
     View view;
     ViewPager viewPager;
 
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private TextView textViewFeedback;
-    private Button loginButton;
-    private Button goToRegisterButton;
+    private Button registerButton;
+    private Button goToLoginButton;
 
-    public LogInFragment(ViewPager viewPager) {
+    public RegisterFragment(ViewPager viewPager) {
         this.viewPager = viewPager;
     }
 
@@ -41,48 +39,44 @@ public class LogInFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_log_in, container, false);
+        view = inflater.inflate(R.layout.fragment_register, container, false);
 
         editTextEmail = view.findViewById(R.id.email);
         editTextPassword = view.findViewById(R.id.password);
-        textViewFeedback = view.findViewById(R.id.login_feedback);
-        loginButton = view.findViewById(R.id.login_button);
-        goToRegisterButton = view.findViewById(R.id.login_to_register_button);
+        registerButton = view.findViewById(R.id.register_button);
+        goToLoginButton = view.findViewById(R.id.register_to_login_button);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginButton.setEnabled(false);
-                authenticateUser();
-                loginButton.setEnabled(true);
+                registerButton.setEnabled(false);
+                registerUser();
+                registerButton.setEnabled(true);
             }
         });
-        goToRegisterButton.setOnClickListener(new View.OnClickListener() {
+        goToLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToRegisterButton.setEnabled(false);
-                viewPager.setCurrentItem(2);
-                goToRegisterButton.setEnabled(true);
+                goToLoginButton.setEnabled(false);
+                viewPager.setCurrentItem(1);
+                goToLoginButton.setEnabled(true);
             }
         });
 
         return view;
     }
 
-    public void authenticateUser() {
+    public void registerUser() {
         String userEmail = editTextEmail.getText().toString();
         String userHashPassword = String.valueOf(editTextPassword.getText().toString().hashCode());
-        boolean success = SingletonDatabase.getInstance().authenticateUser(userEmail, userHashPassword);
+        boolean success = SingletonDatabase.getInstance().registerUser(userEmail, userHashPassword);
 
-        Toast.makeText(getActivity(), userEmail + " " + editTextPassword.getText().toString(), Toast.LENGTH_SHORT).show();
         if (success) {
+            Toast.makeText(getActivity(), userEmail + " " + editTextPassword.getText().toString(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
         } else {
-            Toast.makeText(getActivity(), getString(R.string.login_unknow_error), Toast.LENGTH_SHORT).show();
-            DrawableCompat.setTint(editTextEmail.getBackground(), getResources().getColor(R.color.red));
-            DrawableCompat.setTint(editTextPassword.getBackground(), getResources().getColor(R.color.red));
-            textViewFeedback.setText(getString(R.string.login_email_pasword_no_match));
+            Toast.makeText(getActivity(), getString(R.string.register_unknow_error), Toast.LENGTH_SHORT).show();
         }
     }
 }

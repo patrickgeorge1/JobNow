@@ -27,18 +27,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:inputType="textPassword"
                 android:singleLine="true" />
 
             <Button
-                android:id="@+id/login_button"
+                android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/form_vertical_spacing"
-                android:text="@string/log_in_button_text"
+                android:text="@string/register_button_text"
                 android:textAllCaps="false" />
 
             <TextView
-                android:id="@+id/login_feedback"
+                android:id="@+id/register_feedback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/form_vertical_spacing"
@@ -48,14 +49,12 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/login_to_register_button"
-            android:layout_width="wrap_content"
+            android:id="@+id/register_to_login_button"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/big_margin"
+            android:layout_below="@id/login_layout"
             android:layout_marginTop="@dimen/form_vertical_spacing"
-            android:text="@string/register_button_text"
+            android:text="@string/register_to_login_text"
             android:textAllCaps="false" />
 
     </RelativeLayout>

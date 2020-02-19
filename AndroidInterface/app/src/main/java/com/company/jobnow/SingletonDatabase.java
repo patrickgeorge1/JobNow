@@ -71,9 +71,16 @@ public class SingletonDatabase {
 
         // if exists get user details and store it in appUser
 
-        appUser = new User("FirstName", "LastName", "first.lastname@email.com", "1234567890");
+        appUser = new User("FirstName", "LastName", userEmail, userHashPassword);
         return true;
     }
 
 
+    public boolean registerUser(String userEmail, String userHashPassword) {
+        // check if information is corect
+        // if yes add user to database and return true after store it in appUser
+
+        appUser = new User("FirstName", "LastName", userEmail, userHashPassword);
+        return true;
+    }
 }

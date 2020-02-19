@@ -31,20 +31,10 @@ public class DialogUpdateCategories extends AppCompatDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-
         View view = inflater.inflate(R.layout.dialog_update_categories, null);
-        builder.setView(view)
-                .setTitle(getString(R.string.dialog_edit_categories_title))
-                .setPositiveButton(getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ((CreateJobActivity) getActivity()).validateSelectedCategories();
-                    }
-                });
 
         RecyclerView recyclerViewSelected = view.findViewById(R.id.RecycleView_selectedCategories);
         recyclerViewSelected.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
@@ -55,6 +45,14 @@ public class DialogUpdateCategories extends AppCompatDialogFragment {
         recyclerViewUnselected.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerViewUnselected.setAdapter(new RecycleViewAdapterCategory(getActivity(), unselectedCategories, selectedCategories, R.layout.item_recycleview_unselected_category, R.id.textView_unselectedCategory, R.id.button_unselectedCategory));
 
+        builder.setView(view)
+                .setTitle(getString(R.string.dialog_edit_categories_title))
+                .setPositiveButton(getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ((CreateJobActivity) getActivity()).validateSelectedCategories();
+                    }
+                });
         return builder.create();
     }
 }

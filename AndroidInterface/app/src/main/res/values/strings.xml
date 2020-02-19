@@ -65,6 +65,7 @@
     <string name="dialog_no">No</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_security">SecurityActivity</string>
 
 
 </resources>

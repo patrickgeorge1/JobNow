@@ -20,7 +20,6 @@ import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.main.MainActivity;
 
 public class RegisterFragment extends Fragment {
-    View view;
     ViewPager viewPager;
 
     private EditText editTextEmail;
@@ -39,7 +38,7 @@ public class RegisterFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_register, container, false);
+        View view = inflater.inflate(R.layout.fragment_register, container, false);
 
         editTextEmail = view.findViewById(R.id.email);
         editTextPassword = view.findViewById(R.id.password);

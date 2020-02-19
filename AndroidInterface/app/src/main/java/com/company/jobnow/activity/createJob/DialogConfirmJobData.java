@@ -2,6 +2,7 @@ package com.company.jobnow.activity.createJob;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,13 +27,15 @@ import java.util.List;
 public class DialogConfirmJobData extends AppCompatDialogFragment {
     private static final String TAG = "DialogConfirmJobData";
 
+    Context context;
     private String jobTitle;
     private String jobPrice;
     private String jobDescription;
     private List<Category> jobCategory;
     private LatLng jobPosition;
 
-    public DialogConfirmJobData(String jobTitle, String jobPrice, String jobDescription, List<Category> jobCategory, LatLng jobPosition) {
+    public DialogConfirmJobData(Context context, String jobTitle, String jobPrice, String jobDescription, List<Category> jobCategory, LatLng jobPosition) {
+        this.context = context;
         this.jobTitle = jobTitle;
         this.jobPrice = jobPrice;
         this.jobDescription = jobDescription;
@@ -43,8 +46,8 @@ public class DialogConfirmJobData extends AppCompatDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
 
         StringBuilder stringCategory = new StringBuilder();
         for (Category c : jobCategory ) {
@@ -71,10 +74,9 @@ public class DialogConfirmJobData extends AppCompatDialogFragment {
                             feedbackMessage = getString(R.string.create_job_failed);
                         }
                         try {
-                            Toast.makeText(getActivity(), feedbackMessage, Toast.LENGTH_LONG).show();
-                            Activity activity = getActivity();
-                            activity.setResult(Activity.RESULT_OK);
-                            activity.finish();
+                            Toast.makeText(context, feedbackMessage, Toast.LENGTH_LONG).show();
+                            ((Activity) context).setResult(Activity.RESULT_OK);
+                            ((Activity) context).finish();
                         } catch (Exception e) {
                             Log.e(TAG, "onClick: Exception " + e.getMessage());
                         }

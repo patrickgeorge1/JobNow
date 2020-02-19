@@ -30,7 +30,6 @@ import java.util.List;
 
 public class JobSearchFragment extends Fragment {
     private RecycleViewAdapterJob jobListAdapter;
-    private View view;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,8 +75,16 @@ public class JobSearchFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == Activity.RESULT_OK && requestCode == RequestCode.JOB_ADD) {
+            jobListAdapter.notifyDataSetChanged();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_job_panel_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_job_panel_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_jobs);
 
         final List<Job> jobList = SingletonDatabase.getInstance().getJobList();
@@ -93,15 +100,6 @@ public class JobSearchFragment extends Fragment {
             }
         });
         return view;
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == Activity.RESULT_OK && requestCode == RequestCode.JOB_ADD) {
-            jobListAdapter.notifyDataSetChanged();
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }

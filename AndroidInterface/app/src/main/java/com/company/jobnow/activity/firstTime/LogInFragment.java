@@ -21,7 +21,6 @@ import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.main.MainActivity;
 
 public class LogInFragment extends Fragment {
-    View view;
     ViewPager viewPager;
 
     private EditText editTextEmail;
@@ -41,7 +40,7 @@ public class LogInFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_log_in, container, false);
+        View view = inflater.inflate(R.layout.fragment_log_in, container, false);
 
         editTextEmail = view.findViewById(R.id.email);
         editTextPassword = view.findViewById(R.id.password);

@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +45,7 @@ public class JobSearchFragment extends Fragment {
         inflater.inflate(R.menu.filter, menu);
 
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

@@ -24,7 +24,7 @@ public class Ticket {
     private User admin;
 
     @Column(name = "target", nullable = false)
-    private Integer targetId;
+    private Long targetId;
 
     @Column(name = "title", nullable = false, length = 128)
     private String title;
@@ -46,7 +46,7 @@ public class Ticket {
     @Temporal(TemporalType.TIMESTAMP)
     private Date closeDate;
 
-    public Ticket(Integer type, User author, User admin, Integer targetId, String title, String description, String response, Integer status, Date registerDate, Date closeDate) {
+    public Ticket(Integer type, User author, User admin, Long targetId, String title, String description, String response, Integer status, Date registerDate, Date closeDate) {
         this.type = type;
         this.author = author;
         this.admin = admin;
@@ -57,6 +57,10 @@ public class Ticket {
         this.status = status;
         this.registerDate = registerDate;
         this.closeDate = closeDate;
+    }
+
+    protected Ticket() {
+
     }
 
     public Long getId() {
@@ -91,11 +95,11 @@ public class Ticket {
         this.admin = admin;
     }
 
-    public Integer getTargetId() {
+    public Long getTargetId() {
         return targetId;
     }
 
-    public void setTargetId(Integer targetId) {
+    public void setTargetId(Long targetId) {
         this.targetId = targetId;
     }
 

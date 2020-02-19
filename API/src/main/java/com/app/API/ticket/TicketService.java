@@ -13,8 +13,8 @@ public class TicketService {
         this.ticketRepository = ticketRepository;
     }
 
-    public void addTicket(User from, User to) {
-        Ticket ticket = new Ticket(1, from, to, 3, "Titlu adaugat", "Descriere", "Raspuns", 2, new Date(), new Date());
-        this.ticketRepository.save(ticket);
+    public void addTicket(User author, Integer type, Long target, String title, String description){
+        Ticket new_ticket = new Ticket(type, author, null, target, title, description, "", 0, new Date(), null);
+        this.ticketRepository.save(new_ticket);
     }
 }

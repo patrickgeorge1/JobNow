@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
 
+        <!--     TODO       android:label="@string/first_page_activity"-->
         <activity
             android:name=".activity.firstTime.FirstTimeActivity"
             android:noHistory="true"

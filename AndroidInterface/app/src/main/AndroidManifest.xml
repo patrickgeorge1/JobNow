@@ -31,9 +31,9 @@
             </intent-filter>
         </activity>
 
+        <!--     TODO       android:label="@string/first_page_activity"-->
         <activity
             android:name=".activity.firstTime.FirstTimeActivity"
-            android:label="@string/first_page_activity"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>

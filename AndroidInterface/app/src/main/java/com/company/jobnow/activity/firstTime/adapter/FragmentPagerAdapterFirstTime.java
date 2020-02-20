@@ -13,7 +13,7 @@ public class FragmentPagerAdapterFirstTime extends FragmentPagerAdapter {
     private List<Fragment> fragmentList;
 
     public FragmentPagerAdapterFirstTime(@NonNull FragmentManager fm) {
-        super(fm);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         fragmentList = new ArrayList<>();
     }
 

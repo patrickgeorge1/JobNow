@@ -10,7 +10,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -27,9 +26,8 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private AppBarConfiguration mAppBarConfiguration;
+    private AppBarConfiguration appBarConfiguration;
     private DrawerLayout drawer;
-    private FragmentTransaction fragmentTransaction;
     private Fragment currentFragment;
 
     @Override
@@ -43,22 +41,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_jobSearch, R.id.nav_chat, R.id.nav_stats, R.id.nav_settings, R.id.nav_help, R.id.nav_share)
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_jobSearch, R.id.nav_chat, R.id.nav_stats, R.id.nav_settings, R.id.nav_help, R.id.nav_share)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
         navigationView.setNavigationItemSelectedListener(this);
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
         currentFragment = new JobSearchFragment();
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
 

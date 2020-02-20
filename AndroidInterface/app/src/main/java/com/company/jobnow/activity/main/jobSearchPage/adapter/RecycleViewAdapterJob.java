@@ -20,12 +20,12 @@ import java.util.List;
 public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapterJob.ViewHolder> implements Filterable {
     private Context context;
     private List<Job> jobList;
-    private List<Job> fullJobList;
+    private List<Job> displayJobList;
 
     public RecycleViewAdapterJob(Context context, List<Job> jobList) {
         this.context = context;
         this.jobList = jobList;
-        fullJobList = new ArrayList<>(jobList);
+        this.displayJobList = new ArrayList<>(jobList);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -52,7 +52,7 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Job job = jobList.get(position);
+        Job job = displayJobList.get(position);
         holder.name.setText(job.getName());
         holder.description.setText(job.getDescription());
         holder.price.setText(job.getPrice());
@@ -61,15 +61,16 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jobList.remove(position);
+                jobList.remove(displayJobList.remove(position));
                 notifyDataSetChanged();
             }
         });
     }
 
+
     @Override
     public int getItemCount() {
-        return jobList.size();
+        return displayJobList.size();
     }
 
     @Override
@@ -79,7 +80,7 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
             protected FilterResults performFiltering(CharSequence constraint) {
                 List<Job> filterList = new ArrayList<>();
                 String filterPattern = constraint.toString().toLowerCase().trim();
-                for (Job j : fullJobList) {
+                for (Job j : jobList) {
                     if (j.getName().toLowerCase().trim().contains(filterPattern)) {
                         filterList.add(j);
                     }
@@ -92,8 +93,8 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                jobList.clear();
-                jobList.addAll((List) results.values);
+                displayJobList.clear();
+                displayJobList.addAll((List) results.values);
                 notifyDataSetChanged();
             }
         };

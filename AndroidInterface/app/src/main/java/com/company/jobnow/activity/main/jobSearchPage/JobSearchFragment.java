@@ -78,7 +78,7 @@ public class JobSearchFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == Activity.RESULT_OK && requestCode == RequestCode.JOB_ADD) {
-            jobListAdapter.notifyDataSetChanged();
+//            jobListAdapter.notifyDataSetChanged();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

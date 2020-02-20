@@ -39,6 +39,12 @@
     <string name="action_filter">Filter</string>
     <string name="action_back">Back</string>
 
+    <!--    UPDATE PREFERENCES ACTIVITY-->
+    <string name="price_label">Price</string>
+    <string name="distance_label">Distance</string>
+    <string name="min_label">Min</string>
+    <string name="max_label">Max</string>
+
     <!--    CREATE JOB ACTIVITY-->
     <string name="create_job_label_title">Task Name</string>
     <string name="create_job_label_price">Price</string>

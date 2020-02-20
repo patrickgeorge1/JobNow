@@ -25,15 +25,15 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
     private int rowDisplay, nameId, buttonId;
     private AdapterSyncCategory adapterSync;
 
-    public RecycleViewAdapterCategory(Context context, List<Category> basebaseCategories, List<Category> complementaryCategories, int rowDisplay, int nameId, int buttonId) {
+    public RecycleViewAdapterCategory(Context context, AdapterSyncCategory adapterSync, List<Category> basebaseCategories, List<Category> complementaryCategories, int rowDisplay, int nameId, int buttonId) {
         this.context = context;
+        this.adapterSync = adapterSync;
         this.baseCategories = basebaseCategories;
         this.complementaryCategories = complementaryCategories;
         this.rowDisplay = rowDisplay;
         this.nameId = nameId;
         this.buttonId = buttonId;
-        adapterSync = AdapterSyncCategory.getInstance();
-        adapterSync.addAdapter(this);
+        this.adapterSync.addAdapter(this);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
+import com.company.jobnow.activity.createJob.adapter.AdapterSyncCategory;
 import com.company.jobnow.activity.createJob.adapter.ArrayAdapterCurrency;
 import com.company.jobnow.activity.createJob.adapter.RecycleViewAdapterCategory;
 import com.company.jobnow.common.Constant;
@@ -44,6 +45,7 @@ public class CreateJobActivity extends AppCompatActivity {
     private TextView labelPosition;
     private TextInputLayout jobPositionErrorDisplay;
     private ImageView imageFeedbackPosition;
+    private AdapterSyncCategory adapterSyncCategory;
     private List<Category> selectedCategories;
     private List<Category> unselectedCategories;
     private List<Currency> currencyList;
@@ -108,7 +110,8 @@ public class CreateJobActivity extends AppCompatActivity {
     }
 
     private void createRecycleViewCategory() {
-        selectedCategoryAdapter = new RecycleViewAdapterCategory(this, selectedCategories, unselectedCategories, R.layout.item_recycleview_selected_category, R.id.textView_selectedCategory, R.id.button_selectedCategory);
+        adapterSyncCategory = new AdapterSyncCategory();
+        selectedCategoryAdapter = new RecycleViewAdapterCategory(this, adapterSyncCategory, selectedCategories, unselectedCategories, R.layout.item_recycleview_selected_category, R.id.textView_selectedCategory, R.id.button_selectedCategory);
         RecyclerView recyclerView = findViewById(R.id.recyclerView_categoty);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(selectedCategoryAdapter);
@@ -175,12 +178,12 @@ public class CreateJobActivity extends AppCompatActivity {
         }
         String jobDescription = inputJobDescription.getEditText().getText().toString();
 
-        DialogConfirmJobData dialogConfirmJobData = new DialogConfirmJobData(jobTitle, jobPrice, jobDescription, selectedCategories, jobPosition);
+        DialogConfirmJobData dialogConfirmJobData = new DialogConfirmJobData(this, jobTitle, jobPrice, jobDescription, selectedCategories, jobPosition);
         dialogConfirmJobData.show(getSupportFragmentManager(), "DIALOG_CONFIRM_JOB_DATA");
     }
 
     public void goToDialogUpdateCategory(View view) {
-        DialogUpdateCategories dialogUpdateCategories = new DialogUpdateCategories(selectedCategories, unselectedCategories);
+        DialogUpdateCategories dialogUpdateCategories = new DialogUpdateCategories(this, adapterSyncCategory, selectedCategories, unselectedCategories);
         dialogUpdateCategories.show(getSupportFragmentManager(), "DIALOG_EDIT_JOB_CATEGORIES");
     }
 

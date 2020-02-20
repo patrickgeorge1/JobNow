@@ -15,20 +15,13 @@ import com.company.jobnow.common.Constant;
 
 public class FirstTimeActivity extends AppCompatActivity {
     ViewPager viewPager;
-    FragmentPagerAdapterFirstTime viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_time);
 
-        viewPager = findViewById(R.id.firstTime_viewPager);
-        viewPagerAdapter = new FragmentPagerAdapterFirstTime(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new LogoFragment());
-        viewPagerAdapter.addFragment(new LogInFragment(viewPager));
-        viewPagerAdapter.addFragment(new RegisterFragment(viewPager));
-        viewPager.setAdapter(viewPagerAdapter);
-        viewPager.setCurrentItem(0);
+        setUpViewPager();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -43,5 +36,15 @@ public class FirstTimeActivity extends AppCompatActivity {
         if (viewPager.getCurrentItem() == 2) {
             viewPager.setCurrentItem(1);
         }
+    }
+
+    public void setUpViewPager() {
+        viewPager = findViewById(R.id.firstTime_viewPager);
+        FragmentPagerAdapterFirstTime viewPagerAdapter = new FragmentPagerAdapterFirstTime(getSupportFragmentManager());
+        viewPagerAdapter.addFragment(new LogoFragment());
+        viewPagerAdapter.addFragment(new LogInFragment(viewPager));
+        viewPagerAdapter.addFragment(new RegisterFragment(viewPager));
+        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setCurrentItem(0);
     }
 }

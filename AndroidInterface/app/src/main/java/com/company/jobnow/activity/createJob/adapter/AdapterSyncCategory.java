@@ -8,13 +8,10 @@ public class AdapterSyncCategory {
 
     private List<RecycleViewAdapterCategory> adapters;
 
-    private AdapterSyncCategory() {
+    public AdapterSyncCategory() {
         adapters = new ArrayList<>();
     }
 
-    public static AdapterSyncCategory getInstance() {
-        return ourInstance;
-    }
 
     public void addAdapter(RecycleViewAdapterCategory a) {
         adapters.add(a);

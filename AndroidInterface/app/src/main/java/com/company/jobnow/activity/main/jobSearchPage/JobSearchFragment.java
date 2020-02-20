@@ -84,7 +84,7 @@ public class JobSearchFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_job_panel_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_job_search, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_jobs);
 
         final List<Job> jobList = SingletonDatabase.getInstance().getJobList();

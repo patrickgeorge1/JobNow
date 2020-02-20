@@ -32,8 +32,6 @@ public class LogInFragment extends Fragment {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private TextView textViewFeedback;
-    private Button loginButton;
-    private Button goToRegisterButton;
 
     public LogInFragment(AppCompatActivity mainActivity, ViewPager viewPager) {
         this.mainActivity= mainActivity;
@@ -57,14 +55,14 @@ public class LogInFragment extends Fragment {
         editTextEmail = view.findViewById(R.id.email);
         editTextPassword = view.findViewById(R.id.password);
         textViewFeedback = view.findViewById(R.id.login_feedback);
-        loginButton = view.findViewById(R.id.login_button);
-        goToRegisterButton = view.findViewById(R.id.login_to_register_button);
 
+        final Button loginButton = view.findViewById(R.id.login_button);
+        final Button goToRegisterButton = view.findViewById(R.id.login_to_register_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loginButton.setEnabled(false);
-                SecurityService.login(mainActivity);
+                authenticateUser();
                 loginButton.setEnabled(true);
             }
         });
@@ -81,20 +79,25 @@ public class LogInFragment extends Fragment {
     }
 
     public void authenticateUser() {
-        String userEmail = editTextEmail.getText().toString();
-        String userHashPassword = String.valueOf(editTextPassword.getText().toString().hashCode());
-        boolean success = SingletonDatabase.getInstance().authenticateUser(userEmail, userHashPassword);
+        SecurityService.login(mainActivity);
 
-        Toast.makeText(getActivity(), userEmail + " " + editTextPassword.getText().toString(), Toast.LENGTH_SHORT).show();
-        if (success) {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
-        } else {
-            Toast.makeText(getActivity(), getString(R.string.login_unknow_error), Toast.LENGTH_SHORT).show();
-            DrawableCompat.setTint(editTextEmail.getBackground(), getResources().getColor(R.color.red));
-            DrawableCompat.setTint(editTextPassword.getBackground(), getResources().getColor(R.color.red));
-            textViewFeedback.setText(getString(R.string.login_email_pasword_no_match));
-        }
+
+//        // TODO do logic here
+            // TODO make with textinputLayout
+//        String userEmail = editTextEmail.getText().toString();
+//        String userHashPassword = String.valueOf(editTextPassword.getText().toString().hashCode());
+//        boolean success = SingletonDatabase.getInstance().authenticateUser(userEmail, userHashPassword);
+//
+//        Toast.makeText(getActivity(), userEmail + " " + editTextPassword.getText().toString(), Toast.LENGTH_SHORT).show();
+//        if (success) {
+//            Intent intent = new Intent(getActivity(), MainActivity.class);
+//            startActivity(intent);
+//        } else {
+//            Toast.makeText(getActivity(), getString(R.string.login_unknow_error), Toast.LENGTH_SHORT).show();
+//            DrawableCompat.setTint(editTextEmail.getBackground(), getResources().getColor(R.color.red));
+//            DrawableCompat.setTint(editTextPassword.getBackground(), getResources().getColor(R.color.red));
+//            textViewFeedback.setText(getString(R.string.login_email_pasword_no_match));
+//        }
     }
 
     Boolean isLogged() {

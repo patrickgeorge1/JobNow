@@ -9,18 +9,19 @@ public class Job {
     private String name;
     private String price;
     private String description;
-    private LatLng jobPosition;
     private List<Category> jobCategoty;
+    private double latitude;
+    private double longitude;
 
-    public Job(String name, String price, String description, List<Category> jobCategoty, LatLng jobPosition) {
+    public Job(String name, String price, String description, double latitude, double longitude, List<Category> jobCategoty) {
         this.name = name;
         this.price = price;
         this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
 
         this.jobCategoty = new ArrayList<>();
         this.jobCategoty.addAll(jobCategoty);
-
-        this.jobPosition = new LatLng(jobPosition.latitude, jobPosition.longitude);
     }
 
     public Job(String name, String description, String price) {
@@ -53,12 +54,20 @@ public class Job {
         this.price = price;
     }
 
-    public LatLng getJobPosition() {
-        return jobPosition;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setJobPosition(LatLng jobPosition) {
-        this.jobPosition = jobPosition;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public List<Category> getJobCategoty() {

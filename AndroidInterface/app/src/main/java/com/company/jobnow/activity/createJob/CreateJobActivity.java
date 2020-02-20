@@ -32,7 +32,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateJobActivity extends AppCompatActivity {
+public class CreateJobActivity extends AppCompatActivity implements DialogUpdateCategories.DialogUpdateCategoriesListener {
     private static final String TAG = "CreateJobActivity";
     private RecycleViewAdapterCategory selectedCategoryAdapter;
     private AdapterSyncCategory adapterSyncCategory;
@@ -62,7 +62,7 @@ public class CreateJobActivity extends AppCompatActivity {
 
         createRecycleViewCategory();
         createSpinner();
-        setUpTextListeners();
+        setUpListeners();
     }
 
     private void init() {
@@ -97,7 +97,7 @@ public class CreateJobActivity extends AppCompatActivity {
         recyclerView.setAdapter(selectedCategoryAdapter);
     }
 
-    private void setUpTextListeners() {
+    private void setUpListeners() {
         findViewById(R.id.textEdit_jobTitle).setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -204,5 +204,11 @@ public class CreateJobActivity extends AppCompatActivity {
             validateJobPosition();
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    @Override
+    public void exectueValidateCategory() {
+        validateSelectedCategories();
     }
 }

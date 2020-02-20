@@ -9,7 +9,7 @@
         android:id="@+id/nav_jobSearch"
         android:name="com.company.jobnow.activity.main.jobSearchPage.JobSearchFragment"
         android:label="@string/menu_jobSearch"
-        tools:layout="@layout/fragment_job_panel_list" />
+        tools:layout="@layout/fragment_job_search" />
 
     <fragment
         android:id="@+id/nav_chat"

@@ -19,14 +19,13 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:singleLine="true" />
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:inputType="textPassword"
                 android:singleLine="true" />
 
             <Button
@@ -53,8 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/big_margin"
-            android:layout_marginTop="@dimen/form_vertical_spacing"
+            android:layout_margin="@dimen/absolute_button_margin"
             android:text="@string/register_button_text"
             android:textAllCaps="false" />
 

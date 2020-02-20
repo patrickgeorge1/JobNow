@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentPagerAdapterFirstTime extends FragmentPagerAdapter {
-
     private List<Fragment> fragmentList;
 
     public FragmentPagerAdapterFirstTime(@NonNull FragmentManager fm) {

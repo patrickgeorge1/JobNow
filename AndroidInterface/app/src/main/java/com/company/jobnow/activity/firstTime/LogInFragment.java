@@ -1,7 +1,10 @@
 package com.company.jobnow.activity.firstTime;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -19,9 +23,11 @@ import androidx.viewpager.widget.ViewPager;
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.main.MainActivity;
+import com.company.jobnow.common.Constant;
 
 public class LogInFragment extends Fragment {
-    ViewPager viewPager;
+    private AppCompatActivity mainActivity;
+    private ViewPager viewPager;
 
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -29,7 +35,8 @@ public class LogInFragment extends Fragment {
     private Button loginButton;
     private Button goToRegisterButton;
 
-    public LogInFragment(ViewPager viewPager) {
+    public LogInFragment(AppCompatActivity mainActivity, ViewPager viewPager) {
+        this.mainActivity= mainActivity;
         this.viewPager = viewPager;
     }
 
@@ -37,6 +44,11 @@ public class LogInFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
+
+        if (isLogged()) {
+            Intent intent = new Intent(mainActivity, MainActivity.class);
+            mainActivity.startActivity(intent);
+        }
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,7 +64,7 @@ public class LogInFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 loginButton.setEnabled(false);
-                authenticateUser();
+                SecurityService.login(mainActivity);
                 loginButton.setEnabled(true);
             }
         });
@@ -83,5 +95,10 @@ public class LogInFragment extends Fragment {
             DrawableCompat.setTint(editTextPassword.getBackground(), getResources().getColor(R.color.red));
             textViewFeedback.setText(getString(R.string.login_email_pasword_no_match));
         }
+    }
+
+    Boolean isLogged() {
+        SharedPreferences sharedPreferences = mainActivity.getSharedPreferences(Constant.LOGIN_PREFERENCES, Activity.MODE_PRIVATE);
+        return sharedPreferences.contains("token") && SecurityService.checkToken(mainActivity);
     }
 }

@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.main.security;
+package com.company.jobnow.activity.firstTime;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,20 +10,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.company.jobnow.R;
-import com.company.jobnow.activity.main.Api.ApiInterface;
-import com.company.jobnow.activity.main.MainActivity;
-import com.google.android.gms.common.api.Api;
+import com.company.jobnow.common.Constant;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import okhttp3.Headers;
 import okhttp3.ResponseBody;
@@ -51,8 +44,8 @@ public class SecurityService {
     }
 
     public static Boolean checkToken(final AppCompatActivity app) {
-        SharedPreferences pref = app.getApplicationContext().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
-        String token = pref.getString("token", null);
+        SharedPreferences pref = app.getApplicationContext().getSharedPreferences(Constant.LOGIN_PREFERENCES, Context.MODE_PRIVATE);
+        String token = pref.getString(Constant.AUTH_TOKEN, null);
 
         final ArrayList<Boolean> isValid = new ArrayList<>();
         isValid.add(true);
@@ -70,7 +63,7 @@ public class SecurityService {
                 if (response.isSuccessful()) {
                     try {
                         Map<String, Object> responseJSON = new Gson().fromJson(response.body().string(), HashMap.class);
-                        String status = (String) responseJSON.get("token");
+                        String status = (String) responseJSON.get(Constant.AUTH_TOKEN);
                         if (!status.equals("success"))
                         {
                             isValid.remove(0);
@@ -103,12 +96,12 @@ public class SecurityService {
     }
 
     public static void login(final AppCompatActivity app) {
-        SharedPreferences pref = app.getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
+        SharedPreferences pref = app.getSharedPreferences(Constant.LOGIN_PREFERENCES, Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = pref.edit();
         editor.clear();  // TODO atentie ca sterg aici celelalte preferinte
 
-        String username = ((EditText) app.findViewById(R.id.usernameField)).getText().toString();
-        String password = ((EditText) app.findViewById(R.id.passwordField)).getText().toString();
+        String username = ((EditText) app.findViewById(R.id.email)).getText().toString();
+        String password = ((EditText) app.findViewById(R.id.password)).getText().toString();
         HashMap<String, String> body = new HashMap<>();
         body.put("username", username);
         body.put("password", password);
@@ -125,7 +118,7 @@ public class SecurityService {
                     String token = headers.get("Authorization");
                     if (token == null) return;
                     Log.i("SECURITY", "User and Pass were good => " + token);
-                    editor.putString("token", token).apply();
+                    editor.putString(Constant.AUTH_TOKEN, token).apply();
                     SecurityActivity.redirect(app);
                 }
                 else {
@@ -143,11 +136,11 @@ public class SecurityService {
     }
 
     public static void  clearPreferences(final AppCompatActivity app) {
-        app.getSharedPreferences("UserPreferences", Context.MODE_PRIVATE).edit().clear().apply();
+        app.getSharedPreferences(Constant.LOGIN_PREFERENCES, Context.MODE_PRIVATE).edit().clear().apply();
     }
 
     public static void logout(final AppCompatActivity app) {
-        app.getSharedPreferences("UserPreferences", Context.MODE_PRIVATE).edit().clear().apply();
+        app.getSharedPreferences(Constant.LOGIN_PREFERENCES, Context.MODE_PRIVATE).edit().clear().apply();
         Intent intent = new Intent(app.getApplicationContext(), SecurityActivity.class);
         app.startActivity(intent);
         Toast.makeText(app, "LogOut Successful", Toast.LENGTH_SHORT).show();

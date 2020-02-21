@@ -4,24 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.company.jobnow.R;
-import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.main.MainActivity;
 import com.company.jobnow.common.Constant;
 
@@ -79,7 +75,7 @@ public class LogInFragment extends Fragment {
     }
 
     public void authenticateUser() {
-        SecurityService.login(mainActivity);
+        OldSecurityService.login(mainActivity);
 
 
 //        // TODO do logic here
@@ -102,6 +98,6 @@ public class LogInFragment extends Fragment {
 
     Boolean isLogged() {
         SharedPreferences sharedPreferences = mainActivity.getSharedPreferences(Constant.LOGIN_PREFERENCES, Activity.MODE_PRIVATE);
-        return sharedPreferences.contains("token") && SecurityService.checkToken(mainActivity);
+        return sharedPreferences.contains("token") && OldSecurityService.checkToken(mainActivity);
     }
 }

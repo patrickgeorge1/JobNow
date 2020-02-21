@@ -72,7 +72,7 @@ public class RegisterFragment extends Fragment {
         String password = inputPassword.getEditText().getText().toString();
         boolean success = SingletonDatabase.getInstance().registerUser(fullName, email, password);
 
-        // TODO Connect with SecurityService
+        // TODO Connect with OldSecurityService
 
         if (success) {
             Intent intent = new Intent(getActivity(), MainActivity.class);

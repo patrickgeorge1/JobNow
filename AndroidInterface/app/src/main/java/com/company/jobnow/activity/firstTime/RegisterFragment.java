@@ -18,14 +18,14 @@ import androidx.viewpager.widget.ViewPager;
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.main.MainActivity;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterFragment extends Fragment {
     ViewPager viewPager;
 
-    private EditText editTextEmail;
-    private EditText editTextPassword;
-    private Button registerButton;
-    private Button goToLoginButton;
+    private TextInputLayout inputEmail;
+    private TextInputLayout inputFullName;
+    private TextInputLayout inputPassword;
 
     public RegisterFragment(ViewPager viewPager) {
         this.viewPager = viewPager;
@@ -40,11 +40,12 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
-        editTextEmail = view.findViewById(R.id.email);
-        editTextPassword = view.findViewById(R.id.password);
-        registerButton = view.findViewById(R.id.register_button);
-        goToLoginButton = view.findViewById(R.id.register_to_login_button);
+        inputFullName = view.findViewById(R.id.layout_fullName);
+        inputEmail = view.findViewById(R.id.layout_email);
+        inputPassword = view.findViewById(R.id.layout_password);
 
+        final Button registerButton = view.findViewById(R.id.register_button);
+        final Button goToLoginButton = view.findViewById(R.id.register_to_login_button);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,12 +67,14 @@ public class RegisterFragment extends Fragment {
     }
 
     public void registerUser() {
-        String userEmail = editTextEmail.getText().toString();
-        String userHashPassword = String.valueOf(editTextPassword.getText().toString().hashCode());
-        boolean success = SingletonDatabase.getInstance().registerUser(userEmail, userHashPassword);
+        String fullName = inputFullName.getEditText().getText().toString();
+        String email = inputEmail.getEditText().getText().toString();
+        String password = inputPassword.getEditText().getText().toString();
+        boolean success = SingletonDatabase.getInstance().registerUser(fullName, email, password);
+
+        // TODO Connect with OldSecurityService
 
         if (success) {
-            Toast.makeText(getActivity(), userEmail + " " + editTextPassword.getText().toString(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
         } else {

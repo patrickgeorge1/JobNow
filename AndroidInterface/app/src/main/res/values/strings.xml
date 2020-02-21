@@ -16,10 +16,15 @@
     <!--    FIRST TIME ACTIVITY-->
     <string name="log_in_button_text">Log in</string>
     <string name="register_button_text">Register</string>
-    <string name="register_to_login_text">Already Have an account?</string>
+    <string name="register_to_login_text">Already have an account?</string>
     <string name="register_unknow_error">Something went wrong while we tried to create your account!</string>
     <string name="login_unknow_error">Something went wrong while connecting to the server!</string>
     <string name="login_email_pasword_no_match">Incorect username and password combination!</string>
+
+    <string name="register_full_name">Full Name</string>
+    <string name="hint_full_name">Your name goes here!</string>
+    <string name="register_email">Email</string>
+    <string name="register_password">Password</string>
 
     <!--    MAP ACTIVITY-->
     <string name="pick_job_location">Pick Location</string>
@@ -38,6 +43,9 @@
     <string name="action_search">Search</string>
     <string name="action_filter">Filter</string>
     <string name="action_back">Back</string>
+
+    <!--    JOB PANEL ACTIVITY-->
+    <string name="apply_button_text">Apply for this job!</string>
 
     <!--    UPDATE PREFERENCES ACTIVITY-->
     <string name="price_label">Price</string>

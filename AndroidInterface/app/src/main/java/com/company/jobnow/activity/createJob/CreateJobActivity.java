@@ -32,23 +32,25 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateJobActivity extends AppCompatActivity {
+public class CreateJobActivity extends AppCompatActivity implements DialogUpdateCategories.DialogUpdateCategoriesListener {
     private static final String TAG = "CreateJobActivity";
-    RecycleViewAdapterCategory selectedCategoryAdapter;
-    Spinner currencySpinner;
+    private RecycleViewAdapterCategory selectedCategoryAdapter;
+    private AdapterSyncCategory adapterSyncCategory;
+    private Spinner currencySpinner;
+
     private TextInputLayout inputJobTitle;
     private TextInputLayout inputJobPrice;
     private TextInputLayout inputJobDescription;
     private LatLng jobPosition;
+    private List<Category> selectedCategories;
+    private List<Category> unselectedCategories;
+    private List<Currency> currencyList;
+
     private TextView labelCategory;
     private TextInputLayout jobCategoryErrorDisplay;
     private TextView labelPosition;
     private TextInputLayout jobPositionErrorDisplay;
     private ImageView imageFeedbackPosition;
-    private AdapterSyncCategory adapterSyncCategory;
-    private List<Category> selectedCategories;
-    private List<Category> unselectedCategories;
-    private List<Currency> currencyList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,10 @@ public class CreateJobActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         init();
+
+        createRecycleViewCategory();
+        createSpinner();
+        setUpListeners();
     }
 
     private void init() {
@@ -64,22 +70,34 @@ public class CreateJobActivity extends AppCompatActivity {
         inputJobPrice = findViewById(R.id.textInput_jobPrice);
         inputJobDescription = findViewById(R.id.textInput_jobDescription);
 
-        jobCategoryErrorDisplay = findViewById(R.id.textError_jobCategory);
         labelCategory = findViewById(R.id.textView_category);
+        jobCategoryErrorDisplay = findViewById(R.id.textError_jobCategory);
 
-        jobPositionErrorDisplay = findViewById(R.id.textError_jobLocation);
         labelPosition = findViewById(R.id.textView_location);
+        jobPositionErrorDisplay = findViewById(R.id.textError_jobLocation);
         imageFeedbackPosition = findViewById(R.id.imageView_location_feedback);
 
         selectedCategories = new ArrayList<>();
-        unselectedCategories = new ArrayList<>();
+        unselectedCategories = SingletonDatabase.getInstance().getListCategories();
 
-        unselectedCategories.addAll(SingletonDatabase.getInstance().getListCategories());
         currencyList = SingletonDatabase.getInstance().getCurrencyList();
+    }
 
-        createRecycleViewCategory();
-        createSpinner();
+    private void createSpinner() {
+        currencySpinner = findViewById(R.id.spinnerInput_currency);
+        ArrayAdapterCurrency currencyAdapter = new ArrayAdapterCurrency(this, currencyList);
+        currencySpinner.setAdapter(currencyAdapter);
+    }
 
+    private void createRecycleViewCategory() {
+        adapterSyncCategory = new AdapterSyncCategory();
+        selectedCategoryAdapter = new RecycleViewAdapterCategory(this, adapterSyncCategory, selectedCategories, unselectedCategories, R.layout.item_recycleview_selected_category, R.id.textView_selectedCategory, R.id.button_selectedCategory);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView_categoty);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(selectedCategoryAdapter);
+    }
+
+    private void setUpListeners() {
         findViewById(R.id.textEdit_jobTitle).setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -101,20 +119,6 @@ public class CreateJobActivity extends AppCompatActivity {
                 return false;
             }
         });
-    }
-
-    private void createSpinner() {
-        currencySpinner = findViewById(R.id.spinnerInput_currency);
-        ArrayAdapterCurrency currencyAdapter = new ArrayAdapterCurrency(this, currencyList);
-        currencySpinner.setAdapter(currencyAdapter);
-    }
-
-    private void createRecycleViewCategory() {
-        adapterSyncCategory = new AdapterSyncCategory();
-        selectedCategoryAdapter = new RecycleViewAdapterCategory(this, adapterSyncCategory, selectedCategories, unselectedCategories, R.layout.item_recycleview_selected_category, R.id.textView_selectedCategory, R.id.button_selectedCategory);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView_categoty);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(selectedCategoryAdapter);
     }
 
     public boolean validateTitle() {
@@ -200,5 +204,11 @@ public class CreateJobActivity extends AppCompatActivity {
             validateJobPosition();
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    @Override
+    public void exectueValidateCategory() {
+        validateSelectedCategories();
     }
 }

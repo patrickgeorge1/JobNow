@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.main.Api;
+package com.company.jobnow.activity.firstTime;
 
 import java.util.HashMap;
 

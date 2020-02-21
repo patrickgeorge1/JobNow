@@ -9,4 +9,8 @@ public final class Constant {
     public final static float MAX_PRICE_PREFERENCE = 500f;
 
     public final static float DEFAULT_ZOOM = 15f;
+
+    // PREFERENCES
+    public final static String LOGIN_PREFERENCES = "UserPreferences";
+    public final static String AUTH_TOKEN = "token";
 }

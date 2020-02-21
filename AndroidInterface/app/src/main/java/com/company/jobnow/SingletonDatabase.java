@@ -61,8 +61,8 @@ public class SingletonDatabase {
         return currencyListDemo;
     }
 
-    public void addJob(String jobTitle, String jobPrice, String jobDescription, List<Category> jobCategory, LatLng jobPosition) {
-        jobListDemo.add(new Job(jobTitle, jobPrice, jobDescription, jobCategory, jobPosition));
+    public void addJob(String jobTitle, String jobPrice, String jobDescription, double latitude, double longitude, List<Category> jobCategory) {
+        jobListDemo.add(new Job(jobTitle, jobPrice, jobDescription, latitude, longitude, jobCategory));
     }
 
     public boolean authenticateUser(String userEmail, String userHashPassword) {
@@ -71,16 +71,16 @@ public class SingletonDatabase {
 
         // if exists get user details and store it in appUser
 
-        appUser = new User("FirstName", "LastName", userEmail, userHashPassword);
+        appUser = new User("FullName", userEmail, userHashPassword);
         return true;
     }
 
 
-    public boolean registerUser(String userEmail, String userHashPassword) {
+    public boolean registerUser(String fullName, String userEmail, String userHashPassword) {
         // check if information is corect
         // if yes add user to database and return true after store it in appUser
 
-        appUser = new User("FirstName", "LastName", userEmail, userHashPassword);
+        appUser = new User(fullName, userEmail, userHashPassword);
         return true;
     }
 }

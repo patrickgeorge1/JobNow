@@ -16,7 +16,6 @@ import com.company.jobnow.entity.Currency;
 import java.util.List;
 
 public class ArrayAdapterCurrency extends ArrayAdapter<Currency> {
-
     private Context context;
     private List<Currency> currencyList;
 

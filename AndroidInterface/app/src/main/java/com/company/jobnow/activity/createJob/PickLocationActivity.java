@@ -34,10 +34,8 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
     private static final String TAG = "PickLocationActivity";
 
     private boolean mLocationPermisionGranted = false;
-
-    private GoogleMap mMap;
+    private GoogleMap map;
     private MarkerOptions markerJob;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +73,7 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
                         if (task.isSuccessful()) {
                             Log.e(TAG, "onComplete: Found Location");
                             Location currentLocation = (Location) task.getResult();
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), Constant.DEFAULT_ZOOM));
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), Constant.DEFAULT_ZOOM));
                         } else {
                             Log.e(TAG, "onComplete: Location not found");
                         }
@@ -89,14 +87,14 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+        map = googleMap;
+        map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
                 Log.e(TAG, "onMapClick: " + latLng.latitude + " " + latLng.longitude);
-                mMap.clear();
+                map.clear();
                 markerJob = new MarkerOptions().position(new LatLng(latLng.latitude, latLng.longitude));
-                mMap.addMarker(markerJob);
+                map.addMarker(markerJob);
                 try {
                     ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(100);
                 } catch (NullPointerException e) {
@@ -107,7 +105,7 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
 
         if (mLocationPermisionGranted) {
             getDeviceLocation();
-            mMap.setMyLocationEnabled(true);
+            map.setMyLocationEnabled(true);
         } else {
             Toast.makeText(this, getString(R.string.error_cannot_find_location), Toast.LENGTH_LONG).show();
         }

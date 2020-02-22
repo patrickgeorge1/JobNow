@@ -1,6 +1,7 @@
-package com.company.jobnow.activity.main.jobSearchPage.adapter;
+package com.company.jobnow.activity.adapter;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +13,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.company.jobnow.R;
+import com.company.jobnow.activity.main.jobSearchPage.JobPanelActivity;
+import com.company.jobnow.common.Constant;
 import com.company.jobnow.entity.Job;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapterJob.ViewHolder> implements Filterable {
-    private Context context;
+    private Activity context;
     private List<Job> jobList;
     private List<Job> displayJobList;
 
-    public RecycleViewAdapterJob(Context context, List<Job> jobList) {
+    public RecycleViewAdapterJob(Activity context, List<Job> jobList) {
         this.context = context;
         this.jobList = jobList;
         this.displayJobList = new ArrayList<>(jobList);
@@ -51,18 +55,22 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Job job = displayJobList.get(position);
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        final Job job = displayJobList.get(position);
         holder.name.setText(job.getName());
         holder.description.setText(job.getDescription());
         holder.price.setText(job.getPrice());
-        holder.distance.setText("12.5");
+        holder.distance.setText(job.getRelativeDistance(new LatLng(0, 0)));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jobList.remove(displayJobList.remove(position));
-                notifyDataSetChanged();
+                Intent intent = new Intent(context, JobPanelActivity.class);
+                intent.putExtra(Constant.Key.JOB_TITLE, job.getName());
+                intent.putExtra(Constant.Key.JOB_PRICE, job.getPrice());
+                intent.putExtra(Constant.Key.JOB_DESCRIPTION, job.getDescription());
+                intent.putExtra(Constant.Key.JOB_DISTANCE, job.getRelativeDistance(new LatLng(0, 0)));
+                context.startActivityForResult(intent, Constant.RequestCode.JOB_PREVIEW);
             }
         });
     }

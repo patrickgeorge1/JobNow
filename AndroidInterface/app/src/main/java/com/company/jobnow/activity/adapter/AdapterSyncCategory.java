@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.createJob.adapter;
+package com.company.jobnow.activity.adapter;
 
 import java.util.ArrayList;
 import java.util.List;

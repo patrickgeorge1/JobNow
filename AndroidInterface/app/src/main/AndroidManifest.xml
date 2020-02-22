@@ -17,12 +17,12 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.main.jobSearchPage.JobPanelActivity"
+            android:label="@string/job_preview_activity"
             android:parentActivityName=".activity.main.MainActivity" />
 
         <activity
             android:name=".activity.firstTime.FirstTimeActivity"
-            android:noHistory="true"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

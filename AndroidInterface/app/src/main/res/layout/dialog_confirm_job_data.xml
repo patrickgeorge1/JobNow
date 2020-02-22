@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/form_vertical_spacing"
-                android:text="@string/create_job_label_title"
+                android:text="@string/label_title"
                 android:textSize="@dimen/title_font_size" />
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/form_vertical_spacing"
-                android:text="@string/create_job_label_price"
+                android:text="@string/label_price"
                 android:textSize="@dimen/title_font_size" />
 
             <TextView
@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/form_vertical_spacing"
-                android:text="@string/create_job_label_description"
+                android:text="@string/label_description"
                 android:textSize="@dimen/title_font_size" />
 
             <TextView
@@ -84,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/form_vertical_spacing"
-                android:text="@string/create_job_label_location"
+                android:text="@string/label_location"
                 android:textSize="@dimen/title_font_size" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/form_vertical_spacing"
-                android:text="@string/create_job_label_category"
+                android:text="@string/label_category"
                 android:textSize="@dimen/title_font_size" />
 
             <TextView

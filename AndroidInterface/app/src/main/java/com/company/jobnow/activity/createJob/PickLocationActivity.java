@@ -18,7 +18,6 @@ import androidx.core.content.ContextCompat;
 
 import com.company.jobnow.R;
 import com.company.jobnow.common.Constant;
-import com.company.jobnow.common.RequestCode;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -58,7 +57,7 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
                 && (ContextCompat.checkSelfPermission(getApplicationContext(), permissions[1]) == PackageManager.PERMISSION_GRANTED)) {
             mLocationPermisionGranted = true;
         } else {
-            ActivityCompat.requestPermissions(this, permissions, RequestCode.LOCATION_PERMISSION);
+            ActivityCompat.requestPermissions(this, permissions, Constant.RequestCode.LOCATION_PERMISSION);
         }
     }
 
@@ -73,7 +72,7 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
                         if (task.isSuccessful()) {
                             Log.e(TAG, "onComplete: Found Location");
                             Location currentLocation = (Location) task.getResult();
-                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), Constant.DEFAULT_ZOOM));
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), Constant.Numeric.DEFAULT_ZOOM));
                         } else {
                             Log.e(TAG, "onComplete: Location not found");
                         }
@@ -113,7 +112,7 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == RequestCode.LOCATION_PERMISSION) {
+        if (requestCode == Constant.RequestCode.LOCATION_PERMISSION) {
             for (int i = 0; i < grantResults.length; i++) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mLocationPermisionGranted = false;
@@ -130,8 +129,8 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
             Toast.makeText(this, getString(R.string.error_no_marker_on_map), Toast.LENGTH_LONG).show();
             return;
         }
-        data.putExtra("latitude", markerJob.getPosition().latitude);
-        data.putExtra("longitude", markerJob.getPosition().longitude);
+        data.putExtra(Constant.Key.LATITUDE, markerJob.getPosition().latitude);
+        data.putExtra(Constant.Key.LONGITUDE, markerJob.getPosition().longitude);
         setResult(RESULT_OK, data);
         finish();
     }

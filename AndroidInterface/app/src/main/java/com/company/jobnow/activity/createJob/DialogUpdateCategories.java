@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.company.jobnow.R;
-import com.company.jobnow.activity.createJob.adapter.AdapterSyncCategory;
-import com.company.jobnow.activity.createJob.adapter.RecycleViewAdapterCategory;
+import com.company.jobnow.activity.adapter.AdapterSyncCategory;
+import com.company.jobnow.activity.adapter.RecycleViewAdapterCategory;
 import com.company.jobnow.entity.Category;
 
 import java.util.List;

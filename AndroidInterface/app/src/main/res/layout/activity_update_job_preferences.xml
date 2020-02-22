@@ -144,57 +144,45 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/medium_padding"
+            android:background="@drawable/background_item_form">
 
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/form_vertical_spacing"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/form_vertical_spacing"
-                    android:text="@string/create_job_dialog_category_added"
-                    android:textAlignment="center" />
+                    android:textSize="@dimen/title_font_size"
+                    android:text="@string/label_category"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/RecycleView_selectedCategories"
+                    android:padding="@dimen/medium_padding"
+                    android:id="@+id/recyclerView_preferences_categoty"
+                    android:layout_marginTop="@dimen/medium_margin"
+                    android:background="@drawable/background_item_form"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical" />
-
+                    android:layout_height="match_parent"/>
             </LinearLayout>
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/form_vertical_spacing"
-                android:background="@color/colorAccent" />
-
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/form_vertical_spacing"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_weight="3">
 
-                <TextView
-                    android:layout_width="match_parent"
+                <ImageButton
+                    android:id="@+id/button_addCategory"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/form_vertical_spacing"
-                    android:text="@string/create_job_dialog_category_sugestions"
-                    android:textAlignment="center" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/RecycleView_unselectedCategories"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical" />
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_sumbit"
+                    android:onClick="showSelectCategoriesDialog"
+                    android:padding="@dimen/medium_padding"
+                    android:src="@drawable/ic_add_white_24dp" />
 
             </LinearLayout>
 

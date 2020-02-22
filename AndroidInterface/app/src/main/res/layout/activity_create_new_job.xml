@@ -29,7 +29,7 @@
                 android:id="@+id/textEdit_jobTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/create_job_label_title"
+                android:hint="@string/label_title"
                 android:maxLength="@integer/job_title_max_length" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/form_vertical_spacing"
             android:background="@drawable/background_item_form"
-            android:hint="@string/create_job_label_description"
+            android:hint="@string/label_description"
             android:padding="@dimen/medium_padding"
             app:counterEnabled="true"
             app:counterMaxLength="@integer/job_description_length"
@@ -79,7 +79,7 @@
                     android:id="@+id/textEdit_jobPrice"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/create_job_label_price"
+                    android:hint="@string/label_price"
                     android:inputType="number"
                     android:maxLength="@integer/max_price_length" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small_margin"
-                android:text="@string/create_job_label_category"
+                android:text="@string/label_category"
                 android:textColor="?android:textColorHint"
                 android:textSize="@dimen/label_font_size" />
 
@@ -163,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small_margin"
-                android:text="@string/create_job_label_location"
+                android:text="@string/label_location"
                 android:textColor="?android:textColorHint"
                 android:textSize="@dimen/label_font_size" />
 

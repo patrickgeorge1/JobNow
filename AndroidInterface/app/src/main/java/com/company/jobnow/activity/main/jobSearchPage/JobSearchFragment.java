@@ -21,9 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.createJob.CreateJobActivity;
-import com.company.jobnow.activity.main.jobSearchPage.adapter.RecycleViewAdapterJob;
+import com.company.jobnow.activity.adapter.RecycleViewAdapterJob;
 import com.company.jobnow.activity.updatePreferences.UpdateJobPreferencesActivity;
-import com.company.jobnow.common.RequestCode;
+import com.company.jobnow.common.Constant;
 import com.company.jobnow.entity.Job;
 
 import java.util.List;
@@ -75,14 +75,6 @@ public class JobSearchFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == Activity.RESULT_OK && requestCode == RequestCode.JOB_ADD) {
-//            jobListAdapter.notifyDataSetChanged();
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_job_search, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_jobs);
@@ -96,10 +88,17 @@ public class JobSearchFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CreateJobActivity.class);
-                startActivityForResult(intent, RequestCode.JOB_ADD);
+                startActivityForResult(intent, Constant.RequestCode.JOB_ADD);
             }
         });
         return view;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == Activity.RESULT_OK && requestCode == Constant.RequestCode.JOB_ADD) {
+//TODO            jobListAdapter.notifyDataSetChanged();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

@@ -1,22 +1,22 @@
 package com.company.jobnow.activity.updatePreferences;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
-import com.company.jobnow.activity.createJob.adapter.AdapterSyncCategory;
-import com.company.jobnow.activity.createJob.adapter.RecycleViewAdapterCategory;
+import com.company.jobnow.activity.adapter.RecycleViewAdapterCategoryString;
 import com.company.jobnow.common.Constant;
 import com.company.jobnow.entity.Category;
 import com.jaygoo.widget.RangeSeekBar;
@@ -28,7 +28,10 @@ public class UpdateJobPreferencesActivity extends AppCompatActivity {
     private int minPrice = 50;
     private int maxPrice = 400;
     private int maxDistance;
-    List<Category> selectedCategories = new ArrayList<>();
+
+    RecycleViewAdapterCategoryString recycleViewAdapter;
+    List<Category> selectedCategories;
+    List<Category> allCategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,7 @@ public class UpdateJobPreferencesActivity extends AppCompatActivity {
 
         textMinPrice.setText(String.valueOf(minPrice));
         textMaxPrice.setText(String.valueOf(maxPrice));
-        seekBarPrice.setRange(0f, Constant.MAX_PRICE_PREFERENCE);
+        seekBarPrice.setRange(0f, Constant.Numeric.MAX_PRICE_PREFERENCE);
         seekBarPrice.setValue(minPrice, maxPrice);
 
         seekBarPrice.setOnRangeChangedListener(new RangeSeekBar.OnRangeChangedListener() {
@@ -106,17 +109,46 @@ public class UpdateJobPreferencesActivity extends AppCompatActivity {
     }
 
     private void setUpFilterCategory() {
-        List<Category> unselectedCategories = SingletonDatabase.getInstance().getListCategories();
+        allCategories = SingletonDatabase.getInstance().getListCategories();
+        selectedCategories = new ArrayList<>();
+
         // TODO Store on local and remove selected from unselected
 
-        AdapterSyncCategory adapterSyncCategory = new AdapterSyncCategory();
+        recycleViewAdapter = new RecycleViewAdapterCategoryString(this, selectedCategories);
 
-        RecyclerView recyclerViewSelected = findViewById(R.id.RecycleView_selectedCategories);
-        recyclerViewSelected.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerViewSelected.setAdapter(new RecycleViewAdapterCategory(this, adapterSyncCategory, selectedCategories, unselectedCategories, R.layout.item_recycleview_selected_category, R.id.textView_selectedCategory, R.id.button_selectedCategory));
+        RecyclerView recyclerView = findViewById(R.id.recyclerView_preferences_categoty);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(recycleViewAdapter);
+    }
 
-        RecyclerView recyclerViewUnselected = findViewById(R.id.RecycleView_unselectedCategories);
-        recyclerViewUnselected.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerViewUnselected.setAdapter(new RecycleViewAdapterCategory(this, adapterSyncCategory, unselectedCategories, selectedCategories, R.layout.item_recycleview_unselected_category, R.id.textView_unselectedCategory, R.id.button_unselectedCategory));
+    public void showSelectCategoriesDialog(View view) {
+        String[] items = new String[allCategories.size()];
+        final boolean[] checks = new boolean[allCategories.size()];
+        for (int i = 0; i < allCategories.size(); i++) {
+            items[i] = allCategories.get(i).getName();
+            checks[i] = false;
+        }
+        (new AlertDialog.Builder(this))
+                .setTitle("asdasd")
+                .setMultiChoiceItems(items, checks, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        checks[which] = isChecked;
+                    }
+                })
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        selectedCategories.clear();
+                        for (int i = 0; i < checks.length; i++) {
+                            if (checks[i]) {
+                                selectedCategories.add(allCategories.get(i));
+                            }
+                        }
+                        recycleViewAdapter.notifyDataSetChanged();
+                    }
+                })
+                .show()
+                .create();
     }
 }

@@ -2,15 +2,12 @@ package com.company.jobnow.activity.firstTime;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.company.jobnow.R;
-import com.company.jobnow.activity.firstTime.adapter.FragmentPagerAdapterFirstTime;
+import com.company.jobnow.activity.adapter.FragmentPagerAdapterFirstTime;
 import com.company.jobnow.common.Constant;
 
 public class FirstTimeActivity extends AppCompatActivity {
@@ -28,7 +25,7 @@ public class FirstTimeActivity extends AppCompatActivity {
             public void run() {
                 viewPager.setCurrentItem(1);
             }
-        }, Constant.LOGO_DELAY_MS);
+        }, Constant.Numeric.LOGO_DELAY_MS);
     }
 
     @Override

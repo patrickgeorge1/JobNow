@@ -17,6 +17,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.context.request.WebRequest;
 import java.util.Map;
 
@@ -66,6 +67,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 .antMatchers("/api/public/admin/*").hasAuthority("ROLE_ADMIN")
                                 .antMatchers("/api/public/*").authenticated()
                                 .antMatchers("/checkToken").authenticated()
+
+
+                        .and()
+                            .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+
                         ;
      }
 

@@ -18,13 +18,15 @@ public class UserController {
     private ObjectMapper objectMapper;
 
     @RequestMapping(path = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String addUser(@RequestBody ObjectNode json) {
+    public @ResponseBody ObjectNode addUser(@RequestBody ObjectNode json) {
+        ObjectNode objectNode = objectMapper.createObjectNode();
         try {
             userService.addUser(json.get("username").asText(), json.get("password").asText(), json.get("real_name").asText());
-            return "Success";
+            objectNode.put("status", "success");
         } catch (Exception e) {
-            return "Failed";
+            objectNode.put("status", "failed");
         }
+        return objectNode;
     }
 
     @RequestMapping(path = "/checkToken", method = RequestMethod.POST)

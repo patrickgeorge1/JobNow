@@ -16,10 +16,11 @@ public interface ApiInterface {
     @POST("login")
     Call<ResponseBody> getToken(@Body HashMap<String, String> body);
 
-    @GET("posts/1")
-    Call<ResponseBody> test();
+    @POST("logout")
+    Call<ResponseBody> logout(@Header("Authorization") String authHeader);
 
-
+    @POST("register")
+    Call<ResponseBody> register(@Body HashMap<String, String> body);
 
     @POST("checkToken")
     Call<ResponseBody> checkToken(@Header("Authorization") String authHeader);

@@ -21,7 +21,9 @@ import com.company.jobnow.activity.main.MainActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterFragment extends Fragment {
+    private static final String TAG = "RegisterFragment";
     ViewPager viewPager;
+    SecurityService securityService;
 
     private TextInputLayout inputEmail;
     private TextInputLayout inputFullName;
@@ -29,6 +31,7 @@ public class RegisterFragment extends Fragment {
 
     public RegisterFragment(ViewPager viewPager) {
         this.viewPager = viewPager;
+        securityService = SecurityService.getInstance();
     }
 
     @Override
@@ -70,15 +73,17 @@ public class RegisterFragment extends Fragment {
         String fullName = inputFullName.getEditText().getText().toString();
         String email = inputEmail.getEditText().getText().toString();
         String password = inputPassword.getEditText().getText().toString();
-        boolean success = SingletonDatabase.getInstance().registerUser(fullName, email, password);
-
-        // TODO Connect with OldSecurityService
-
-        if (success) {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
-        } else {
-            Toast.makeText(getActivity(), getString(R.string.register_unknow_error), Toast.LENGTH_SHORT).show();
-        }
+        securityService.registerUser(fullName, email, password);
     }
+//        boolean success = SingletonDatabase.getInstance().registerUser(fullName, email, password);
+
+//        // TODO Connect with OldSecurityService
+//
+//        if (success) {
+//            Intent intent = new Intent(getActivity(), MainActivity.class);
+//            startActivity(intent);
+//        } else {
+//            Toast.makeText(getActivity(), getString(R.string.register_unknow_error), Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }

@@ -75,7 +75,7 @@ public class SecurityService {
         return token;
     }
 
-    public void logOutUser(String tokem) {
+    public void logOutUser(String token) {
         Call<ResponseBody> call = retrofitSecurity.create(ApiInterface.class).logout(token);
         call.enqueue(new Callback<ResponseBody>() {
             @Override

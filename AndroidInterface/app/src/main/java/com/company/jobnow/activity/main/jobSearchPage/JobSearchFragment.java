@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.createJob.CreateJobActivity;
-import com.company.jobnow.activity.adapter.RecycleViewAdapterJob;
+import com.company.jobnow.activity.adapter.RecyclerViewAdapterJob;
 import com.company.jobnow.activity.updatePreferences.UpdateJobPreferencesActivity;
 import com.company.jobnow.common.Constant;
 import com.company.jobnow.entity.Job;
@@ -31,7 +31,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class JobSearchFragment extends Fragment {
-    private RecycleViewAdapterJob jobListAdapter;
+    private RecyclerViewAdapterJob jobListAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class JobSearchFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_jobs);
 
         final List<Job> jobList = SingletonDatabase.getInstance().getJobList();
-        jobListAdapter = new RecycleViewAdapterJob(getActivity(), jobList);
+        jobListAdapter = new RecyclerViewAdapterJob(getActivity(), jobList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(jobListAdapter);
 

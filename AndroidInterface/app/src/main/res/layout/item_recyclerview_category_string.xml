@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/recycleView_text_category"
+        android:id="@+id/recyclerView_text_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/small_padding"

@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
-import com.company.jobnow.activity.adapter.RecycleViewAdapterCategoryString;
+import com.company.jobnow.activity.adapter.RecyclerViewAdapterCategoryString;
 import com.company.jobnow.common.Constant;
 import com.company.jobnow.entity.Category;
 import com.jaygoo.widget.RangeSeekBar;
@@ -36,7 +36,7 @@ public class UpdateJobPreferencesActivity extends AppCompatActivity {
     private int maxPrice = 400;
     private int maxDistance;
 
-    RecycleViewAdapterCategoryString recycleViewAdapter;
+    RecyclerViewAdapterCategoryString recyclerViewAdapter;
 
     Set<String> selectedSet;
     boolean[] checks;
@@ -141,10 +141,10 @@ public class UpdateJobPreferencesActivity extends AppCompatActivity {
             checks[idx] = true;
         }
 
-        recycleViewAdapter = new RecycleViewAdapterCategoryString(this, selectedCategories);
+        recyclerViewAdapter = new RecyclerViewAdapterCategoryString(this, selectedCategories);
         RecyclerView recyclerView = findViewById(R.id.recyclerView_preferences_categoty);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(recycleViewAdapter);
+        recyclerView.setAdapter(recyclerViewAdapter);
     }
 
     public void showSelectCategoriesDialog(View view) {
@@ -172,7 +172,7 @@ public class UpdateJobPreferencesActivity extends AppCompatActivity {
                                 selectedSet.add(String.valueOf(i));
                             }
                         }
-                        recycleViewAdapter.notifyDataSetChanged();
+                        recyclerViewAdapter.notifyDataSetChanged();
                     }
                 })
                 .show()

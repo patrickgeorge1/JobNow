@@ -16,8 +16,8 @@ import com.company.jobnow.entity.Category;
 
 import java.util.List;
 
-public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleViewAdapterCategory.ViewHolder> {
-    private static final String TAG = "RecycleViewAdapterCateg";
+public class RecyclerViewAdapterCategory extends RecyclerView.Adapter<RecyclerViewAdapterCategory.ViewHolder> {
+    private static final String TAG = "RecyclerViewAdapterCateg";
 
     private Context context;
     private List<Category> baseCategories;
@@ -25,7 +25,7 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<RecycleView
     private int rowDisplay, nameId, buttonId;
     private AdapterSyncCategory adapterSync;
 
-    public RecycleViewAdapterCategory(Context context, AdapterSyncCategory adapterSync, List<Category> basebaseCategories, List<Category> complementaryCategories, int rowDisplay, int nameId, int buttonId) {
+    public RecyclerViewAdapterCategory(Context context, AdapterSyncCategory adapterSync, List<Category> basebaseCategories, List<Category> complementaryCategories, int rowDisplay, int nameId, int buttonId) {
         this.context = context;
         this.adapterSync = adapterSync;
         this.baseCategories = basebaseCategories;

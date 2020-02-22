@@ -2,7 +2,6 @@ package com.company.jobnow.activity.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +19,16 @@ import com.company.jobnow.entity.Job;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapterJob.ViewHolder> implements Filterable {
+public class RecyclerViewAdapterJob extends RecyclerView.Adapter<RecyclerViewAdapterJob.ViewHolder> implements Filterable {
     private Activity context;
     private List<Job> jobList;
     private List<Job> displayJobList;
 
-    public RecycleViewAdapterJob(Activity context, List<Job> jobList) {
+    public RecyclerViewAdapterJob(Activity context, List<Job> jobList) {
         this.context = context;
         this.jobList = jobList;
         this.displayJobList = new ArrayList<>(jobList);
@@ -53,7 +51,7 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
 
     @NonNull
     @Override
-    public RecycleViewAdapterJob.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerViewAdapterJob.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycleiew_job, parent, false);
         return new ViewHolder(view);
     }

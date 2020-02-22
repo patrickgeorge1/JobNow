@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.createJob.adapter;
+package com.company.jobnow.activity.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

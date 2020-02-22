@@ -19,11 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
-import com.company.jobnow.activity.createJob.adapter.AdapterSyncCategory;
-import com.company.jobnow.activity.createJob.adapter.ArrayAdapterCurrency;
-import com.company.jobnow.activity.createJob.adapter.RecycleViewAdapterCategory;
+import com.company.jobnow.activity.adapter.AdapterSyncCategory;
+import com.company.jobnow.activity.adapter.ArrayAdapterCurrency;
+import com.company.jobnow.activity.adapter.RecycleViewAdapterCategory;
 import com.company.jobnow.common.Constant;
-import com.company.jobnow.common.RequestCode;
 import com.company.jobnow.entity.Category;
 import com.company.jobnow.entity.Currency;
 import com.google.android.gms.maps.model.LatLng;
@@ -131,7 +130,7 @@ public class CreateJobActivity extends AppCompatActivity implements DialogUpdate
             inputJobTitle.setError(getString(R.string.error_job_title_only_alphanumeric));
             return false;
         }
-        if (jobTitle.replace(" ", "").length() < Constant.MIN_LENGTH_JOB_TITLE) {
+        if (jobTitle.replace(" ", "").length() < Constant.Numeric.MIN_LENGTH_JOB_TITLE) {
             inputJobTitle.setError(getString(R.string.error_job_title_too_short));
             return false;
         }
@@ -145,7 +144,7 @@ public class CreateJobActivity extends AppCompatActivity implements DialogUpdate
             labelCategory.setTextColor(getResources().getColor(R.color.red));
             return false;
         }
-        if (selectedCategoryAdapter.getItemCount() > Constant.MAX_JOB_CATEGORIES) {
+        if (selectedCategoryAdapter.getItemCount() > Constant.Numeric.MAX_JOB_CATEGORIES) {
             jobCategoryErrorDisplay.setError(getString(R.string.error_too_much_category_selected));
             labelCategory.setTextColor(getResources().getColor(R.color.red));
             return false;
@@ -176,30 +175,30 @@ public class CreateJobActivity extends AppCompatActivity implements DialogUpdate
         String jobTitle = inputJobTitle.getEditText().getText().toString();
         String jobPrice = inputJobPrice.getEditText().getText().toString();
         if (jobPrice.length() == 0 || Integer.parseInt(jobPrice) == 0) {
-            jobPrice = "FREE";
+            jobPrice = getString(R.string.no_price);
         } else {
             jobPrice += " " + ((Currency) currencySpinner.getSelectedItem()).getAbbreviation();
         }
         String jobDescription = inputJobDescription.getEditText().getText().toString();
 
         DialogConfirmJobData dialogConfirmJobData = new DialogConfirmJobData(this, jobTitle, jobPrice, jobDescription, selectedCategories, jobPosition);
-        dialogConfirmJobData.show(getSupportFragmentManager(), "DIALOG_CONFIRM_JOB_DATA");
+        dialogConfirmJobData.show(getSupportFragmentManager(), Constant.Tag.DIALOG_CONFIRM_JOB_DATA);
     }
 
     public void goToDialogUpdateCategory(View view) {
         DialogUpdateCategories dialogUpdateCategories = new DialogUpdateCategories(this, adapterSyncCategory, selectedCategories, unselectedCategories);
-        dialogUpdateCategories.show(getSupportFragmentManager(), "DIALOG_EDIT_JOB_CATEGORIES");
+        dialogUpdateCategories.show(getSupportFragmentManager(), Constant.Tag.DIALOG_EDIT_JOB_CATEGORIES);
     }
 
     public void goToPickLocationActivity(View view) {
         Intent intent = new Intent(this, PickLocationActivity.class);
-        startActivityForResult(intent, RequestCode.MAP);
+        startActivityForResult(intent, Constant.RequestCode.MAP);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_OK && requestCode == RequestCode.MAP) {
-            jobPosition = new LatLng(data.getExtras().getDouble("latitude"), data.getExtras().getDouble("longitude"));
+        if (resultCode == RESULT_OK && requestCode == Constant.RequestCode.MAP) {
+            jobPosition = new LatLng(data.getExtras().getDouble(Constant.Key.LATITUDE), data.getExtras().getDouble(Constant.Key.LONGITUDE));
             Log.e(TAG, "onActivityResult: jobPosition is " + jobPosition.latitude + " " + jobPosition.longitude);
             validateJobPosition();
         }

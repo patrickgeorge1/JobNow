@@ -77,4 +77,9 @@ public class Job {
     public void setJobCategoty(List<Category> jobCategoty) {
         this.jobCategoty = jobCategoty;
     }
+
+    public String getRelativeDistance(LatLng currentPosition) {
+        // TODO Return relative distance in km or milse based on user prefs
+        return "12.5 km";
+    }
 }

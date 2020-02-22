@@ -2,6 +2,7 @@
     <string name="app_name">Job Now</string>
     <string name="create_job_activity">Create New Job</string>
     <string name="update_preferences_activity">Update Job Preferences</string>
+    <string name="job_preview_activity">Job Preview</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -46,6 +47,9 @@
 
     <!--    JOB PANEL ACTIVITY-->
     <string name="apply_button_text">Apply for this job!</string>
+    <string name="error_loading_job">There was an error while loading this job!</string>
+    <string name="no_description">No Description available</string>
+    <string name="job_accepted">We will notify the owner of this job about your interest!</string>
 
     <!--    UPDATE PREFERENCES ACTIVITY-->
     <string name="price_label">Price</string>
@@ -54,15 +58,17 @@
     <string name="max_label">Max</string>
 
     <!--    CREATE JOB ACTIVITY-->
-    <string name="create_job_label_title">Task Name</string>
-    <string name="create_job_label_price">Price</string>
-    <string name="create_job_label_description">Description</string>
-    <string name="create_job_label_category">Category</string>
-    <string name="create_job_label_location">Location</string>
+    <string name="label_title">Task Name</string>
+    <string name="label_price">Price</string>
+    <string name="label_description">Description</string>
+    <string name="label_category">Category</string>
+    <string name="label_location">Location</string>
     <string name="create_job_description_placeholder">Is there something more you should tell us?</string>
     <string name="create_job_button_text">List Your Job</string>
     <string name="create_job_successful">Congratulation! Your job has been listed</string>
     <string name="create_job_failed">There was a problem while adding this job! Please try again later</string>
+
+    <string name="no_price">Free</string>
 
     <string name="create_job_dialog_category_sugestions">Sugestions</string>
     <string name="create_job_dialog_category_added">You have added</string>

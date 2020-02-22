@@ -1,10 +1,14 @@
 package com.company.jobnow.activity.main;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -22,6 +26,7 @@ import com.company.jobnow.activity.main.jobSearchPage.JobSearchFragment;
 import com.company.jobnow.activity.main.settingsPage.SettingsFragment;
 import com.company.jobnow.activity.main.sharePage.ShareFragment;
 import com.company.jobnow.activity.main.statsPage.StatsFragment;
+import com.company.jobnow.common.Constant;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

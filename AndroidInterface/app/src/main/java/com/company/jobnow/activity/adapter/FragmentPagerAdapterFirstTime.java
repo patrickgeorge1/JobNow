@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.firstTime.adapter;
+package com.company.jobnow.activity.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

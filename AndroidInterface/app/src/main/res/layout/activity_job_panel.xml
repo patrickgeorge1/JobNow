@@ -11,43 +11,67 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:paddingBottom="100dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/big_margin"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="100dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="@dimen/small_padding">
 
                 <ImageView
                     android:id="@+id/job_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/form_right_margin"
                     app:srcCompat="@mipmap/ic_launcher_round" />
 
                 <TextView
-                    android:id="@+id/job_title"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/jobPanel_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="@dimen/big_margin"
                     android:layout_toEndOf="@id/job_image"
                     android:ellipsize="marquee"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:singleLine="true"
-                    android:text="Job Title"
+                    android:text="JOB TITLE"
                     android:textSize="@dimen/header_font_size" />
+
+                <TextView
+                    android:id="@+id/jobPanel_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/jobPanel_title"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@id/job_image"
+                    android:text="PRICE"
+                    android:textSize="@dimen/title_font_size" />
+
+                <TextView
+                    android:id="@+id/jobPanel_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/jobPanel_title"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/form_right_margin"
+                    android:text="DISTANCE"
+                    android:textSize="@dimen/label_font_size" />
 
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/jobPanel_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="LONG DESC HERE" />
+                android:layout_marginTop="@dimen/activity_vertical_margin" />
         </LinearLayout>
 
     </ScrollView>
@@ -55,10 +79,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:layout_margin="@dimen/absolute_button_margin"
         android:layout_gravity="bottom|end"
-        android:padding="@dimen/medium_padding"
+        android:layout_margin="@dimen/absolute_button_margin"
         android:background="@drawable/button_sumbit"
-        android:text="@string/apply_button_text"/>
+        android:padding="@dimen/medium_padding"
+        android:onClick="applyForJob"
+        android:text="@string/apply_button_text"
+        android:textAllCaps="false" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

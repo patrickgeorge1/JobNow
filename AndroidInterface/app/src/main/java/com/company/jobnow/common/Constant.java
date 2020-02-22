@@ -13,5 +13,6 @@ public final class Constant {
     // PREFERENCES
     public final static String LOGIN_PREFERENCES = "UserPreferences";
     public final static String AUTH_TOKEN = "token";
+    public final static String SUCESS_STATUS = "status";
     public final static String BASE_URL = "https://app-jobnow.herokuapp.com/";
 }

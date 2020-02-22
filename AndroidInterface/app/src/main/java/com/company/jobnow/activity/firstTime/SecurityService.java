@@ -98,7 +98,7 @@ public class SecurityService {
                 if (response.isSuccessful()) {
                     try {
                         Map<String, Object> responseJSON = new Gson().fromJson(response.body().string(), HashMap.class);
-                        String status = (String) responseJSON.get(Constant.AUTH_TOKEN);
+                        String status = (String) responseJSON.get(Constant.SUCESS_STATUS);
                         if (status.equals("success")) requestStatus = true;
                     } catch (Exception e) {}
                 }

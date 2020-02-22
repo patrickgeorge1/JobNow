@@ -2,6 +2,7 @@ package com.company.jobnow.activity.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,10 @@ import com.company.jobnow.entity.Job;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapterJob.ViewHolder> implements Filterable {
     private Activity context;
@@ -60,7 +64,7 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
         holder.name.setText(job.getName());
         holder.description.setText(job.getDescription());
         holder.price.setText(job.getPrice());
-        holder.distance.setText(job.getRelativeDistance(new LatLng(0, 0)));
+        holder.distance.setText(job.getRelativeDistance(new LatLng(0, 0)) + " km");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +78,6 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
             }
         });
     }
-
 
     @Override
     public int getItemCount() {
@@ -106,5 +109,24 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
                 notifyDataSetChanged();
             }
         };
+    }
+
+    private void filterByAll(List<Job> list, int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
+        Iterator<Job> it = list.iterator();
+        while (it.hasNext()) {
+            Job job = it.next();
+            if (!job.filterByPrice(minPrice, maxPrice, maxDistance, categorySet)) it.remove();
+        }
+    }
+
+    public void refreshList() {
+        displayJobList.clear();
+        displayJobList.addAll(jobList);
+        notifyDataSetChanged();
+    }
+
+    public void updateWithUserPreferences(int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
+        filterByAll(jobList, minPrice, maxPrice, maxDistance, categorySet);
+        refreshList();
     }
 }

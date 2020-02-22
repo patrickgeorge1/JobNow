@@ -37,14 +37,18 @@ public class LogInFragment extends Fragment {
     public LogInFragment(AppCompatActivity mainActivity, ViewPager viewPager) {
         this.mainActivity= mainActivity;
         this.viewPager = viewPager;
-        securityService = SecurityService.getInstance();
-        sharedPreferences = mainActivity.getSharedPreferences(Constant.LOGIN_PREFERENCES, Activity.MODE_PRIVATE);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
+
+        securityService = SecurityService.getInstance();
+        sharedPreferences = mainActivity.getSharedPreferences(Constant.LOGIN_PREFERENCES, Activity.MODE_PRIVATE);
+
+        // Coment to test login
+//        mainActivity.startActivity(new Intent(mainActivity, MainActivity.class));
 
         if (isLogged()) {
             Intent intent = new Intent(mainActivity, MainActivity.class);

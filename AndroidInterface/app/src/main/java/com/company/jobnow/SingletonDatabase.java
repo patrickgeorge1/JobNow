@@ -65,6 +65,10 @@ public class SingletonDatabase {
         jobListDemo.add(new Job(jobTitle, jobPrice, jobDescription, latitude, longitude, jobCategory));
     }
 
+    public User getCurrentUser() {
+        return appUser;
+    }
+
     public boolean authenticateUser(String userEmail, String userHashPassword) {
         // Check if the credidentials exist in DataBase
         // return false instead

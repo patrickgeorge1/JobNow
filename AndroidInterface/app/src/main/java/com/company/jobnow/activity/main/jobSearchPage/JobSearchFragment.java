@@ -2,6 +2,7 @@ package com.company.jobnow.activity.main.jobSearchPage;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,6 +27,7 @@ import com.company.jobnow.activity.updatePreferences.UpdateJobPreferencesActivit
 import com.company.jobnow.common.Constant;
 import com.company.jobnow.entity.Job;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class JobSearchFragment extends Fragment {
@@ -68,7 +70,7 @@ public class JobSearchFragment extends Fragment {
                 return true;
             case R.id.action_filter:
                 Intent intent = new Intent(getActivity(), UpdateJobPreferencesActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, Constant.RequestCode.FILTER_PREFERENCES);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -97,7 +99,14 @@ public class JobSearchFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == Activity.RESULT_OK && requestCode == Constant.RequestCode.JOB_ADD) {
-//TODO            jobListAdapter.notifyDataSetChanged();
+            jobListAdapter.refreshList();
+        }
+        if (requestCode == Constant.RequestCode.FILTER_PREFERENCES) {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constant.FILTER_PREFERENCES, Activity.MODE_PRIVATE);
+            jobListAdapter.updateWithUserPreferences(sharedPreferences.getInt(Constant.PREFERED_MIN_PRICE, Constant.Numeric.DEFAULT_MAX_PRICE),
+                    sharedPreferences.getInt(Constant.PREFERED_MAX_PRICE, Constant.Numeric.DEFAULT_MAX_PRICE),
+                    sharedPreferences.getInt(Constant.PREFERED_DISTANCE, Constant.Numeric.DEFAULT_DISTANCE),
+                    sharedPreferences.getStringSet(Constant.SELECTED_CATEGORIES, new HashSet<String>()));
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

@@ -1,16 +1,11 @@
 package com.company.jobnow.activity.firstTime;
 
-import android.content.SharedPreferences;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.company.jobnow.common.Constant;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.Headers;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Job {
+    private int id;
+    // TODO autoincrement ID
+
     private String name;
     private String price;
     private String description;
@@ -31,6 +34,8 @@ public class Job {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.jobCategoty = new ArrayList<>();
+        this.jobCategoty.add( new Category("default cat"));
     }
 
     public String getName() {
@@ -105,7 +110,6 @@ public class Job {
                 return true;
             }
         }
-
         return false;
     }
 }

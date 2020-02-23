@@ -9,7 +9,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.company.jobnow.R;
+import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.common.Constant;
+import com.company.jobnow.common.Global;
+import com.company.jobnow.entity.Category;
 import com.company.jobnow.entity.Job;
 
 public class JobPanelActivity extends AppCompatActivity {
@@ -17,6 +20,7 @@ public class JobPanelActivity extends AppCompatActivity {
     TextView jobPrice;
     TextView jobDescription;
     TextView jobDistance;
+    TextView jobCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +34,26 @@ public class JobPanelActivity extends AppCompatActivity {
         jobPrice = findViewById(R.id.jobPanel_price);
         jobDescription = findViewById(R.id.jobPanel_description);
         jobDistance = findViewById(R.id.jobPanel_distance);
+        jobCategory = findViewById(R.id.jobPanel_category);
         jobTitle.setSelected(true);
 
-        if (intent.hasExtra(Constant.Key.JOB_TITLE) && intent.hasExtra(Constant.Key.JOB_PRICE) && intent.hasExtra(Constant.Key.JOB_DISTANCE ) && intent.hasExtra(Constant.Key.JOB_DESCRIPTION)) {
-            jobTitle.setText(intent.getExtras().getString(Constant.Key.JOB_TITLE));
-            jobPrice.setText(intent.getExtras().getString(Constant.Key.JOB_PRICE));
-            jobDistance.setText(intent.getExtras().getString(Constant.Key.JOB_DISTANCE));
+        Job job = Global.getInstance().getJob();
+
+        if (job != null) {
+            jobTitle.setText(job.getName());
+            jobPrice.setText(job.getDescription());
+            jobDistance.setText(String.valueOf(job.getRelativeDistance(SingletonDatabase.getInstance().getCurrentUser().getLastPos())));
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (Category c : job.getJobCategoty()) {
+                stringBuilder.append("; ");
+                stringBuilder.append(c.getName());
+            }
+            if (stringBuilder.length() > 2) {
+                stringBuilder.delete(0, 2);
+            }
+            jobCategory.setText(stringBuilder.toString());
+            Global.getInstance().setJob(null);
         } else {
             Toast.makeText(this, getString(R.string.error_loading_job), Toast.LENGTH_SHORT).show();
             setResult(RESULT_CANCELED);

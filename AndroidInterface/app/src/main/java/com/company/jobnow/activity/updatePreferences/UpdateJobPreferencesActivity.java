@@ -181,10 +181,9 @@ public class UpdateJobPreferencesActivity extends AppCompatActivity {
 
     public void savePreferences(View view) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(Constant.PREFERED_MIN_PRICE, minPrice);
-        editor.putInt(Constant.PREFERED_MAX_PRICE, maxPrice);
-        editor.putInt(Constant.PREFERED_DISTANCE, maxDistance);
-        editor.putStringSet(Constant.SELECTED_CATEGORIES, selectedSet);
-        editor.apply();
+        editor.putInt(Constant.PREFERED_MIN_PRICE, minPrice).apply();
+        editor.putInt(Constant.PREFERED_MAX_PRICE, maxPrice).apply();
+        editor.putInt(Constant.PREFERED_DISTANCE, maxDistance).apply();
+        editor.putStringSet(Constant.SELECTED_CATEGORIES, selectedSet).apply();
     }
 }

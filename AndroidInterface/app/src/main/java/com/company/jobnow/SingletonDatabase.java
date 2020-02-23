@@ -21,6 +21,7 @@ public class SingletonDatabase {
     List<Currency> currencyListDemo;
 
     private SingletonDatabase() {
+        appUser = new User("fullName", "email@email.com", "kasdkjas1231242dsadasdasdhdlasd");
         jobListDemo = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             jobListDemo.add(new Job("Job " + i, "Description " + i, String.valueOf((new Random()).nextInt(100)) + " RON"));

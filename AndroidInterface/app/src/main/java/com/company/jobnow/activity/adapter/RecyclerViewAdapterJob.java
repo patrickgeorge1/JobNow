@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.company.jobnow.R;
 import com.company.jobnow.activity.main.jobSearchPage.JobPanelActivity;
 import com.company.jobnow.common.Constant;
+import com.company.jobnow.common.Global;
 import com.company.jobnow.entity.Job;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -68,10 +69,7 @@ public class RecyclerViewAdapterJob extends RecyclerView.Adapter<RecyclerViewAda
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, JobPanelActivity.class);
-                intent.putExtra(Constant.Key.JOB_TITLE, job.getName());
-                intent.putExtra(Constant.Key.JOB_PRICE, job.getPrice());
-                intent.putExtra(Constant.Key.JOB_DESCRIPTION, job.getDescription());
-                intent.putExtra(Constant.Key.JOB_DISTANCE, job.getRelativeDistance(new LatLng(0, 0)));
+                Global.getInstance().setJob(job);
                 context.startActivityForResult(intent, Constant.RequestCode.JOB_PREVIEW);
             }
         });

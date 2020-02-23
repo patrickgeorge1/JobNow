@@ -3,6 +3,9 @@ package com.company.jobnow.entity;
 import com.google.android.gms.maps.model.LatLng;
 
 public class User {
+    private int id;
+    // TODO autoincrement ID
+
     private String fullName;
     private String email;
     private String hashPassword;

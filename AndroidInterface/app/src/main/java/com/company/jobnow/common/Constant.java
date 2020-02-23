@@ -50,11 +50,6 @@ public final class Constant {
     public final class Key {
         public final static String LATITUDE = "latitude";
         public final static String LONGITUDE = "longitude";
-
-        public final static String JOB_TITLE = "jobTitle";
-        public final static String JOB_PRICE = "jobPrice";
-        public final static String JOB_DESCRIPTION = "jobDescripition";
-        public final static String JOB_DISTANCE = "jobDistance";
     }
 
 }

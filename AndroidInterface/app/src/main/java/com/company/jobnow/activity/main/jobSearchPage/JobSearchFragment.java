@@ -96,17 +96,22 @@ public class JobSearchFragment extends Fragment {
         return view;
     }
 
+    private void filterJobList() {
+        // TODO REPLACE CURRENT LIST WITH ONE FROM DATABASE AND NOTIFY THE ADAPTER
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constant.FILTER_PREFERENCES, Activity.MODE_PRIVATE);
+        jobListAdapter.updateWithUserPreferences(sharedPreferences.getInt(Constant.PREFERED_MIN_PRICE, Constant.Numeric.DEFAULT_MAX_PRICE),
+                sharedPreferences.getInt(Constant.PREFERED_MAX_PRICE, Constant.Numeric.DEFAULT_MAX_PRICE),
+                sharedPreferences.getInt(Constant.PREFERED_DISTANCE, Constant.Numeric.DEFAULT_DISTANCE),
+                sharedPreferences.getStringSet(Constant.SELECTED_CATEGORIES, new HashSet<String>()));
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == Activity.RESULT_OK && requestCode == Constant.RequestCode.JOB_ADD) {
             jobListAdapter.refreshList();
         }
         if (requestCode == Constant.RequestCode.FILTER_PREFERENCES) {
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constant.FILTER_PREFERENCES, Activity.MODE_PRIVATE);
-            jobListAdapter.updateWithUserPreferences(sharedPreferences.getInt(Constant.PREFERED_MIN_PRICE, Constant.Numeric.DEFAULT_MAX_PRICE),
-                    sharedPreferences.getInt(Constant.PREFERED_MAX_PRICE, Constant.Numeric.DEFAULT_MAX_PRICE),
-                    sharedPreferences.getInt(Constant.PREFERED_DISTANCE, Constant.Numeric.DEFAULT_DISTANCE),
-                    sharedPreferences.getStringSet(Constant.SELECTED_CATEGORIES, new HashSet<String>()));
+            filterJobList();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

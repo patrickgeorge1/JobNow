@@ -9,6 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class SingletonDatabase {
     private static final SingletonDatabase ourInstance = new SingletonDatabase();
@@ -51,6 +52,7 @@ public class SingletonDatabase {
     }
 
     public List<String> getChats() {
+        // NU IMPLEMENTA ASTA CA NU E NEVOIE ACUM
         return chatsDemo;
     }
 
@@ -87,5 +89,10 @@ public class SingletonDatabase {
 
         appUser = new User(fullName, userEmail, userHashPassword);
         return true;
+    }
+
+    public List<Job> getFilteredJobList(int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
+        // TODO IMPLEMENT
+        return jobListDemo;
     }
 }

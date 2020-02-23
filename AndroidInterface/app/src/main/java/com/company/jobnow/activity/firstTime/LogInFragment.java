@@ -48,7 +48,7 @@ public class LogInFragment extends Fragment {
         sharedPreferences = mainActivity.getSharedPreferences(Constant.LOGIN_PREFERENCES, Activity.MODE_PRIVATE);
 
         // Coment to test login
-//        mainActivity.startActivity(new Intent(mainActivity, MainActivity.class));
+        mainActivity.startActivity(new Intent(mainActivity, MainActivity.class));
 
         if (isLogged()) {
             Intent intent = new Intent(mainActivity, MainActivity.class);

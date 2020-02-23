@@ -1,4 +1,4 @@
-package com.company.jobnow.activity.main.settingsPage;
+package com.company.jobnow.activity.main.jobAddedPage;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.company.jobnow.R;
 
-public class SettingsFragment extends Fragment {
+public class jobAddedFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -27,7 +27,7 @@ public class SettingsFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_settings_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_job_you_added_main, container, false);
         return view;
     }
 }

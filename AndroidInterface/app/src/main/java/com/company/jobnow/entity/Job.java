@@ -90,26 +90,26 @@ public class Job {
         return Utilities.computeDistance(new LatLng(latitude, longitude), currentPosition);
     }
 
-    public boolean filterByPrice(int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
-        int intPrice;
-        try {
-            intPrice = Integer.parseInt(price.substring(0, price.length() - 4));
-        } catch (Exception e) {
-            intPrice = 0;
-        }
-        if (intPrice < minPrice || maxPrice < intPrice) {
-            return false;
-        }
-
-        if (maxDistance < getRelativeDistance(SingletonDatabase.getInstance().getCurrentUser().getLastPos())) {
-            return false;
-        }
-
-        for (Category c : jobCategoty) {
-            if (categorySet.contains(String.valueOf(c.getId()))) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean filterByPrice(int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
+//        int intPrice;
+//        try {
+//            intPrice = Integer.parseInt(price.substring(0, price.length() - 4));
+//        } catch (Exception e) {
+//            intPrice = 0;
+//        }
+//        if (intPrice < minPrice || maxPrice < intPrice) {
+//            return false;
+//        }
+//
+//        if (maxDistance < getRelativeDistance(SingletonDatabase.getInstance().getCurrentUser().getLastPos())) {
+//            return false;
+//        }
+//
+//        for (Category c : jobCategoty) {
+//            if (categorySet.contains(String.valueOf(c.getId()))) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }

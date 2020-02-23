@@ -107,12 +107,21 @@ public class RecyclerViewAdapterJob extends RecyclerView.Adapter<RecyclerViewAda
         };
     }
 
-    private void filterByAll(List<Job> list, int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
-        Iterator<Job> it = list.iterator();
-        while (it.hasNext()) {
-            Job job = it.next();
-            if (!job.filterByPrice(minPrice, maxPrice, maxDistance, categorySet)) it.remove();
-        }
+//    private void filterByAll(List<Job> list, int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
+//        Iterator<Job> it = list.iterator();
+//        while (it.hasNext()) {
+//            Job job = it.next();
+//            if (!job.filterByPrice(minPrice, maxPrice, maxDistance, categorySet)) it.remove();
+//        }
+//    }
+
+    public void clearList() {
+        jobList.clear();
+        refreshList();
+    }
+    public void addToList(List<Job> appendList) {
+        jobList.addAll(appendList);
+        refreshList();
     }
 
     public void refreshList() {
@@ -121,8 +130,8 @@ public class RecyclerViewAdapterJob extends RecyclerView.Adapter<RecyclerViewAda
         notifyDataSetChanged();
     }
 
-    public void updateWithUserPreferences(int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
-        filterByAll(jobList, minPrice, maxPrice, maxDistance, categorySet);
-        refreshList();
-    }
+//    public void updateWithUserPreferences(int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
+//        filterByAll(jobList, minPrice, maxPrice, maxDistance, categorySet);
+//        refreshList();
+//    }
 }

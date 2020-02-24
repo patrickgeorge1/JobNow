@@ -60,7 +60,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 .antMatchers(HttpMethod.POST, "/api/public/admin/give").hasAnyAuthority("ACCESS_GIVEPERMISSION", "ROLE_ADMIN")
 
                                 // Tickets
-                                .antMatchers(HttpMethod.GET, "/api/public/admin/ticket").hasAnyAuthority("ROLE_ADMIN", "ACCESS_VIEWTICEKTS")
+                                .antMatchers(HttpMethod.GET, "/api/public/admin/tickets").hasAnyAuthority("ROLE_ADMIN", "ACCESS_VIEWTICEKTS")
+
+                                // Jobs
+                                .antMatchers(HttpMethod.GET, "/api/public/admin/jobs").hasAnyAuthority("ROLE_ADMIN", "ACCESS_VIEWJOBS")
+
+                                // Categories
+                                .antMatchers(HttpMethod.GET, "/api/public/admin/categories").hasAnyAuthority("ROLE_ADMIN", "ACCESS_VIEWCATEGORIES")
+
+                                // Currencies
+                                .antMatchers(HttpMethod.POST, "/api/public/admin/currencies").hasAnyAuthority("ROLE_ADMIN", "ACCESS_ADDCURRENCIES")
 
                                 // General
                                 .antMatchers("/register").permitAll()

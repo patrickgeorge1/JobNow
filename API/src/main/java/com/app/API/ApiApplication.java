@@ -1,5 +1,6 @@
 package com.app.API;
 
+import com.github.javafaker.Faker;
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
@@ -9,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+
+import java.util.Locale;
 
 
 @SpringBootApplication
@@ -45,6 +48,11 @@ public class ApiApplication {
         connector.setSecure(false);
         connector.setRedirectPort(8443);
         return connector;
+    }
+
+    @Bean
+    public Faker getFaker() {
+        return new Faker(new Locale("en-US"));
     }
 
 }

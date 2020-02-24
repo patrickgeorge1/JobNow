@@ -135,7 +135,7 @@ public class Job {
         this.longitude = longitude;
     }
 
-    public Job(Long id, User employer, User emplyee, Category category, Float price, String title, String description, Integer status, Date registerDate, Double latitude, Double longitude) {
+    public  Job(Long id, User employer, User emplyee, Category category, Float price, String title, String description, Integer status, Date registerDate, Double latitude, Double longitude) {
         this.id = id;
         this.employer = employer;
         this.emplyee = emplyee;
@@ -148,4 +148,6 @@ public class Job {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
+    protected Job() {}
 }

@@ -23,17 +23,17 @@ public class TicketController {
     }
 
 
-    @RequestMapping(path = "api/public/ticket", method = RequestMethod.GET)
+    @RequestMapping(path = "api/public/tickets", method = RequestMethod.GET)
     public @ResponseBody List<Ticket> getAll() {
         return new ArrayList<>(ticketRepository.findByAuthorId(userRepository.findByUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()));
     }
 
-    @RequestMapping(path = "api/public/admin/ticket", method = RequestMethod.GET)
+    @RequestMapping(path = "api/public/admin/tickets", method = RequestMethod.GET)
     public @ResponseBody List<Ticket> getAllAdmin() {
         return new ArrayList<>(ticketRepository.findAll());
     }
 
-    @RequestMapping(path = "api/public/ticket", method = RequestMethod.POST)
+    @RequestMapping(path = "api/public/tickets", method = RequestMethod.POST)
     public @ResponseBody String postTicket(@RequestBody JsonNode json) {
         try {
             ticketService.addTicket(userRepository.findByUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal()), json.get("type").asInt(), json.get("target").asLong(), json.get("title").asText(), json.get("description").asText());

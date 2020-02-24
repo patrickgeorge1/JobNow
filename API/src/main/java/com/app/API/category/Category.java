@@ -48,4 +48,6 @@ public class Category {
         this.name = name;
         this.requirements = requirements;
     }
+
+    protected Category() {}
 }

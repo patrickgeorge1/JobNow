@@ -9,6 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class SingletonDatabase {
     private static final SingletonDatabase ourInstance = new SingletonDatabase();
@@ -21,6 +22,7 @@ public class SingletonDatabase {
     List<Currency> currencyListDemo;
 
     private SingletonDatabase() {
+        appUser = new User("fullName", "email@email.com", "kasdkjas1231242dsadasdasdhdlasd");
         jobListDemo = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             jobListDemo.add(new Job("Job " + i, "Description " + i, String.valueOf((new Random()).nextInt(100)) + " RON"));
@@ -50,6 +52,7 @@ public class SingletonDatabase {
     }
 
     public List<String> getChats() {
+        // NU IMPLEMENTA ASTA CA NU E NEVOIE ACUM
         return chatsDemo;
     }
 
@@ -63,6 +66,10 @@ public class SingletonDatabase {
 
     public void addJob(String jobTitle, String jobPrice, String jobDescription, double latitude, double longitude, List<Category> jobCategory) {
         jobListDemo.add(new Job(jobTitle, jobPrice, jobDescription, latitude, longitude, jobCategory));
+    }
+
+    public User getCurrentUser() {
+        return appUser;
     }
 
     public boolean authenticateUser(String userEmail, String userHashPassword) {
@@ -82,5 +89,10 @@ public class SingletonDatabase {
 
         appUser = new User(fullName, userEmail, userHashPassword);
         return true;
+    }
+
+    public List<Job> getFilteredJobList(int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
+        // TODO IMPLEMENT
+        return jobListDemo;
     }
 }

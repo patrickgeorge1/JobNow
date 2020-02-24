@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.company.jobnow.R;
 import com.company.jobnow.activity.adapter.AdapterSyncCategory;
-import com.company.jobnow.activity.adapter.RecycleViewAdapterCategory;
+import com.company.jobnow.activity.adapter.RecyclerViewAdapterCategory;
 import com.company.jobnow.entity.Category;
 
 import java.util.List;
@@ -49,13 +49,13 @@ public class DialogUpdateCategories extends AppCompatDialogFragment {
 
         View view = inflater.inflate(R.layout.dialog_update_categories, null);
 
-        RecyclerView recyclerViewSelected = view.findViewById(R.id.RecycleView_selectedCategories);
+        RecyclerView recyclerViewSelected = view.findViewById(R.id.recyclerView_selectedCategories);
         recyclerViewSelected.setLayoutManager(new LinearLayoutManager(mainActivity, LinearLayoutManager.VERTICAL, false));
-        recyclerViewSelected.setAdapter(new RecycleViewAdapterCategory(mainActivity, adapterSyncCategory, selectedCategories, unselectedCategories, R.layout.item_recycleview_selected_category, R.id.textView_selectedCategory, R.id.button_selectedCategory));
+        recyclerViewSelected.setAdapter(new RecyclerViewAdapterCategory(mainActivity, adapterSyncCategory, selectedCategories, unselectedCategories, R.layout.item_recyclerview_selected_category, R.id.textView_selectedCategory, R.id.button_selectedCategory));
 
-        RecyclerView recyclerViewUnselected = view.findViewById(R.id.RecycleView_unselectedCategories);
+        RecyclerView recyclerViewUnselected = view.findViewById(R.id.recyclerView_unselectedCategories);
         recyclerViewUnselected.setLayoutManager(new LinearLayoutManager(mainActivity, LinearLayoutManager.VERTICAL, false));
-        recyclerViewUnselected.setAdapter(new RecycleViewAdapterCategory(mainActivity, adapterSyncCategory, unselectedCategories, selectedCategories, R.layout.item_recycleview_unselected_category, R.id.textView_unselectedCategory, R.id.button_unselectedCategory));
+        recyclerViewUnselected.setAdapter(new RecyclerViewAdapterCategory(mainActivity, adapterSyncCategory, unselectedCategories, selectedCategories, R.layout.item_recyclerview_unselected_category, R.id.textView_unselectedCategory, R.id.button_unselectedCategory));
 
         builder.setView(view)
                 .setTitle(getString(R.string.dialog_edit_categories_title))

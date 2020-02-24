@@ -59,13 +59,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_below="@id/jobPanel_title"
-                    android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginEnd="@dimen/form_right_margin"
                     android:text="DISTANCE"
                     android:textSize="@dimen/label_font_size" />
 
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/jobPanel_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium_padding" />
 
             <TextView
                 android:id="@+id/jobPanel_description"
@@ -82,8 +88,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/absolute_button_margin"
         android:background="@drawable/button_sumbit"
-        android:padding="@dimen/medium_padding"
         android:onClick="applyForJob"
+        android:padding="@dimen/medium_padding"
         android:text="@string/apply_button_text"
         android:textAllCaps="false" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

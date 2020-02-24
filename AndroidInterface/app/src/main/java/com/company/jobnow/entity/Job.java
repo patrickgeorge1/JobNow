@@ -1,11 +1,17 @@
 package com.company.jobnow.entity;
 
+import com.company.jobnow.SingletonDatabase;
+import com.company.jobnow.common.Utilities;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Job {
+    private int id;
+    // TODO autoincrement ID
+
     private String name;
     private String price;
     private String description;
@@ -28,6 +34,8 @@ public class Job {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.jobCategoty = new ArrayList<>();
+        this.jobCategoty.add( new Category("default cat"));
     }
 
     public String getName() {
@@ -78,8 +86,30 @@ public class Job {
         this.jobCategoty = jobCategoty;
     }
 
-    public String getRelativeDistance(LatLng currentPosition) {
-        // TODO Return relative distance in km or milse based on user prefs
-        return "12.5 km";
+    public float getRelativeDistance(LatLng currentPosition) {
+        return Utilities.computeDistance(new LatLng(latitude, longitude), currentPosition);
     }
+
+//    public boolean filterByPrice(int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
+//        int intPrice;
+//        try {
+//            intPrice = Integer.parseInt(price.substring(0, price.length() - 4));
+//        } catch (Exception e) {
+//            intPrice = 0;
+//        }
+//        if (intPrice < minPrice || maxPrice < intPrice) {
+//            return false;
+//        }
+//
+//        if (maxDistance < getRelativeDistance(SingletonDatabase.getInstance().getCurrentUser().getLastPos())) {
+//            return false;
+//        }
+//
+//        for (Category c : jobCategoty) {
+//            if (categorySet.contains(String.valueOf(c.getId()))) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }

@@ -2,6 +2,7 @@ package com.company.jobnow.activity.main.jobSearchPage;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,15 +22,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.createJob.CreateJobActivity;
-import com.company.jobnow.activity.adapter.RecycleViewAdapterJob;
+import com.company.jobnow.activity.adapter.RecyclerViewAdapterJob;
 import com.company.jobnow.activity.updatePreferences.UpdateJobPreferencesActivity;
 import com.company.jobnow.common.Constant;
 import com.company.jobnow.entity.Job;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class JobSearchFragment extends Fragment {
-    private RecycleViewAdapterJob jobListAdapter;
+    private RecyclerViewAdapterJob jobListAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +70,7 @@ public class JobSearchFragment extends Fragment {
                 return true;
             case R.id.action_filter:
                 Intent intent = new Intent(getActivity(), UpdateJobPreferencesActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, Constant.RequestCode.FILTER_PREFERENCES);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -80,7 +82,7 @@ public class JobSearchFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_jobs);
 
         final List<Job> jobList = SingletonDatabase.getInstance().getJobList();
-        jobListAdapter = new RecycleViewAdapterJob(getActivity(), jobList);
+        jobListAdapter = new RecyclerViewAdapterJob(getActivity(), jobList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(jobListAdapter);
 
@@ -94,10 +96,32 @@ public class JobSearchFragment extends Fragment {
         return view;
     }
 
+    private void filterJobList() {
+        // TODO REPLACE CURRENT LIST WITH ONE FROM DATABASE AND NOTIFY THE ADAPTER
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constant.FILTER_PREFERENCES, Activity.MODE_PRIVATE);
+
+
+        List<Job> list = SingletonDatabase.getInstance().getFilteredJobList(sharedPreferences.getInt(Constant.PREFERED_MIN_PRICE, Constant.Numeric.DEFAULT_MAX_PRICE),
+                sharedPreferences.getInt(Constant.PREFERED_MAX_PRICE, Constant.Numeric.DEFAULT_MAX_PRICE),
+                sharedPreferences.getInt(Constant.PREFERED_DISTANCE, Constant.Numeric.DEFAULT_DISTANCE),
+                sharedPreferences.getStringSet(Constant.SELECTED_CATEGORIES, new HashSet<String>()));
+//        jobListAdapter.clearList();
+        jobListAdapter.addToList(list);
+
+
+//        jobListAdapter.updateWithUserPreferences(sharedPreferences.getInt(Constant.PREFERED_MIN_PRICE, Constant.Numeric.DEFAULT_MAX_PRICE),
+//                sharedPreferences.getInt(Constant.PREFERED_MAX_PRICE, Constant.Numeric.DEFAULT_MAX_PRICE),
+//                sharedPreferences.getInt(Constant.PREFERED_DISTANCE, Constant.Numeric.DEFAULT_DISTANCE),
+//                sharedPreferences.getStringSet(Constant.SELECTED_CATEGORIES, new HashSet<String>()));
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == Activity.RESULT_OK && requestCode == Constant.RequestCode.JOB_ADD) {
-//TODO            jobListAdapter.notifyDataSetChanged();
+            jobListAdapter.refreshList();
+        }
+        if (requestCode == Constant.RequestCode.FILTER_PREFERENCES) {
+            filterJobList();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

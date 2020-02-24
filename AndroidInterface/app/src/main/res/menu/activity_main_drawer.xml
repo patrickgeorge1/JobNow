@@ -17,9 +17,13 @@
             android:icon="@drawable/ic_menu_stats"
             android:title="@string/menu_stats" />
         <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_job_you_applied"
             android:icon="@drawable/ic_menu_settings"
-            android:title="@string/menu_settings" />
+            android:title="@string/menu_jobApplied" />
+        <item
+            android:id="@+id/nav_job_you_added"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="@string/menu_jobAdded" />
     </group>
 
     <item android:title="@string/menu_support_title">

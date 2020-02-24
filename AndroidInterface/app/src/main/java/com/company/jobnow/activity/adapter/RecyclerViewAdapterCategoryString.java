@@ -14,11 +14,11 @@ import com.company.jobnow.entity.Category;
 
 import java.util.List;
 
-public class RecycleViewAdapterCategoryString extends RecyclerView.Adapter<RecycleViewAdapterCategoryString.ViewHolder> {
+public class RecyclerViewAdapterCategoryString extends RecyclerView.Adapter<RecyclerViewAdapterCategoryString.ViewHolder> {
     private Activity context;
     private List<Category> categoryList;
 
-    public RecycleViewAdapterCategoryString(Activity context, List<Category> categoryList) {
+    public RecyclerViewAdapterCategoryString(Activity context, List<Category> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
     }
@@ -28,14 +28,14 @@ public class RecycleViewAdapterCategoryString extends RecyclerView.Adapter<Recyc
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.recycleView_text_category);
+            name = itemView.findViewById(R.id.recyclerView_text_category);
         }
     }
 
     @NonNull
     @Override
-    public RecycleViewAdapterCategoryString.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycleview_category_string, parent, false);
+    public RecyclerViewAdapterCategoryString.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview_category_string, parent, false);
         return new ViewHolder(view);
     }
 

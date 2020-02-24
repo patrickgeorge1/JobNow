@@ -1,14 +1,10 @@
 package com.company.jobnow.activity.main;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -22,11 +18,11 @@ import androidx.navigation.ui.NavigationUI;
 import com.company.jobnow.R;
 import com.company.jobnow.activity.main.chatPage.ChatFragment;
 import com.company.jobnow.activity.main.helpPage.HelpFragment;
+import com.company.jobnow.activity.main.jobAddedPage.jobAddedFragment;
 import com.company.jobnow.activity.main.jobSearchPage.JobSearchFragment;
-import com.company.jobnow.activity.main.settingsPage.SettingsFragment;
+import com.company.jobnow.activity.main.jobAppliedPage.jobAppliedFragment;
 import com.company.jobnow.activity.main.sharePage.ShareFragment;
 import com.company.jobnow.activity.main.statsPage.StatsFragment;
-import com.company.jobnow.common.Constant;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -46,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_jobSearch, R.id.nav_chat, R.id.nav_stats, R.id.nav_settings, R.id.nav_help, R.id.nav_share)
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_jobSearch, R.id.nav_chat, R.id.nav_stats, R.id.nav_job_you_applied, R.id.nav_job_you_added, R.id.nav_help, R.id.nav_share)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -75,8 +71,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             currentFragment = new ChatFragment();
         } else if (id == R.id.nav_stats) {
             currentFragment = new StatsFragment();
-        } else if (id == R.id.nav_settings) {
-            currentFragment = new SettingsFragment();
+        } else if (id == R.id.nav_job_you_applied) {
+            currentFragment = new jobAppliedFragment();
+        } else if (id == R.id.nav_job_you_added) {
+            currentFragment = new jobAddedFragment();
         } else if (id == R.id.nav_share) {
             currentFragment = new ShareFragment();
         } else if (id == R.id.nav_help) {

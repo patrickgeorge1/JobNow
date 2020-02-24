@@ -21,7 +21,7 @@ import com.company.jobnow.R;
 import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.activity.adapter.AdapterSyncCategory;
 import com.company.jobnow.activity.adapter.ArrayAdapterCurrency;
-import com.company.jobnow.activity.adapter.RecycleViewAdapterCategory;
+import com.company.jobnow.activity.adapter.RecyclerViewAdapterCategory;
 import com.company.jobnow.common.Constant;
 import com.company.jobnow.entity.Category;
 import com.company.jobnow.entity.Currency;
@@ -33,7 +33,7 @@ import java.util.List;
 
 public class CreateJobActivity extends AppCompatActivity implements DialogUpdateCategories.DialogUpdateCategoriesListener {
     private static final String TAG = "CreateJobActivity";
-    private RecycleViewAdapterCategory selectedCategoryAdapter;
+    private RecyclerViewAdapterCategory selectedCategoryAdapter;
     private AdapterSyncCategory adapterSyncCategory;
     private Spinner currencySpinner;
 
@@ -59,7 +59,7 @@ public class CreateJobActivity extends AppCompatActivity implements DialogUpdate
 
         init();
 
-        createRecycleViewCategory();
+        createRecyclerViewCategory();
         createSpinner();
         setUpListeners();
     }
@@ -88,9 +88,9 @@ public class CreateJobActivity extends AppCompatActivity implements DialogUpdate
         currencySpinner.setAdapter(currencyAdapter);
     }
 
-    private void createRecycleViewCategory() {
+    private void createRecyclerViewCategory() {
         adapterSyncCategory = new AdapterSyncCategory();
-        selectedCategoryAdapter = new RecycleViewAdapterCategory(this, adapterSyncCategory, selectedCategories, unselectedCategories, R.layout.item_recycleview_selected_category, R.id.textView_selectedCategory, R.id.button_selectedCategory);
+        selectedCategoryAdapter = new RecyclerViewAdapterCategory(this, adapterSyncCategory, selectedCategories, unselectedCategories, R.layout.item_recyclerview_selected_category, R.id.textView_selectedCategory, R.id.button_selectedCategory);
         RecyclerView recyclerView = findViewById(R.id.recyclerView_categoty);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(selectedCategoryAdapter);

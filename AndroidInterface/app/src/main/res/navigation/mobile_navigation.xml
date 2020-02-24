@@ -18,10 +18,15 @@
         tools:layout="@layout/fragment_chat_main" />
 
     <fragment
-        android:id="@+id/nav_settings"
-        android:name="com.company.jobnow.activity.main.settingsPage.SettingsFragment"
-        android:label="@string/menu_settings"
-        tools:layout="@layout/fragment_settings_main" />
+        android:id="@+id/nav_job_you_applied"
+        android:name="com.company.jobnow.activity.main.jobAppliedPage.jobAppliedFragment"
+        android:label="@string/menu_jobApplied"
+        tools:layout="@layout/fragment_job_you_applied_main" />
+    <fragment
+        android:id="@+id/nav_job_you_added"
+        android:name="com.company.jobnow.activity.main.jobAppliedPage.jobAppliedFragment"
+        android:label="@string/menu_jobAdded"
+        tools:layout="@layout/fragment_job_you_added_main" />
 
     <fragment
         android:id="@+id/nav_stats"

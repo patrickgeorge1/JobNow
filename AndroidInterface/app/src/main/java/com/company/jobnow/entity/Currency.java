@@ -1,6 +1,9 @@
 package com.company.jobnow.entity;
 
 public class Currency {
+    private int id;
+    // TODO autoincrement ID
+
     String abbreviation;
     String name;
 

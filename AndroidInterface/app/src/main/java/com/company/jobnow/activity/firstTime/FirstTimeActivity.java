@@ -40,7 +40,7 @@ public class FirstTimeActivity extends AppCompatActivity {
         FragmentPagerAdapterFirstTime viewPagerAdapter = new FragmentPagerAdapterFirstTime(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new LogoFragment());
         viewPagerAdapter.addFragment(new LogInFragment(this, viewPager));
-        viewPagerAdapter.addFragment(new RegisterFragment(viewPager));
+        viewPagerAdapter.addFragment(new RegisterFragment(this, viewPager));
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setCurrentItem(0);
     }

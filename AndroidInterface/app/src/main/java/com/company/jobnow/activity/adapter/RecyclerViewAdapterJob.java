@@ -15,18 +15,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.company.jobnow.R;
 import com.company.jobnow.activity.main.jobSearchPage.JobPanelActivity;
 import com.company.jobnow.common.Constant;
+import com.company.jobnow.common.Global;
 import com.company.jobnow.entity.Job;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
-public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapterJob.ViewHolder> implements Filterable {
+public class RecyclerViewAdapterJob extends RecyclerView.Adapter<RecyclerViewAdapterJob.ViewHolder> implements Filterable {
     private Activity context;
     private List<Job> jobList;
     private List<Job> displayJobList;
 
-    public RecycleViewAdapterJob(Activity context, List<Job> jobList) {
+    public RecyclerViewAdapterJob(Activity context, List<Job> jobList) {
         this.context = context;
         this.jobList = jobList;
         this.displayJobList = new ArrayList<>(jobList);
@@ -49,7 +52,7 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
 
     @NonNull
     @Override
-    public RecycleViewAdapterJob.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerViewAdapterJob.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycleiew_job, parent, false);
         return new ViewHolder(view);
     }
@@ -60,21 +63,17 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
         holder.name.setText(job.getName());
         holder.description.setText(job.getDescription());
         holder.price.setText(job.getPrice());
-        holder.distance.setText(job.getRelativeDistance(new LatLng(0, 0)));
+        holder.distance.setText(job.getRelativeDistance(new LatLng(0, 0)) + " km");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, JobPanelActivity.class);
-                intent.putExtra(Constant.Key.JOB_TITLE, job.getName());
-                intent.putExtra(Constant.Key.JOB_PRICE, job.getPrice());
-                intent.putExtra(Constant.Key.JOB_DESCRIPTION, job.getDescription());
-                intent.putExtra(Constant.Key.JOB_DISTANCE, job.getRelativeDistance(new LatLng(0, 0)));
+                Global.getInstance().setJob(job);
                 context.startActivityForResult(intent, Constant.RequestCode.JOB_PREVIEW);
             }
         });
     }
-
 
     @Override
     public int getItemCount() {
@@ -107,4 +106,32 @@ public class RecycleViewAdapterJob extends RecyclerView.Adapter<RecycleViewAdapt
             }
         };
     }
+
+//    private void filterByAll(List<Job> list, int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
+//        Iterator<Job> it = list.iterator();
+//        while (it.hasNext()) {
+//            Job job = it.next();
+//            if (!job.filterByPrice(minPrice, maxPrice, maxDistance, categorySet)) it.remove();
+//        }
+//    }
+
+    public void clearList() {
+        jobList.clear();
+        refreshList();
+    }
+    public void addToList(List<Job> appendList) {
+        jobList.addAll(appendList);
+        refreshList();
+    }
+
+    public void refreshList() {
+        displayJobList.clear();
+        displayJobList.addAll(jobList);
+        notifyDataSetChanged();
+    }
+
+//    public void updateWithUserPreferences(int minPrice, int maxPrice, int maxDistance, Set<String> categorySet) {
+//        filterByAll(jobList, minPrice, maxPrice, maxDistance, categorySet);
+//        refreshList();
+//    }
 }

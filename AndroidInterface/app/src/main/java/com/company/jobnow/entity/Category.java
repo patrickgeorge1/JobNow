@@ -1,9 +1,16 @@
 package com.company.jobnow.entity;
 
-public class Category {
-    private int id;
-    // TODO autoincrement ID
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "categories")
+public class Category {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private int id;
+
+    @ColumnInfo(name = "name")
     private String name;
 
     public Category(String name) {

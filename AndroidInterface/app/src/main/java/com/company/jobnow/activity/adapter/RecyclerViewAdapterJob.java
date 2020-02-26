@@ -60,7 +60,7 @@ public class RecyclerViewAdapterJob extends RecyclerView.Adapter<RecyclerViewAda
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final Job job = displayJobList.get(position);
-        holder.name.setText(job.getName());
+        holder.name.setText(job.getTitle());
         holder.description.setText(job.getDescription());
         holder.price.setText(job.getPrice());
         holder.distance.setText(job.getRelativeDistance(new LatLng(0, 0)) + " km");
@@ -88,7 +88,7 @@ public class RecyclerViewAdapterJob extends RecyclerView.Adapter<RecyclerViewAda
                 List<Job> filterList = new ArrayList<>();
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 for (Job j : jobList) {
-                    if (j.getName().toLowerCase().trim().contains(filterPattern)) {
+                    if (j.getTitle().toLowerCase().trim().contains(filterPattern)) {
                         filterList.add(j);
                     }
                 }

@@ -40,7 +40,7 @@ public class JobPanelActivity extends AppCompatActivity {
         Job job = Global.getInstance().getJob();
 
         if (job != null) {
-            jobTitle.setText(job.getName());
+            jobTitle.setText(job.getTitle());
             jobPrice.setText(job.getDescription());
             jobDistance.setText(String.valueOf(job.getRelativeDistance(SingletonDatabase.getInstance().getCurrentUser().getLastPos())));
 

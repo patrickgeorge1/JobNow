@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,23 +36,15 @@ public class LogInFragment extends Fragment {
     public LogInFragment(AppCompatActivity mainActivity, ViewPager viewPager) {
         this.mainActivity= mainActivity;
         this.viewPager = viewPager;
+
+        this.securityService = SecurityService.getInstance();
+        this.sharedPreferences = mainActivity.getSharedPreferences(Constant.LOGIN_PREFERENCES, Activity.MODE_PRIVATE);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
-
-        securityService = SecurityService.getInstance();
-        sharedPreferences = mainActivity.getSharedPreferences(Constant.LOGIN_PREFERENCES, Activity.MODE_PRIVATE);
-
-        // Coment to test login
-        mainActivity.startActivity(new Intent(mainActivity, MainActivity.class));
-
-        if (isLogged()) {
-            Intent intent = new Intent(mainActivity, MainActivity.class);
-            mainActivity.startActivity(intent);
-        }
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,8 +60,22 @@ public class LogInFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 loginButton.setEnabled(false);
-                authenticateUser();
-                loginButton.setEnabled(true);
+
+                String email = editTextEmail.getText().toString();
+                String password = editTextPassword.getText().toString();
+
+                securityService.logInUser(email, password, new SecurityService.AsynclogInUser.OnAyncTaskListener() {
+                    @Override
+                    public void onProcessFinish(String output) {
+                        Toast.makeText(mainActivity, output, Toast.LENGTH_SHORT).show();
+                        if (!output.equals("NULL")) {
+                            sharedPreferences.edit().putString(Constant.AUTH_TOKEN, output).apply();
+                            Intent intent = new Intent(mainActivity, MainActivity.class);
+                            startActivity(intent);
+                        }
+                        loginButton.setEnabled(true);
+                    }
+                });
             }
         });
         goToRegisterButton.setOnClickListener(new View.OnClickListener() {
@@ -83,27 +88,5 @@ public class LogInFragment extends Fragment {
         });
 
         return view;
-    }
-
-    public void authenticateUser() {
-        String email = editTextEmail.getText().toString();
-        String password = editTextPassword.getText().toString();
-        
-        
-        String token = securityService.logInUser(email, password);
-        Log.e(TAG, "authenticateUser: " + token );
-
-        if (token != null) {
-            sharedPreferences.edit().putString(Constant.AUTH_TOKEN, token).apply();
-            Intent intent = new Intent(mainActivity, MainActivity.class);
-            startActivity(intent);
-        } else {
-            Toast.makeText(mainActivity, "token is null", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-    Boolean isLogged() {
-        return sharedPreferences.contains(Constant.AUTH_TOKEN) && securityService.isTokenValid(sharedPreferences.getString(Constant.AUTH_TOKEN, null));
     }
 }

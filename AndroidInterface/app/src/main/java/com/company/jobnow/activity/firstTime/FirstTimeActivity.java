@@ -19,13 +19,6 @@ public class FirstTimeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_first_time);
 
         setUpViewPager();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                viewPager.setCurrentItem(1);
-            }
-        }, Constant.Numeric.LOGO_DELAY_MS);
     }
 
     @Override
@@ -38,10 +31,10 @@ public class FirstTimeActivity extends AppCompatActivity {
     public void setUpViewPager() {
         viewPager = findViewById(R.id.firstTime_viewPager);
         FragmentPagerAdapterFirstTime viewPagerAdapter = new FragmentPagerAdapterFirstTime(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new LogoFragment());
+        viewPagerAdapter.addFragment(new LogoFragment(this, viewPager));
         viewPagerAdapter.addFragment(new LogInFragment(this, viewPager));
         viewPagerAdapter.addFragment(new RegisterFragment(this, viewPager));
         viewPager.setAdapter(viewPagerAdapter);
-        viewPager.setCurrentItem(0);
+        viewPager.setCurrentItem(1); // Change to 0  to make logo apear
     }
 }

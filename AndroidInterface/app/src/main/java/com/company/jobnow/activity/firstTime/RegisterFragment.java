@@ -32,15 +32,15 @@ public class RegisterFragment extends Fragment {
     public RegisterFragment(AppCompatActivity mainActivity, ViewPager viewPager) {
         this.mainActivity = mainActivity;
         this.viewPager = viewPager;
+
+        this.securityService = SecurityService.getInstance();
+        this.sharedPreferences = mainActivity.getSharedPreferences(Constant.LOGIN_PREFERENCES, Activity.MODE_PRIVATE);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
-
-        securityService = SecurityService.getInstance();
-        sharedPreferences = mainActivity.getSharedPreferences(Constant.LOGIN_PREFERENCES, Activity.MODE_PRIVATE);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +56,12 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 registerButton.setEnabled(false);
-                registerUser();
+
+                String fullName = inputFullName.getEditText().getText().toString();
+                String email = inputEmail.getEditText().getText().toString();
+                String password = inputPassword.getEditText().getText().toString();
+
+                // IMPLEMENT ASYNC TASK
                 registerButton.setEnabled(true);
             }
         });
@@ -68,25 +73,6 @@ public class RegisterFragment extends Fragment {
                 goToLoginButton.setEnabled(true);
             }
         });
-
         return view;
     }
-
-    public void registerUser() {
-        String fullName = inputFullName.getEditText().getText().toString();
-        String email = inputEmail.getEditText().getText().toString();
-        String password = inputPassword.getEditText().getText().toString();
-        securityService.registerUser(fullName, email, password);
-    }
-//        boolean success = SingletonDatabase.getInstance().registerUser(fullName, email, password);
-
-//        // TODO Connect with OldSecurityService
-//
-//        if (success) {
-//            Intent intent = new Intent(getActivity(), MainActivity.class);
-//            startActivity(intent);
-//        } else {
-//            Toast.makeText(getActivity(), getString(R.string.register_unknow_error), Toast.LENGTH_SHORT).show();
-//        }
-//    }
 }

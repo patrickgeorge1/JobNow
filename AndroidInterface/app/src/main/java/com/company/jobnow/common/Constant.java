@@ -38,7 +38,7 @@ public final class Constant {
     public final static String PREFERED_MAX_PRICE = "maxPrice";
 
 
-    public final static String SUCESS_STATUS = "status";
+    public final static String STATUS = "status";
     public final static String BASE_URL = "https://app-jobnow.herokuapp.com/";
 
 

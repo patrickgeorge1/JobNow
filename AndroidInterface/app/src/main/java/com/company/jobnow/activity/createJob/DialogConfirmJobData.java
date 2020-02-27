@@ -30,12 +30,12 @@ public class DialogConfirmJobData extends AppCompatDialogFragment {
 
     AppCompatActivity mainActivity;
     private String jobTitle;
-    private String jobPrice;
+    private Integer jobPrice;
     private String jobDescription;
     private LatLng jobPosition;
     private List<Category> jobCategory;
 
-    public DialogConfirmJobData(AppCompatActivity mainActivity, String jobTitle, String jobPrice, String jobDescription, List<Category> jobCategory, LatLng jobPosition) {
+    public DialogConfirmJobData(AppCompatActivity mainActivity, String jobTitle, Integer jobPrice, String jobDescription, List<Category> jobCategory, LatLng jobPosition) {
         this.mainActivity = mainActivity;
         this.jobTitle = jobTitle;
         this.jobPrice = jobPrice;

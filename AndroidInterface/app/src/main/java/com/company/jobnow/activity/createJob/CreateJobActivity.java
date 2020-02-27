@@ -173,12 +173,7 @@ public class CreateJobActivity extends AppCompatActivity implements DialogUpdate
             return;
         }
         String jobTitle = inputJobTitle.getEditText().getText().toString();
-        String jobPrice = inputJobPrice.getEditText().getText().toString();
-        if (jobPrice.length() == 0 || Integer.parseInt(jobPrice) == 0) {
-            jobPrice = getString(R.string.no_price);
-        } else {
-            jobPrice += " " + ((Currency) currencySpinner.getSelectedItem()).getAbbreviation();
-        }
+        Integer jobPrice = Integer.valueOf(inputJobPrice.getEditText().getText().toString());
         String jobDescription = inputJobDescription.getEditText().getText().toString();
 
         DialogConfirmJobData dialogConfirmJobData = new DialogConfirmJobData(this, jobTitle, jobPrice, jobDescription, selectedCategories, jobPosition);

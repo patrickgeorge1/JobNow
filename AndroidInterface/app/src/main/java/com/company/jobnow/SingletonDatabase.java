@@ -25,7 +25,7 @@ public class SingletonDatabase {
         appUser = new User("fullName", "email@email.com", "kasdkjas1231242dsadasdasdhdlasd");
         jobListDemo = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            jobListDemo.add(new Job("Job " + i, "Description " + i, String.valueOf((new Random()).nextInt(100)) + " RON"));
+            jobListDemo.add(new Job("Job " + i, "Description " + i, (new Random()).nextInt(100)));
         }
         chatsDemo = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -64,7 +64,7 @@ public class SingletonDatabase {
         return currencyListDemo;
     }
 
-    public void addJob(String jobTitle, String jobPrice, String jobDescription, double latitude, double longitude, List<Category> jobCategory) {
+    public void addJob(String jobTitle, Integer jobPrice, String jobDescription, double latitude, double longitude, List<Category> jobCategory) {
         jobListDemo.add(new Job(jobTitle, jobPrice, jobDescription, latitude, longitude, jobCategory));
     }
 

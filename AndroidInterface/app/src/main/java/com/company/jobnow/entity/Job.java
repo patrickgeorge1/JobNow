@@ -2,42 +2,52 @@ package com.company.jobnow.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.common.Utilities;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity(tableName = "jobs")
 public class Job {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private int id;
+    private Integer id;
 
     @ColumnInfo(name = "title")
     private String title;
 
-    @ColumnInfo(name = "price")
-    private String price;
-
     @ColumnInfo(name = "description")
     private String description;
 
-    @ColumnInfo(name = "category_id")
+    @ColumnInfo(name = "price")
+    private Integer price;
+
+    @Ignore
     private List<Category> jobCategoty;
 
     @ColumnInfo(name = "latitude")
-    private double latitude;
+    private Double latitude;
 
     @ColumnInfo(name = "longitude")
-    private double longitude;
+    private Double longitude;
 
-    public Job(String title, String price, String description, double latitude, double longitude, List<Category> jobCategoty) {
+    public Job(String title, String description, Integer price, Double latitude, Double longitude) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.latitude = latitude;
+        this.longitude = longitude;
+
+        // TODO CATEGORY IMPLEMENT
+        this.jobCategoty = new ArrayList<>();
+        this.jobCategoty.add( new Category("default cat"));
+    }
+
+    public Job(String title, Integer price, String description, Double latitude, Double longitude, List<Category> jobCategoty) {
         this.title = title;
         this.price = price;
         this.description = description;
@@ -48,7 +58,7 @@ public class Job {
         this.jobCategoty.addAll(jobCategoty);
     }
 
-    public Job(String name, String description, String price) {
+    public Job(String name, String description, Integer price) {
         this.title = name;
         this.description = description;
         this.price = price;
@@ -64,6 +74,14 @@ public class Job {
         this.title = name;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -72,27 +90,27 @@ public class Job {
         this.description = description;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 

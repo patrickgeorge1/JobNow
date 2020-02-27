@@ -1,5 +1,6 @@
 package com.company.jobnow.activity.firstTime;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -8,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.company.jobnow.R;
 import com.company.jobnow.activity.adapter.FragmentPagerAdapterFirstTime;
+import com.company.jobnow.activity.main.MainActivity;
 import com.company.jobnow.common.Constant;
 
 public class FirstTimeActivity extends AppCompatActivity {
@@ -19,6 +21,7 @@ public class FirstTimeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_first_time);
 
         setUpViewPager();
+        startActivity(new Intent(FirstTimeActivity.this, MainActivity.class));
     }
 
     @Override

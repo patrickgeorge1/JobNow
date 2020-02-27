@@ -1,5 +1,10 @@
 package com.company.jobnow.entity;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
+
 import com.company.jobnow.SingletonDatabase;
 import com.company.jobnow.common.Utilities;
 import com.google.android.gms.maps.model.LatLng;
@@ -8,19 +13,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Entity(tableName = "jobs")
 public class Job {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
-    // TODO autoincrement ID
 
-    private String name;
+    @ColumnInfo(name = "title")
+    private String title;
+
+    @ColumnInfo(name = "price")
     private String price;
+
+    @ColumnInfo(name = "description")
     private String description;
+
+    @ColumnInfo(name = "category_id")
     private List<Category> jobCategoty;
+
+    @ColumnInfo(name = "latitude")
     private double latitude;
+
+    @ColumnInfo(name = "longitude")
     private double longitude;
 
-    public Job(String name, String price, String description, double latitude, double longitude, List<Category> jobCategoty) {
-        this.name = name;
+    public Job(String title, String price, String description, double latitude, double longitude, List<Category> jobCategoty) {
+        this.title = title;
         this.price = price;
         this.description = description;
         this.latitude = latitude;
@@ -31,19 +49,19 @@ public class Job {
     }
 
     public Job(String name, String description, String price) {
-        this.name = name;
+        this.title = name;
         this.description = description;
         this.price = price;
         this.jobCategoty = new ArrayList<>();
         this.jobCategoty.add( new Category("default cat"));
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String name) {
+        this.title = name;
     }
 
     public String getDescription() {

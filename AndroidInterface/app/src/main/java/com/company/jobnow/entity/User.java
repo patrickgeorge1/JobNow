@@ -1,15 +1,30 @@
 package com.company.jobnow.entity;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.android.gms.maps.model.LatLng;
 
+@Entity(tableName = "users")
 public class User {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
-    // TODO autoincrement ID
 
+    @ColumnInfo(name = "realName")
     private String fullName;
+
+    @ColumnInfo(name = "username")
     private String email;
+
+    @ColumnInfo(name = "password")
     private String hashPassword;
+
+    @ColumnInfo(name = "lastPosLat")
     private float lastPosLat;
+
+    @ColumnInfo(name = "lastPosLon")
     private float lastPosLong;
 
     public User(String fullName, String email, String hashPassword) {

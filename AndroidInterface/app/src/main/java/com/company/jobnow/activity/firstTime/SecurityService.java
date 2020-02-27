@@ -58,8 +58,6 @@ public class SecurityService {
         return requestStatus;
     }
 
-
-
     public void logOutUser(String token) {
         Call<ResponseBody> call = retrofitSecurity.create(ApiInterface.class).logout(token);
         call.enqueue(new Callback<ResponseBody>() {

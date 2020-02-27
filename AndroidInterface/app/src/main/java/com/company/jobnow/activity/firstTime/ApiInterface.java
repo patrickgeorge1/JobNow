@@ -24,4 +24,7 @@ public interface ApiInterface {
 
     @POST("checkToken")
     Call<ResponseBody> checkToken(@Header("Authorization") String authHeader);
+
+    @GET("api/public/jobs")
+    Call<ResponseBody> getJobs(@Header("Authorization") String authHeader);
 }

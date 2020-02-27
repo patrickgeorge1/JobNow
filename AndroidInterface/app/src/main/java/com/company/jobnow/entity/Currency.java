@@ -1,10 +1,19 @@
 package com.company.jobnow.entity;
 
-public class Currency {
-    private int id;
-    // TODO autoincrement ID
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "currencies")
+public class Currency {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private int id;
+
+    @ColumnInfo(name = "code")
     String abbreviation;
+
+    @ColumnInfo(name = "name")
     String name;
 
     public Currency(String abbreviation, String name) {
